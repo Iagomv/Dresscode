@@ -1,11 +1,18 @@
 package com.dresscode.service.impl;
 import com.dresscode.service.ClothingItemService;
+
+import jakarta.persistence.criteria.Predicate;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dresscode.enums.ClothingItemAvailabilityEnum;
+import com.dresscode.enums.ClothingItemSizeEnum;
+import com.dresscode.enums.ClothingItemStateEnum;
 import com.dresscode.model.ClothingItem;
 import com.dresscode.repository.ClothingItemRepository;
 
@@ -26,6 +33,26 @@ public class ClothingItemServiceImpl implements ClothingItemService{
         return clothingItemRepository.findById(id);
     }
 
+    public List<ClothingItem> searchClothingItems(
+        ClothingItemSizeEnum size,
+        String color,
+        ClothingItemAvailabilityEnum availability,
+        ClothingItemStateEnum state,
+        String ciCode
+    ) {
+        return clothingItemRepository.findAll((root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (size != null) predicates.add(cb.equal(root.get("size"), size));
+            if (color != null) predicates.add(cb.like(cb.lower(root.get("color")), "%" + color.toLowerCase() + "%"));
+            if (availability != null) predicates.add(cb.equal(root.get("availability"), availability));
+            if (state != null) predicates.add(cb.equal(root.get("state"), state));
+            if (ciCode != null) predicates.add(cb.like(cb.lower(root.get("ciCode")), "%" + ciCode.toLowerCase() + "%"));
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
+    }
+
     @Override
     public ClothingItem createClothingItem(ClothingItem ClothingItem) {
         return clothingItemRepository.save(ClothingItem);   
@@ -42,27 +69,24 @@ public class ClothingItemServiceImpl implements ClothingItemService{
             existingClothingItem.setPrize(ClothingItem.getPrize());
             existingClothingItem.setAcquisitionDate(ClothingItem.getAcquisitionDate());
             existingClothingItem.setState(ClothingItem.getState());
-            existingClothingItem.setDeleted(ClothingItem.isDeleted());
             existingClothingItem.setUser(ClothingItem.getUser());
             existingClothingItem.setLoan(ClothingItem.getLoan());
             return clothingItemRepository.save(existingClothingItem);
         }).orElseThrow(() -> new RuntimeException("Clothing item not found with id " + id));
     }
 
-    @Override
-    public void deleteClothingItem(ClothingItem clothingItem) {
-        clothingItemRepository.delete(clothingItem);
-    }
 
     @Override
-    public void deleteClothingItemById(Long id) {
-        clothingItemRepository.deleteById(id);
+    public ClothingItem deleteClothingItemById(Long id) {
+        Optional<ClothingItem> clothingItem = getClothingItemById(id);
+        
+        if (!clothingItem.isPresent()) { return null; }
+
+        else {
+            clothingItemRepository.deleteById(id);
+            return clothingItem.get();
+        }
     }
 
-    //TODO
-    // @Override
-    // public List<ClothingItem> getClothingItemsByLoanId(Long loanId) {
-    // }
-    
 
 }

@@ -3,7 +3,7 @@ package com.dresscode.controller;
 import com.dresscode.model.Clase;
 import com.dresscode.model.User;
 import com.dresscode.service.ClaseService;
-
+import com.dresscode.config.ApiRoutes;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
 
 @RestController
-@RequestMapping("/api/clase")
+@RequestMapping(ApiRoutes.CLASES)
+
 @Validated 
 public class ClaseController {
 
@@ -35,7 +34,6 @@ public class ClaseController {
         return ResponseEntity.ok(clasesList); 
     }
 
-    // Obtener clase por ID
     @GetMapping("/{id}")
     public ResponseEntity<Clase> getClaseById(@PathVariable Long id) {
         return claseService.getClaseById(id)
@@ -43,7 +41,6 @@ public class ClaseController {
                 .orElseGet(() -> ResponseEntity.notFound().build()); 
     }
 
-    // Get class Users by Clase id
     @GetMapping("/users/{claseId}")
     public ResponseEntity<?> getClaseUsers(@PathVariable Long claseId) {
         Set<User> users = claseService.getUsersByClaseId(claseId);
@@ -51,7 +48,6 @@ public class ClaseController {
     }
 
     
-    // Insertar nueva clase
     @PostMapping("/")
     public ResponseEntity<Clase> insertClase(@RequestBody @Valid Clase clase) {
         Clase createdClase = claseService.createClase(clase);  

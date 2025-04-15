@@ -1,5 +1,7 @@
 package com.dresscode.model;
 
+import java.security.Timestamp;
+
 import com.dresscode.enums.ClothingItemAvailabilityEnum;
 import com.dresscode.enums.ClothingItemSizeEnum;
 import com.dresscode.enums.ClothingItemStateEnum;
@@ -27,14 +29,11 @@ public class ClothingItem {
 
     private double prize; // Precio de la prenda (si es necesario)
 
-    private String acquisitionDate; // Acquisition date (fecha de adquisición de la prenda)
+    private Timestamp acquisitionDate; // Acquisition date (fecha de adquisición de la prenda)
 
     private ClothingItemStateEnum state; // Estado de la prenda (e.g., "Nueva", "Usada")
 
     
-
-    @Column(nullable = false)
-    private boolean deleted = false; // Campo para indicar si la prenda ha sido eliminada (soft delete)
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = true) // El usuario que tiene la prenda (puede ser null si la prenda está disponible)
@@ -98,22 +97,14 @@ public class ClothingItem {
         this.prize = precio;
     }
 
-    public String getAcquisitionDate() {
+    public Timestamp getAcquisitionDate() {
         return acquisitionDate;
     }
 
-    public void setAcquisitionDate(String fechaAdquisicion) {
+    public void setAcquisitionDate(Timestamp fechaAdquisicion) {
         this.acquisitionDate = fechaAdquisicion;
     }
 
-    
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean eliminada) {
-        this.deleted = eliminada;
-    }
 
     public User getUser() {
         return user;
