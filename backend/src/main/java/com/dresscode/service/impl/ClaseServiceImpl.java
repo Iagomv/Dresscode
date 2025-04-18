@@ -44,7 +44,7 @@ public class ClaseServiceImpl implements ClaseService {
     }
 
     @Override
-    public Clase deleteClase(Long id) {
+    public Clase deleteClaseById(Long id) {
         return claseRepository.findById(id).map(existingClase -> {
             claseRepository.delete(existingClase);
             return existingClase;
@@ -58,5 +58,4 @@ public class ClaseServiceImpl implements ClaseService {
         return clase.getUsers();
     }
 
-    
 }

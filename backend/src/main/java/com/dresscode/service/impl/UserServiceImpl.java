@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.model.User;
 import com.dresscode.repository.UserRepository;
 import com.dresscode.service.UserService;
@@ -14,7 +16,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Autowired
-    private UserRepository userRepository;
+    public UserRepository userRepository;
 
     
     @Override
@@ -28,24 +30,24 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User createUser(User User) {
-        return userRepository.save(User);
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
     @Override
-    public User updateUser(Long id, User User) {
+    public User updateUser(Long id, User user) {
         return userRepository.findById(id).map(existingUser -> {
-            existingUser.setName(User.getName());
-            existingUser.setLastName(User.getLastName());
-            existingUser.setPhoneNumber(User.getPhoneNumber());
-            existingUser.setEmail(User.getEmail());
-            existingUser.setPassword(User.getPassword());
-            existingUser.setClases(User.getClases());
-            existingUser.setLoans(User.getLoans());
-            existingUser.setRole(User.getRole());
-            existingUser.setActive(User.isActive());
+            existingUser.setName(user.getName());
+            existingUser.setLastName(user.getLastName());
+            existingUser.setPhoneNumber(user.getPhoneNumber());
+            existingUser.setEmail(user.getEmail());
+            existingUser.setPassword(user.getPassword());
+            existingUser.setClases(user.getClases());
+            existingUser.setLoans(user.getLoans());
+            existingUser.setRole(user.getRole());
+            existingUser.setActive(user.isActive());
             return userRepository.save(existingUser);
-        }).orElseThrow(() -> new RuntimeException("User not found with id " + id));
+        }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
     }
 
     @Override
@@ -53,7 +55,7 @@ public class UserServiceImpl implements UserService{
         return userRepository.findById(id).map(existingUser -> {
             userRepository.delete(existingUser);
             return existingUser;
-        }).orElseThrow(() -> new RuntimeException("User not found with id " + id));
+        }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
     }
 
     

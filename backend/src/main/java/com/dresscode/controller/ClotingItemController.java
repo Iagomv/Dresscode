@@ -90,6 +90,4 @@ public class ClotingItemController {
         }
         return ResponseEntity.ok(clothingItemService.deleteClothingItemById(id));
     }
-
-    
 }

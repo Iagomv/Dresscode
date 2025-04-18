@@ -1,8 +1,8 @@
 package com.dresscode.enums;
 
 public enum ClothingItemStateEnum {
-    NUEVA,
-    USADA;
+    NEW,
+    USED;
 
     public String getState() {
         return this.name(); 

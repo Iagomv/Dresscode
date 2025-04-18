@@ -2,7 +2,6 @@ package com.dresscode.model;
 import jakarta.persistence.*;
 import java.util.Set;
 
-import io.micrometer.common.lang.NonNull;
 
 @Entity
 public class Clase {
@@ -11,7 +10,7 @@ public class Clase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Identificador único de la clase
 
-    @NonNull
+    @Column(nullable = false)
     private String name; // Nombre de la clase (Ejemplo: "Matemáticas")
 
     @ManyToMany(mappedBy = "clases") // Relación muchos a muchos inversa

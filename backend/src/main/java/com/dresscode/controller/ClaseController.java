@@ -17,7 +17,6 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(ApiRoutes.CLASES)
-
 @Validated 
 public class ClaseController {
 
@@ -62,7 +61,7 @@ public class ClaseController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Clase> deleteClase(@PathVariable Long id) {
-        Clase deletedClase = claseService.deleteClase(id);
+        Clase deletedClase = claseService.deleteClaseById(id);
         return deletedClase != null ? ResponseEntity.ok(deletedClase) : ResponseEntity.notFound().build();
     }
 

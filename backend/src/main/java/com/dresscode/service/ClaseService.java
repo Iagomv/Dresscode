@@ -20,7 +20,7 @@ public interface ClaseService {
     
     public  Clase updateClase(Long id, Clase clase);
     
-    public  Clase deleteClase(Long id);
+    public  Clase deleteClaseById(Long id);
 
     public Set<User> getUsersByClaseId(Long claseId); 
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.model.Loan;
 import com.dresscode.repository.LoanRepository;
 import com.dresscode.service.LoanService;
@@ -40,7 +41,7 @@ public class LoanServiceImpl implements LoanService{
             existingLoan.setUser(loan.getUser());
             existingLoan.setClothingItems(loan.getClothingItems());
             return loanRepository.save(existingLoan);
-        }).orElseThrow(() -> new RuntimeException("Loan not found with id " + id));
+        }).orElseThrow(() -> new ResourceNotFoundException("Loan not found with id " + id));
     }
 
     @Override
@@ -53,7 +54,8 @@ public class LoanServiceImpl implements LoanService{
 
     @Override
     public List<Loan> getLoansByUserId(Long userId) {
-        return loanRepository.findByUserId(userId);
+        List<Loan> loans = loanRepository.findByUserId(userId);
+        return loans != null ? loans : List.of();
     }
 
 }

@@ -1,7 +1,6 @@
 package com.dresscode.model;
 
-import java.security.Timestamp;
-
+import java.sql.Timestamp;
 import com.dresscode.enums.ClothingItemAvailabilityEnum;
 import com.dresscode.enums.ClothingItemSizeEnum;
 import com.dresscode.enums.ClothingItemStateEnum;

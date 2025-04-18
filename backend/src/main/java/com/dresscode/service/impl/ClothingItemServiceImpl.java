@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.dresscode.enums.ClothingItemAvailabilityEnum;
@@ -32,7 +33,8 @@ public class ClothingItemServiceImpl implements ClothingItemService{
     public Optional<ClothingItem> getClothingItemById(Long id) {
         return clothingItemRepository.findById(id);
     }
-
+    
+    @Override
     public List<ClothingItem> searchClothingItems(
         ClothingItemSizeEnum size,
         String color,
@@ -40,17 +42,18 @@ public class ClothingItemServiceImpl implements ClothingItemService{
         ClothingItemStateEnum state,
         String ciCode
     ) {
-        return clothingItemRepository.findAll((root, query, cb) -> {
-            List<Predicate> predicates = new ArrayList<>();
+        return clothingItemRepository.findAll((Specification<ClothingItem>) (root, query, cb) -> {
+        List<Predicate> predicates = new ArrayList<>();
 
-            if (size != null) predicates.add(cb.equal(root.get("size"), size));
-            if (color != null) predicates.add(cb.like(cb.lower(root.get("color")), "%" + color.toLowerCase() + "%"));
-            if (availability != null) predicates.add(cb.equal(root.get("availability"), availability));
-            if (state != null) predicates.add(cb.equal(root.get("state"), state));
-            if (ciCode != null) predicates.add(cb.like(cb.lower(root.get("ciCode")), "%" + ciCode.toLowerCase() + "%"));
+        if (size != null) predicates.add(cb.equal(root.get("size"), size));
+        if (color != null) predicates.add(cb.like(cb.lower(root.get("color")), "%" + color.toLowerCase() + "%"));
+        if (availability != null) predicates.add(cb.equal(root.get("availability"), availability));
+        if (state != null) predicates.add(cb.equal(root.get("state"), state));
+        if (ciCode != null) predicates.add(cb.like(cb.lower(root.get("ciCode")), "%" + ciCode.toLowerCase() + "%"));
 
-            return cb.and(predicates.toArray(new Predicate[0]));
-        });
+        return cb.and(predicates.toArray(new Predicate[0]));
+    });
+
     }
 
     @Override
