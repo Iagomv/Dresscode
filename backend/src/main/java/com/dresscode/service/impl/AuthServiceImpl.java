@@ -1,6 +1,7 @@
 package com.dresscode.service.impl;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,12 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponseDto login(LoginRequestDto dto) {
-        CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(dto.getEmail());
+        CustomUserDetails userDetails;
+        try {
+            userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(dto.getEmail());
+        } catch (UsernameNotFoundException e) {
+            throw new WrongCredentialsException();
+        }
 
         if (!passwordEncoder.matches(dto.getPassword(), userDetails.getPassword())) {
             throw new WrongCredentialsException();
