@@ -1,6 +1,6 @@
 package com.dresscode.controller;
 
-import com.dresscode.config.ApiRoutes;
+import com.dresscode.constants.ApiRoutes;
 import com.dresscode.model.User;
 import com.dresscode.service.UserService;
 import org.junit.jupiter.api.BeforeEach;

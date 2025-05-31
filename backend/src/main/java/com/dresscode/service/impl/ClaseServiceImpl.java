@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.model.Clase;
 import com.dresscode.model.User;
 import com.dresscode.repository.ClaseRepository;
@@ -17,11 +18,14 @@ public class ClaseServiceImpl implements ClaseService {
 
     @Autowired
     private ClaseRepository claseRepository;
-    
 
     @Override
     public List<Clase> getAllClases() {
-       return claseRepository.findAll();
+        List<Clase> clases = claseRepository.findAll();
+        if (clases.isEmpty()) {
+            throw new ResourceNotFoundException("No clases found");
+        }
+        return clases;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class ClaseServiceImpl implements ClaseService {
     @Override
     public Set<User> getUsersByClaseId(Long claseId) {
         Clase clase = claseRepository.findById(claseId)
-            .orElseThrow(() -> new RuntimeException("Clase not found with id " + claseId));
+                .orElseThrow(() -> new RuntimeException("Clase not found with id " + claseId));
         return clase.getUsers();
     }
 

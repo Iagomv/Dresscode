@@ -1,9 +1,10 @@
 package com.dresscode.controller;
 
+import com.dresscode.constants.ApiRoutes;
 import com.dresscode.model.Clase;
 import com.dresscode.model.User;
 import com.dresscode.service.ClaseService;
-import com.dresscode.config.ApiRoutes;
+
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,30 +15,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
 
-
 @RestController
 @RequestMapping(ApiRoutes.CLASES)
-@Validated 
+@Validated
 public class ClaseController {
 
     @Autowired
     private ClaseService claseService;
 
-    // Obtener todas las clases
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<Clase>> getAllClases() {
-        List<Clase> clasesList = claseService.getAllClases();
-        if (clasesList.isEmpty()) {
-            return ResponseEntity.noContent().build();  
-        }
-        return ResponseEntity.ok(clasesList); 
+        return ResponseEntity.ok(claseService.getAllClases());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Clase> getClaseById(@PathVariable Long id) {
         return claseService.getClaseById(id)
-                .map(ResponseEntity::ok)  
-                .orElseGet(() -> ResponseEntity.notFound().build()); 
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/users/{claseId}")
@@ -46,11 +41,10 @@ public class ClaseController {
         return users.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(users);
     }
 
-    
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<Clase> insertClase(@RequestBody @Valid Clase clase) {
-        Clase createdClase = claseService.createClase(clase);  
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdClase);  
+        Clase createdClase = claseService.createClase(clase);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdClase);
     }
 
     @PatchMapping("/{id}")
@@ -65,6 +59,4 @@ public class ClaseController {
         return deletedClase != null ? ResponseEntity.ok(deletedClase) : ResponseEntity.notFound().build();
     }
 
-    
-    
 }

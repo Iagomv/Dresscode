@@ -1,0 +1,20 @@
+{
+  "title": "Actividades",
+  "description": "A nosa agrupación ofrece unha variedade de actividades culturais e recreativas.",
+  "activities": [
+    {
+      "name": "Clases de Danza Galega",
+      "description": "Formación en danzas tradicionais galegas para todas as idades."
+    },
+    {
+      "name": "Coro",
+      "description": "Grupo coral que interpreta música tradicional e contemporánea galega."
+    },
+    {
+      "name": "Eventos Culturais",
+      "description": "Organización de eventos abertos ao público con música, baile e gastronomía."
+    }
+  ],
+  "classLocationInfo": "Todas as clases impártense nas instalacións do Centro Galego de Madrid (fundado en 1892), na rúa Carretas 14, e están abertas a calquera persoa interesada na cultura e no folclore galego.",
+  "membershipInfo": "Entre os seus socios contan galegos e descendentes de galegos, pero tamén persoas que, carecendo de vínculo familiar, senten afinidade cultural polo galego."
+}

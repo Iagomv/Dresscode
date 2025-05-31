@@ -1,4 +1,5 @@
 package com.dresscode.service.impl;
+
 import com.dresscode.service.ClothingItemService;
 
 import jakarta.persistence.criteria.Predicate;
@@ -14,51 +15,59 @@ import org.springframework.stereotype.Service;
 import com.dresscode.enums.ClothingItemAvailabilityEnum;
 import com.dresscode.enums.ClothingItemSizeEnum;
 import com.dresscode.enums.ClothingItemStateEnum;
+import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.model.ClothingItem;
 import com.dresscode.repository.ClothingItemRepository;
 
 @Service
-public class ClothingItemServiceImpl implements ClothingItemService{
-
+public class ClothingItemServiceImpl implements ClothingItemService {
 
     @Autowired
     private ClothingItemRepository clothingItemRepository;
 
     @Override
     public List<ClothingItem> getAllClotingItems() {
-        return clothingItemRepository.findAll();
+        List<ClothingItem> clothes = clothingItemRepository.findAll();
+        if (clothes.isEmpty()) {
+            throw new ResourceNotFoundException("No clothing item was found");
+        }
+        return clothes;
     }
 
     @Override
     public Optional<ClothingItem> getClothingItemById(Long id) {
         return clothingItemRepository.findById(id);
     }
-    
+
     @Override
     public List<ClothingItem> searchClothingItems(
-        ClothingItemSizeEnum size,
-        String color,
-        ClothingItemAvailabilityEnum availability,
-        ClothingItemStateEnum state,
-        String ciCode
-    ) {
+            ClothingItemSizeEnum size,
+            String color,
+            ClothingItemAvailabilityEnum availability,
+            ClothingItemStateEnum state,
+            String ciCode) {
         return clothingItemRepository.findAll((Specification<ClothingItem>) (root, query, cb) -> {
-        List<Predicate> predicates = new ArrayList<>();
+            List<Predicate> predicates = new ArrayList<>();
 
-        if (size != null) predicates.add(cb.equal(root.get("size"), size));
-        if (color != null) predicates.add(cb.like(cb.lower(root.get("color")), "%" + color.toLowerCase() + "%"));
-        if (availability != null) predicates.add(cb.equal(root.get("availability"), availability));
-        if (state != null) predicates.add(cb.equal(root.get("state"), state));
-        if (ciCode != null) predicates.add(cb.like(cb.lower(root.get("ciCode")), "%" + ciCode.toLowerCase() + "%"));
+            if (size != null)
+                predicates.add(cb.equal(root.get("size"), size));
+            if (color != null)
+                predicates.add(cb.like(cb.lower(root.get("color")), "%" + color.toLowerCase() + "%"));
+            if (availability != null)
+                predicates.add(cb.equal(root.get("availability"), availability));
+            if (state != null)
+                predicates.add(cb.equal(root.get("state"), state));
+            if (ciCode != null)
+                predicates.add(cb.like(cb.lower(root.get("ciCode")), "%" + ciCode.toLowerCase() + "%"));
 
-        return cb.and(predicates.toArray(new Predicate[0]));
-    });
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
 
     }
 
     @Override
     public ClothingItem createClothingItem(ClothingItem ClothingItem) {
-        return clothingItemRepository.save(ClothingItem);   
+        return clothingItemRepository.save(ClothingItem);
     }
 
     @Override
@@ -78,18 +87,18 @@ public class ClothingItemServiceImpl implements ClothingItemService{
         }).orElseThrow(() -> new RuntimeException("Clothing item not found with id " + id));
     }
 
-
     @Override
     public ClothingItem deleteClothingItemById(Long id) {
         Optional<ClothingItem> clothingItem = getClothingItemById(id);
-        
-        if (!clothingItem.isPresent()) { return null; }
+
+        if (!clothingItem.isPresent()) {
+            return null;
+        }
 
         else {
             clothingItemRepository.deleteById(id);
             return clothingItem.get();
         }
     }
-
 
 }

@@ -1,0 +1,16 @@
+{
+  "heroImage": "/images/header.jpg",
+  "heroText": "Agrupación Rosalía de Castro",
+  "heroSubtext": "Preservando la cultura y el folclore gallego desde 1923",
+  "fontFamily": "'EB Garamond', serif",
+  "sections": [
+    {
+      "title": "Quiénes Somos",
+      "content": "Somos una agrupación cultural dedicada a difundir la música, danza y tradiciones del pueblo gallego. Con décadas de trayectoria, hemos formado a generaciones de jóvenes en el amor por nuestras raíces."
+    },
+    {
+      "title": "Nuestras Actividades",
+      "content": "Ofrecemos clases de baile, canto y música tradicional. Participamos en festivales y organizamos eventos culturales abiertos a toda la comunidad."
+    }
+  ]
+}

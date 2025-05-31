@@ -3,13 +3,12 @@ package com.dresscode.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dresscode.constants.ApiRoutes;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.model.Loan;
 import com.dresscode.service.LoanService;
 
 import java.util.List;
-
-import com.dresscode.config.ApiRoutes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,25 +20,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
 @RestController
 @RequestMapping(ApiRoutes.LOANS)
 public class LoanController {
-    
+
     @Autowired
     private LoanService loanService;
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<Loan>> getAllLoans() {
-        List<Loan> loans = loanService.getAllLoans();
-        return loans.isEmpty()
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok(loans);
+        return ResponseEntity.ok(loanService.getAllLoans());
     }
 
-    
     @GetMapping("/{id}")
     public ResponseEntity<Loan> getLoanById(@PathVariable Long id) {
         return loanService.getLoanById(id)
@@ -47,7 +39,7 @@ public class LoanController {
                 .orElseThrow(() -> new ResourceNotFoundException("Loan not found with id " + id));
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<Loan> createLoan(@RequestBody Loan loan) {
         Loan savedLoan = loanService.createLoan(loan);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedLoan);
@@ -65,7 +57,7 @@ public class LoanController {
         return loan == null
                 ? ResponseEntity.notFound().build()
                 : ResponseEntity.ok().body(loan);
-    } 
+    }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Loan>> getLoansByUserId(@PathVariable Long userId) {

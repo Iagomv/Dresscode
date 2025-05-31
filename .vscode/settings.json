@@ -1,0 +1,10 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+  
+    "[powershell]": {
+      "editor.defaultFormatter": "ms-vscode.PowerShell",
+      "editor.formatOnSave": true
+    },
+    "powershell.codeFormatting.MaxLineLength": 100
+  }
+  

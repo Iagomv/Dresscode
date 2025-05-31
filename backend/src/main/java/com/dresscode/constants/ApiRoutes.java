@@ -1,4 +1,4 @@
-package com.dresscode.config;
+package com.dresscode.constants;
 
 public class ApiRoutes {
     public static final String API_BASE = "/api";

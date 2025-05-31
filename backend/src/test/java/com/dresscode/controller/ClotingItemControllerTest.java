@@ -1,6 +1,6 @@
 package com.dresscode.controller;
 
-import com.dresscode.config.ApiRoutes;
+import com.dresscode.constants.ApiRoutes;
 import com.dresscode.enums.ClothingItemSizeEnum;
 import com.dresscode.model.ClothingItem;
 import com.dresscode.service.ClothingItemService;

@@ -1,0 +1,10 @@
+{
+  "Title": "Dresscode web",
+  "loginButton": "Iniciar sesión",
+  "registerButton": "Rexistrarse",
+  "createAnAccount": "Crear unha conta",
+  "alreadyHaveAnAccount": "Xa tes conta?",
+  "registrationSuccesful": "Rexistro exitoso",
+  "toastSignUpSuccessDescription": "Benvido ",
+  "registerErrorMessage": "Erro durante o rexistro. Por favor, tenta de novo."
+}

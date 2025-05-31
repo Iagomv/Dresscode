@@ -12,16 +12,18 @@ import com.dresscode.repository.UserRepository;
 import com.dresscode.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService{
-
+public class UserServiceImpl implements UserService {
 
     @Autowired
     public UserRepository userRepository;
 
-    
     @Override
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        List<User> userList = userRepository.findAll();
+        if (userList.isEmpty()) {
+            throw new ResourceNotFoundException("No users found");
+        }
+        return userList;
     }
 
     @Override
@@ -58,6 +60,4 @@ public class UserServiceImpl implements UserService{
         }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
     }
 
-    
-    
 }

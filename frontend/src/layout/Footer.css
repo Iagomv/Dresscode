@@ -1,0 +1,23 @@
+.footer-social-link {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus {
+  transform: translateY(-2px);
+  outline: none;
+}
+.footer-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.main-content {
+  min-height: calc(100vh - 400px); /* Adjust based on footer height */
+}
+
+footer {
+  margin-top: auto;
+}

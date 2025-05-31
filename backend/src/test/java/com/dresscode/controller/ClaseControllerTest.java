@@ -1,9 +1,10 @@
 package com.dresscode.controller;
 
+import com.dresscode.constants.ApiRoutes;
 import com.dresscode.model.Clase;
 import com.dresscode.model.User;
 import com.dresscode.service.ClaseService;
-import com.dresscode.config.ApiRoutes;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

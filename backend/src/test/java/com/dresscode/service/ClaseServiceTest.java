@@ -1,6 +1,5 @@
 package com.dresscode.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -24,7 +23,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ClaseServiceTest {
-    
+
     @Mock
     private ClaseRepository claseRepository;
 
@@ -51,19 +50,19 @@ public class ClaseServiceTest {
     }
 
     @Test
-    void getClaseByIdTest(){
+    void getClaseByIdTest() {
         when(claseRepository.findById(1L)).thenReturn(Optional.of(mockClase));
-        
+
         Optional<Clase> clase = claseService.getClaseById(1L);
         assertThat(clase).isNotNull();
         assertThat(clase).isPresent();
         assertThat(clase.get().getName()).isEqualTo("Danza");
     }
-    
+
     @Test
-    void createClaseTest(){
+    void createClaseTest() {
         when(claseRepository.save(mockClase)).thenReturn(mockClase);
-        
+
         Clase clase = claseService.createClase(mockClase);
         assertThat(clase).isNotNull();
         assertThat(clase.getId()).isEqualTo(1L);
@@ -71,19 +70,19 @@ public class ClaseServiceTest {
         verify(claseRepository, times(1)).save(mockClase);
     }
 
-    void updateClaseTest(){
+    void updateClaseTest() {
         when(claseRepository.findById(mockClase.getId())).thenReturn(Optional.of(mockClase));
         when(claseRepository.save(mockClase)).thenReturn(mockClase);
 
         Clase clase = claseService.updateClase(mockClase.getId(), mockClase);
-        
+
         assertThat(clase).isNotNull();
         assertThat(clase.getId()).isEqualTo(1L);
         assertThat(clase.getName()).isEqualTo("Danza");
     }
 
     @Test
-    void deleteClaseTest(){
+    void deleteClaseTest() {
         when(claseRepository.findById(mockClase.getId())).thenReturn(Optional.of(mockClase));
 
         Clase clase = claseService.deleteClaseById(mockClase.getId());
@@ -96,13 +95,13 @@ public class ClaseServiceTest {
     }
 
     @Test
-    void getUsersByClaseIdTest(){
+    void getUsersByClaseIdTest() {
         Set<User> mockedUsers = new HashSet<>();
-        mockedUsers.add(new User(1L, "user1",null, null,"user1@email.test", null, null, null, null, false));
-        mockedUsers.add(new User(2L, "user2",null, null, null, null, null, null, null, true));
-        
+        mockedUsers.add(new User(1L, "user1", null, null, "user1@email.test", null, null, null, null, false));
+        mockedUsers.add(new User(2L, "user2", null, null, null, null, null, null, null, true));
+
         mockClase.setUsers(mockedUsers);
-        
+
         when(claseRepository.findById(mockClase.getId())).thenReturn(Optional.of(mockClase));
 
         Set<User> users = claseService.getUsersByClaseId(mockClase.getId());
@@ -114,6 +113,5 @@ public class ClaseServiceTest {
         assertThat(foundUser.getEmail()).isEqualTo("user1@email.test");
         verify(claseRepository, times(1)).findById(mockClase.getId());
     }
-
 
 }

@@ -1,0 +1,28 @@
+{
+  "title": "Quen Somos",
+  "intro": "A Agrupación Rosalía de Castro é unha entidade cultural dedicada á difusión das tradicións galegas.",
+  "history": {
+    "mainImage": "/images/camino.jpeg",
+    "items": [
+      {
+        "year": "1923",
+        "text": "Fundada o 2 de marzo de 1923 co obxectivo de fomentar a práctica e a divulgación da música e do folclore galego."
+      },
+      {
+        "year": "1923-2023",
+        "text": "Durante estes case cen anos de historia contribuíu a manter vivo o folclore e o patrimonio inmaterial da cultura galega."
+      },
+      {
+        "year": "Directores",
+        "text": "O seu primeiro director foi Reveriano Soutullo, seguido por músicos como Germán Lago, Rafael Gayoso e outros destacados directores."
+      }
+    ]
+  },
+  "location": {
+    "name": "Centro Galego de Madrid",
+    "address": "Rúa Carretas 14, Madrid",
+    "founded": "1892"
+  },
+  "membership": "Aberta a calquera persoa interesada na cultura e no folclore galego.",
+  "type": "Asociación sen ánimo de lucro"
+}

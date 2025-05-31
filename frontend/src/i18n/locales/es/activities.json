@@ -1,0 +1,20 @@
+{
+  "title": "Actividades",
+  "description": "Nuestra agrupación ofrece una variedad de actividades culturales y recreativas.",
+  "activities": [
+    {
+      "name": "Clases de Danza Gallega",
+      "description": "Formación en danzas tradicionales gallegas para todas las edades."
+    },
+    {
+      "name": "Coro",
+      "description": "Grupo coral que interpreta música tradicional y contemporánea gallega."
+    },
+    {
+      "name": "Eventos Culturales",
+      "description": "Organización de eventos abiertos al público con música, baile y gastronomía."
+    }
+  ],
+  "classLocationInfo": "Todas las clases se imparten en las instalaciones del Centro Gallego de Madrid y están abiertas a cualquier persona con interés en la cultura y el folclore gallego.",
+  "membershipInfo": "Entre sus socios se cuentan números gallegos y descendientes de gallegos, pero también personas que, careciendo de cualquier vínculo familiar, sienten afinidad cultural por lo gallego."
+}

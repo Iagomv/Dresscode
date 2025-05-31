@@ -1,0 +1,41 @@
+{
+  "title": "Galería",
+  "images": [
+    {
+      "src": "/images/baile1.jpg",
+      "alt": "Danza no festival de verán"
+    },
+    {
+      "src": "/images/camino.jpeg",
+      "alt": "Camiño de Santiago"
+    },
+    {
+      "src": "/images/catedrales1.webp",
+      "alt": "Praia das Catedrais"
+    },
+    {
+      "src": "/images/catedrales2.jpeg",
+      "alt": "Praia das Catedrais"
+    },
+    {
+      "src": "/images/header.jpg",
+      "alt": "Cabeceira pandeireta"
+    },
+    {
+      "src": "/images/hercules.jpeg",
+      "alt": "Faro Torre de Hércules"
+    },
+    {
+      "src": "/images/hercules2.webp",
+      "alt": "Faro Torre de Hércules"
+    },
+    {
+      "src": "/images/percusion.jpg",
+      "alt": "Percusión Rosalía de Castro"
+    },
+    {
+      "src": "/images/viento.jpg",
+      "alt": "Os nosos instrumentos de vento"
+    }
+  ]
+}

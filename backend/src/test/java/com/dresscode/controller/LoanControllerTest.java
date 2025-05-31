@@ -1,6 +1,6 @@
 package com.dresscode.controller;
 
-import com.dresscode.config.ApiRoutes;
+import com.dresscode.constants.ApiRoutes;
 import com.dresscode.model.Loan;
 import com.dresscode.service.LoanService;
 import com.fasterxml.jackson.databind.ObjectMapper;

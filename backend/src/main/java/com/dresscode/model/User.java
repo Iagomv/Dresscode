@@ -1,6 +1,9 @@
 package com.dresscode.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,116 +19,49 @@ import com.dresscode.enums.UserRoleEnum;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")
+})
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name; 
+    @NotBlank
+    @Size(min = 3, max = 20)
+    private String name;
     private String lastName;
     private Integer phoneNumber;
-    private String email; 
-    private String password; 
+
+    @NotBlank
+    @Email
+    private String email;
+
+    @NotBlank
+    private String password;
 
     @ManyToMany // Relación muchos a muchos con Clase
-    @JoinTable(
-        name = "user_class",
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "class_id") 
-    )
-    private Set<Clase> clases; 
+    @JoinTable(name = "user_class", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "class_id"))
+    private Set<Clase> clases;
 
     @OneToMany(mappedBy = "user") // Relación uno a muchos con Loan
     private Set<Loan> loans;
 
     @Enumerated(EnumType.STRING)
-    private UserRoleEnum role; 
+    private UserRoleEnum role;
     private boolean active;
 
+    public User(String name, String lastName, Integer phoneNumber, String email, String password, Set<Clase> clases,
+            Set<Loan> loans, UserRoleEnum role, boolean active) {
+        this.name = name;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.clases = clases;
+        this.loans = loans;
+        this.role = role;
+        this.active = active;
+    }
 
-
-    
-
-    // // Getters y Setters
-
-    // public Long getId() {
-    //     return id;
-    // }
-
-    // public void setId(Long id) {
-    //     this.id = id;
-    // }
-
-    // public String getName() {
-    //     return name;
-    // }
-
-    // public void setName(String nombre) {
-    //     this.name = nombre;
-    // }
-    // public String getLastName() {
-    //     return lastName;
-    // }
-
-    // public void setLastName(String lastNamel) {
-    //     this.lastName = lastNamel;
-    // }
-
-    // public Integer getPhoneNumber() {
-    //     return phoneNumber;
-    // }
-
-    // public void setPhoneNumber(Integer phoneNumber) {
-    //     this.phoneNumber = phoneNumber;
-    // }
-
-    // public String getEmail() {
-    //     return email;
-    // }
-
-    // public void setEmail(String correo) {
-    //     this.email = correo;
-    // }
-
-    // public String getPassword() {
-    //     return password;
-    // }
-
-    // public void setPassword(String contrasena) {
-    //     this.password = contrasena;
-    // }
-
-    // public Set<Clase> getClases() {
-    //     return clases;
-    // }
-
-    // public void setClases(Set<Clase> clases) {
-    //     this.clases = clases;
-    // }
-
-    // public UserRoleEnum getRole() {
-    //     return role;
-    // }
-
-    // public void setRole(UserRoleEnum role) {
-    //     this.role = role;
-    // }
-    
-    // public boolean isActive() {
-    //     return active;
-    // }
-
-    // public void setActive(boolean active) {
-    //     this.active = active;
-    // }
-
-    // public Set<Loan> getLoans() {
-    //     return loans;
-    // }
-
-    // public void setLoans(Set<Loan> loans) {
-    //     this.loans = loans;
-    // }
-    
 }

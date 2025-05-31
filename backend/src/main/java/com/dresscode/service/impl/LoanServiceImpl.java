@@ -12,14 +12,18 @@ import com.dresscode.repository.LoanRepository;
 import com.dresscode.service.LoanService;
 
 @Service
-public class LoanServiceImpl implements LoanService{
+public class LoanServiceImpl implements LoanService {
 
     @Autowired
     private LoanRepository loanRepository;
-    
+
     @Override
     public List<Loan> getAllLoans() {
-        return loanRepository.findAll();
+        List<Loan> loans = loanRepository.findAll();
+        if (loans.isEmpty()) {
+            throw new ResourceNotFoundException("No loans found");
+        }
+        return loans;
     }
 
     @Override

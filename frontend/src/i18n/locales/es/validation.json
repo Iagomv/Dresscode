@@ -1,0 +1,14 @@
+{
+  "name_min": "El nombre debe tener al menos 3 caracteres",
+  "name_max": "El nombre no puede tener más de 20 caracteres",
+  "name_required": "El nombre es obligatorio",
+  "email_invalid": "Dirección de correo electrónico no válida",
+  "email_required": "El correo electrónico es obligatorio",
+  "password_min": "La contraseña debe tener al menos 8 caracteres",
+  "password_max": "La contraseña no puede tener más de 128 caracteres",
+  "password_pattern": "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número",
+  "password_required": "La contraseña es obligatoria",
+  "passwords_must_match": "Las contrasenas deben coincidir",
+  "phone_integer": "Fallo en el formato de teléfono",
+  "repeat_password_required": "La contraseña es obligatoria"
+}

@@ -1,0 +1,18 @@
+{
+  "form": {
+    "username": "Nombre de usuario",
+    "name": "Nombre",
+    "phoneNumber": "Numero de teléfono",
+    "lastName": "Apellidos",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "repeatPassword": "Confirmar contraseña",
+    "email": "Correo electrónico",
+    "role": "Rol",
+    "submitButton": "Enviar",
+    "usernamePlaceholder": "Nombre de usuario",
+    "passwordPlaceholder": "Contraseña",
+    "confirmPasswordPlaceholder": "Confirmar contraseña",
+    "emailPlaceholder": "Correo electrónico"
+  }
+}
