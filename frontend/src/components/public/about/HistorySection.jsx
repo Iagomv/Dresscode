@@ -4,8 +4,10 @@ import { COLORS, SPACING } from "../../../constants/theme";
 import HistoryImage from "./HistoryImage";
 import HistoryTimeline from "./HistoryTimeline";
 
-const HistorySection = ({ history }) => {
-  const { mainImage, items } = history;
+const HistorySection = ({ t }) => {
+  const mainImage = t("history.mainImage");
+  const items = t("history.items", { returnObjects: true });
+  const title = t("title");
 
   return (
     <section className="mb-5" style={{ position: "relative" }}>
@@ -22,7 +24,7 @@ const HistorySection = ({ history }) => {
               marginBottom: SPACING.large,
             }}
           >
-            Nuestra Historia
+            {title}
           </h2>
           <HistoryTimeline items={items} />
         </Col>

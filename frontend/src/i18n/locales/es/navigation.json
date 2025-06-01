@@ -1,8 +1,14 @@
 {
   "nav": {
+    "title": "Dresscode web",
     "home": "Inicio",
     "about": "Quiénes Somos",
     "activities": "Actividades",
-    "login": "Acceso"
+    "login": "Acceso",
+    "logout": "Salir",
+    "perfil": "Perfil",
+    "student": {
+      "myZone": "Mi espacio"
+    }
   }
 }
