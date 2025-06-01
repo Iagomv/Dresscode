@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Button } from "react-bootstrap";
-import { LoginForm } from "../components/login/LoginForm.jsx";
-import { SignUpForm } from "../components/login/SignUpForm.jsx";
+import { LoginForm } from "../../components/public/login/LoginForm.jsx";
+import { SignUpForm } from "../../components/public/login/SignUpForm.jsx";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 
 const LoginPage = () => {

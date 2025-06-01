@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import {ApiConfig} from "../../api/ApiConfig";
-import { useAuth } from "../../context/AuthContext";
-import { getUserLoginSchema } from "../../schema/UserLoginSchema";
-import { PATHS } from "../../constants/routes";
+import {ApiConfig} from "../../../api/ApiConfig";
+import { useAuth } from "../../../context/AuthContext";
+import { getUserLoginSchema } from "../../../schema/UserLoginSchema";
+import { PATHS } from "../../../constants/routes";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
