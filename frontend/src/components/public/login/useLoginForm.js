@@ -16,16 +16,17 @@ export const useLoginForm = () => {
   
   const handleLogin = async (response) => {
     toast.success(t("loginSuccessful"));
+    console.log(response.token);
     login(response.token);
     setTimeout(() => {
-      navigate(PATHS.dresscode.profile, { replace: true });
+      navigate(PATHS.dresscode.home, { replace: true });
     }, 1000);
   };
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: "iagomartinezv@gmail.com",
+      password: "Passw0rd",
     },
     validationSchema: getUserLoginSchema(t),
     onSubmit: async (values) => {
