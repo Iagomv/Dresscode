@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem(TOKEN_KEY, token);
       const user = {
         ...decoded,
-        roles: decoded.authorities || [],
+        role: decoded.role || null,
       };
       setAuth({ token, user });
     } else {
