@@ -24,7 +24,7 @@ public class JwtServiceImpl implements JwtService {
     private String secretKey;
 
     @Value("${jwt.expiration}")
-    private long jwtExpirationInMs; // e.g., 3600000L for 1 hour
+    private long jwtExpirationInMs;
 
     private SecretKey getSigningKey() {
         byte[] decodedKey = Base64.getDecoder().decode(secretKey);
@@ -54,9 +54,15 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public boolean isTokenValid(String token, CustomUserDetails userDetails) {
+    public boolean isTokenValidDetails(String token, CustomUserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+    }
+
+    @Override
+    public boolean isValid(String token) throws io.jsonwebtoken.JwtException {
+        Claims claims = extractAllClaims(token);
+        return claims.getSubject() != null && !isTokenExpired(token);
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
@@ -73,10 +79,10 @@ public class JwtServiceImpl implements JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parserBuilder() // now available
+        return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
-                .parseClaimsJws(token) // non-deprecated
+                .parseClaimsJws(token)
                 .getBody();
     }
 

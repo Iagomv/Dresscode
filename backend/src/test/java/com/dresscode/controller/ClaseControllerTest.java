@@ -115,7 +115,6 @@ public class ClaseControllerTest {
                 .andExpect(jsonPath("$.name").value("Danza Updated"));
     }
 
-
     @Test
     void testDeleteClase() throws Exception {
         when(claseService.deleteClaseById(1L)).thenReturn(mockClase);
@@ -134,4 +133,3 @@ public class ClaseControllerTest {
                 .andExpect(status().isNotFound());
     }
 }
- 

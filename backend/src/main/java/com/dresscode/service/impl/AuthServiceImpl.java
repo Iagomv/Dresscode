@@ -1,5 +1,6 @@
 package com.dresscode.service.impl;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +10,8 @@ import com.dresscode.dto.auth.LoginRequestDto;
 import com.dresscode.dto.auth.LoginResponseDto;
 import com.dresscode.dto.auth.RegisterRequestDto;
 import com.dresscode.dto.auth.RegisterResponseDto;
+import com.dresscode.dto.auth.TokenRequestDto;
+import com.dresscode.dto.auth.TokenResponseDto;
 import com.dresscode.enums.UserRoleEnum;
 import com.dresscode.error.exceptions.EmailExistsException;
 import com.dresscode.error.exceptions.WrongCredentialsException;
@@ -18,6 +21,8 @@ import com.dresscode.repository.UserRepository;
 import com.dresscode.security.CustomUserDetails;
 import com.dresscode.service.AuthService;
 import com.dresscode.service.JwtService;
+
+import io.jsonwebtoken.JwtException;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -67,4 +72,13 @@ public class AuthServiceImpl implements AuthService {
         return new LoginResponseDto(jwtService.generateToken(userDetails));
     }
 
+    @Override
+    public TokenResponseDto validate(TokenRequestDto token) {
+        try {
+            boolean isValid = jwtService.isValid(token.getToken());
+            return new TokenResponseDto(HttpStatus.OK.value(), isValid, isValid ? "Valid token" : "Invalid token");
+        } catch (JwtException e) {
+            return new TokenResponseDto(HttpStatus.UNAUTHORIZED.value(), false, "Invalid token");
+        }
+    }
 }
