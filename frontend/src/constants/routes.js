@@ -1,4 +1,5 @@
 
+
 export const PATHS = {
     slash : '/',
     about: '/about',
@@ -6,6 +7,9 @@ export const PATHS = {
     login: '/login',
     dresscode: {
         home: '/dresscode',
-        profile: 'profile', 
+        profile: '/dresscode/profile',
+        admin: {
+            userManagement: '/dresscode/user-management'
+        } 
     }
 }

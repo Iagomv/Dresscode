@@ -10,7 +10,7 @@ import { PATHS } from "../constants/routes";
 import styles from "./TopNavigation.module.css";
 
 export const TopNavigation = () => {
-  const { auth, logout } = useAuth();
+  const { auth, logout, isAuthenticated } = useAuth();
   const { t } = useTranslation("navigation");
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,21 +23,18 @@ export const TopNavigation = () => {
     navigate(PATHS.login, { replace: true });
   };
 
-  const getLinkClass = ({ isActive }) =>
-    `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`;
+  const getLinkClass = ({ isActive }) => `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`;
+  const getHomeLink = isAuthenticated ? PATHS.dresscode.home : PATHS.slash;
 
   return (
     <div className=" d-flex justify-content-center">
       <Navbar expand="lg" className={styles.navbar}>
         <Container fluid>
-          <Navbar.Brand as={NavLink} to={PATHS.slash} className={styles.brand}>
+          <Navbar.Brand as={NavLink} to={getHomeLink} className={styles.brand}>
             {t("nav.title")}
           </Navbar.Brand>
 
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            className={styles.toggleButton}
-          >
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className={styles.toggleButton}>
             <span className={styles.toggleIcon}></span>
           </Navbar.Toggle>
 
@@ -55,26 +52,20 @@ export const TopNavigation = () => {
                   </NavLink>
                 </>
               )}
-
-              {/* {role === ROLES.TEACHER && (
+              {/* 
+              {role === ROLES.TEACHER && (
                 <NavLink to="/assigned-incidents" className={getLinkClass}>
                   {TOP_NAVIGATION_TEXT.myAssignedIncidents}
                 </NavLink>
-              )}
+              )} */}
 
               {role === ROLES.ADMIN && (
                 <>
-                  <NavLink to="/user-management" className={getLinkClass}>
-                    {TOP_NAVIGATION_TEXT.userManagement}
-                  </NavLink>
-                  <NavLink to="/assignments" className={getLinkClass}>
-                    {TOP_NAVIGATION_TEXT.assignIncidents}
-                  </NavLink>
-                  <NavLink to="/statistics" className={getLinkClass}>
-                    {TOP_NAVIGATION_TEXT.statistics}
+                  <NavLink to={PATHS.dresscode.admin.userManagement} className={getLinkClass}>
+                    {t("nav.admin.userManagement")}
                   </NavLink>
                 </>
-              )} */}
+              )}
 
               {/* Profile Dropdown */}
               {auth?.user && (
@@ -83,9 +74,7 @@ export const TopNavigation = () => {
                   align="end"
                   toggleAs={CustomToggle}
                   menuVariant="light"
-                  className={`${
-                    isDropdownActive ? styles.navDropdownActive : ""
-                  }`}
+                  className={`${isDropdownActive ? styles.navDropdownActive : ""}`}
                 >
                   <NavDropdown.Item
                     as={NavLink}
@@ -95,10 +84,7 @@ export const TopNavigation = () => {
                   >
                     {TOP_NAVIGATION_TEXT.profileInfo}
                   </NavDropdown.Item>
-                  <NavDropdown.Item
-                    onClick={handleLogout}
-                    className={styles.dropdownItem}
-                  >
+                  <NavDropdown.Item onClick={handleLogout} className={styles.dropdownItem}>
                     {TOP_NAVIGATION_TEXT.logout}
                   </NavDropdown.Item>
                 </NavDropdown>

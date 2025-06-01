@@ -9,6 +9,12 @@
     "perfil": "Perfil",
     "student": {
       "myZone": "Mi espacio"
+    },
+    "teacher": {
+      "classes": "Mis clases"
+    },
+    "admin": {
+      "userManagement": "Usuarios"
     }
   }
 }
