@@ -1,31 +1,31 @@
-import React, { useState } from 'react'
-import { Container, Row, Col, Alert, Button } from 'react-bootstrap'
-import ProfileInfoForm from '../components/common/profile/ProfileInfoForm'
-import PasswordChangeForm from '../components/common/profile/PasswordChangeForm'
+import React, { useState } from "react";
+import { Container, Row, Col, Alert, Button } from "react-bootstrap";
+import ProfileInfoForm from "../../components/common/profile/ProfileInfoForm";
+import PasswordChangeForm from "../../components/common/profile/PasswordChangeForm";
 
 const ProfilePage = () => {
-  const [message, setMessage] = useState('')
-  const [error, setError] = useState('')
-  const [showPasswordForm, setShowPasswordForm] = useState(false)
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
 
   const handleSuccess = (msg) => {
-    setMessage(msg)
-    setError('')
-    if (msg === 'Password changed successfully') {
-      setShowPasswordForm(false)
+    setMessage(msg);
+    setError("");
+    if (msg === "Password changed successfully") {
+      setShowPasswordForm(false);
     }
-  }
+  };
 
   const handleClosePasswordForm = () => {
-    setShowPasswordForm(false)
-    setMessage('')
-    setError('')
-  }
+    setShowPasswordForm(false);
+    setMessage("");
+    setError("");
+  };
 
   const handleError = (msg) => {
-    setError(msg)
-    setMessage('')
-  }
+    setError(msg);
+    setMessage("");
+  };
 
   return (
     <Container className="py-5">
@@ -50,11 +50,18 @@ const ProfilePage = () => {
 
             {showPasswordForm ? (
               <div className="mt-4 pt-4 border-top">
-                <PasswordChangeForm onSuccess={handleSuccess} onError={handleError} onClose={handleClosePasswordForm} />
+                <PasswordChangeForm
+                  onSuccess={handleSuccess}
+                  onError={handleError}
+                  onClose={handleClosePasswordForm}
+                />
               </div>
             ) : (
               <>
-                <ProfileInfoForm onSuccess={handleSuccess} onError={handleError} />
+                <ProfileInfoForm
+                  onSuccess={handleSuccess}
+                  onError={handleError}
+                />
                 <div className="mt-4 pt-3 border-top">
                   <Button
                     variant="outline-warning"
@@ -70,7 +77,7 @@ const ProfilePage = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

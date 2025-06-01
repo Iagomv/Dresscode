@@ -14,5 +14,8 @@
     "passwordPlaceholder": "Contraseña",
     "confirmPasswordPlaceholder": "Confirmar contraseña",
     "emailPlaceholder": "Correo electrónico"
+  },
+  "error": {
+    "rol": "Error de credenciales, por favor, recargue la página"
   }
 }

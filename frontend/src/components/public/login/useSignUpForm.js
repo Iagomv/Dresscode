@@ -1,8 +1,8 @@
 /* useSignUpForm.js */
 import { useState } from "react";
 import { useFormik } from "formik";
-import {ApiConfig} from "../../api/ApiConfig";
-import { userRegistrationSchema } from "../../schema/UserRegistrationSchema";
+import {ApiConfig} from "../../../api/ApiConfig";
+import { userRegistrationSchema } from "../../../schema/UserRegistrationSchema";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
@@ -20,7 +20,7 @@ const onErrorResponse = (error) => {
 
 const onSuccessResponse = (response) => {
   setRegisteredUser(response.data);
-  toast.success(tLogin("registerSuccessMessage")); 
+  toast.success(tLogin("registrationSuccesful")); 
   setTimeout(() => {
       toggleForm();
     }, 1000);

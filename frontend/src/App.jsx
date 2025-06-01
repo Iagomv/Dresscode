@@ -1,15 +1,9 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/public/LoginPage";
 import Layout from "./layout/Layout";
-import IncidentsVisualizationPage from "./pages/user/IncidentsVisualizationPage";
-import IncidentsRegisterPage from "./pages/user/IncidentsRegisterPage";
-import ProfilePage from "./pages/ProfilePage";
-import TechnicianIncidentsPage from "./pages/technician/TechnicianIncidentsPage";
-import AdminUserManagement from "./pages/admin/AdminUserManagementPage";
-import AdminAssigmentsPage from "./pages/admin/IncidentAssignmentPage";
-import StatisticsPage from "./pages/admin/StatisticsPage";
+import ProfilePage from "./pages/private/ProfilePage";
 import Home from "./pages/public/Home";
 import About from "./pages/public/About";
 import Activities from "./pages/public/Activities";
@@ -40,16 +34,7 @@ function App() {
         }
       >
         <Route index element={<Home />} />
-        <Route path="visualization" element={<IncidentsVisualizationPage />} />
-        <Route
-          path="assigned-incidents"
-          element={<TechnicianIncidentsPage />}
-        />
-        <Route path="register" element={<IncidentsRegisterPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-        <Route path="assignments" element={<AdminAssigmentsPage />} />
-        <Route path="user-management" element={<AdminUserManagement />} />
-        <Route path="statistics" element={<StatisticsPage />} />
+        <Route path={PATHS.dresscode.profile} element={<ProfilePage />} />
       </Route>
 
       {/* Catch-all redirect to "/"  */}
