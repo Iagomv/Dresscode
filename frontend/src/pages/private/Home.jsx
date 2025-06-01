@@ -1,5 +1,7 @@
 import React from "react";
 import { useAuth } from "../../context/AuthContext";
+import { AdminHome } from "./admin/Home";
+import { StudentHome } from "./student/Home";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 export default function Home() {
@@ -13,11 +15,11 @@ export default function Home() {
 
   switch (role.toUpperCase()) {
     case "STUDENT":
-      return <div>STUDENT HOME</div>;
+      return <StudentHome />;
     case "TEACHER":
       return <div>TEACHER HOME</div>;
     case "ADMIN":
-      return <div>ADMIN HOME</div>;
+      return <AdminHome />;
 
     default:
       return <div>UNKNOWN ERROR</div>;
