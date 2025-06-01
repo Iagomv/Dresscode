@@ -5,9 +5,11 @@ import LoginPage from "./pages/public/LoginPage";
 import Layout from "./layout/Layout";
 import ProfilePage from "./pages/private/ProfilePage";
 import Home from "./pages/public/Home";
+import PrivateHome from "./pages/private/Home";
 import About from "./pages/public/About";
 import Activities from "./pages/public/Activities";
 import { PATHS } from "./constants/routes";
+
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? children : <Navigate to="/login" replace />;
@@ -26,14 +28,14 @@ function App() {
 
       {/* Protected Routes */}
       <Route
-        path="/dresscode"
+        path={PATHS.dresscode.home}
         element={
           <PrivateRoute>
             <Layout />
           </PrivateRoute>
         }
       >
-        <Route index element={<Home />} />
+        <Route index element={<PrivateHome />} />
         <Route path={PATHS.dresscode.profile} element={<ProfilePage />} />
       </Route>
 

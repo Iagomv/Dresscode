@@ -1,4 +1,3 @@
-const dresscode = '/dresscode';
 
 export const PATHS = {
     slash : '/',
@@ -6,6 +5,7 @@ export const PATHS = {
     activities: '/activities',
     login: '/login',
     dresscode: {
-        profile: dresscode + '/profile',
+        home: '/dresscode',
+        profile: 'profile', 
     }
 }
