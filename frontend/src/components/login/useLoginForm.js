@@ -16,7 +16,7 @@ export const useLoginForm = () => {
   
   const handleLogin = async (response) => {
     toast.success(t("loginSuccessful"));
-    login(response.data.token);
+    login(response.token);
     setTimeout(() => {
       navigate(PATHS.dresscode.profile, { replace: true });
     }, 1000);

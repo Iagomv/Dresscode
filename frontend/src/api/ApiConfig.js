@@ -126,6 +126,10 @@ export class ApiConfig {
     // Matches /api/auth/login with LoginRequestDto
     return handleRequest('post', `${API_BASE_URL}/auth/login`, loginData)
   }
+  static validateToken(token) {
+    // Matches /api/auth/login with LoginRequestDto
+    return handleRequest('post', `${API_BASE_URL}/auth/validate`, token)
+  }
 }
 
 export default ApiConfig
