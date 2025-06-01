@@ -8,6 +8,7 @@ import Home from "./pages/public/Home";
 import PrivateHome from "./pages/private/Home";
 import About from "./pages/public/About";
 import Activities from "./pages/public/Activities";
+import { UserManagement } from "./pages/private/admin/UserManagement";
 import { PATHS } from "./constants/routes";
 
 const PrivateRoute = ({ children }) => {
@@ -37,6 +38,7 @@ function App() {
       >
         <Route index element={<PrivateHome />} />
         <Route path={PATHS.dresscode.profile} element={<ProfilePage />} />
+        <Route path={PATHS.dresscode.admin.userManagement} element={<UserManagement />} />
       </Route>
 
       {/* Catch-all redirect to "/"  */}
