@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { LanguageSwitcher } from "../components/public/LanguageSwitcher";
 import { TOP_NAVIGATION_TEXT, ROLES } from "../constants/textConstants";
 import { PublicNavLinks } from "../components/public/PublicNavLinks";
+import { PATHS } from "../constants/routes";
 import styles from "./TopNavigation.module.css";
 
 export const TopNavigation = () => {
@@ -17,13 +18,13 @@ export const TopNavigation = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login", { replace: true });
+    navigate(PATHS.login, { replace: true });
   };
 
   return (
     <Navbar expand="lg" className={styles.navbar}>
       <Container fluid>
-        <Navbar.Brand as={NavLink} to="/" className={styles.brand}>
+        <Navbar.Brand as={NavLink} to={PATHS.slash} className={styles.brand}>
           {TOP_NAVIGATION_TEXT.title}
         </Navbar.Brand>
 
@@ -45,7 +46,7 @@ export const TopNavigation = () => {
               <>
                 <Nav.Link
                   as={NavLink}
-                  to="/"
+                  to={PATHS.slash}
                   className={styles.navLink}
                   activeClassName={styles.navLinkActive}
                 >
@@ -109,7 +110,6 @@ export const TopNavigation = () => {
                 align="end"
                 menuVariant="light"
                 className={styles.navLink}
-                menuClassName={styles.dropdownMenu}
               >
                 <NavDropdown.Item
                   as={NavLink}

@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import {ApiConfig} from "../../api/ApiConfig";
 import { userRegistrationSchema } from "../../schema/UserRegistrationSchema";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 export const useSignUpForm = (toggleForm) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,21 +15,15 @@ export const useSignUpForm = (toggleForm) => {
   const { t: tLogin } = useTranslation("loginRegister");
 
 const onErrorResponse = (error) => {
-    console.log('Error object:', error);
-  console.log('Response data:', error.response?.data);
-  console.log('Message to show:', message);
-  const message = error.response?.data?.message || 
-                 error.message || 
-                 tLogin("registerErrorMessage");
-  toast.error(message); 
+  toast.error(error.response.data.message); 
 };
 
 const onSuccessResponse = (response) => {
   setRegisteredUser(response.data);
-  toast.success(tLogin("registerSuccessMessage")); // Use toast.success
-  if (typeof toggleForm === "function") {
-    // toggleForm();
-  }
+  toast.success(tLogin("registerSuccessMessage")); 
+  setTimeout(() => {
+      toggleForm();
+    }, 1000);
 };
 
   const formik = useFormik({
