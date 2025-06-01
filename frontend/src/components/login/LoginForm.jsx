@@ -5,7 +5,7 @@ import { useLoginForm } from "./useLoginForm";
 
 export const LoginForm = () => {
   const { t } = useTranslation();
-  const { formik, isSubmitting, errorMessage } = useLoginForm();
+  const { formik, isSubmitting } = useLoginForm();
 
   return (
     <Form onSubmit={formik.handleSubmit}>
@@ -40,12 +40,6 @@ export const LoginForm = () => {
           {formik.errors.password}
         </Form.Control.Feedback>
       </Form.Group>
-
-      {errorMessage && (
-        <Alert variant="danger" className="mt-3">
-          {errorMessage}
-        </Alert>
-      )}
 
       <Button
         variant="primary"
