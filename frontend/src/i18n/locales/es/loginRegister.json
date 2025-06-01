@@ -6,5 +6,7 @@
   "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
   "registrationSuccesful": "Registro exitoso",
   "toastSignUpSuccessDescription": "Bienvenido ",
-  "registerErrorMessage": "Error durante el registro. Por favor, inténtalo de nuevo."
+  "registerErrorMessage": "Error durante el registro. Por favor, inténtalo de nuevo.",
+  "invalidCredentials": "Credenciales inválidas",
+  "loginSuccessful": "Acceso exitoso, redirigiendo..."
 }
