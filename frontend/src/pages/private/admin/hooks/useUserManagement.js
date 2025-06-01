@@ -1,34 +1,34 @@
-// useUserManagement.js
 import { useState, useEffect } from "react";
 import ApiConfig from "../../../../api/ApiConfig";
 
 /**
- * Custom hook to manage user-related data and operations.
- * 
- * Fetches user data from the API and provides state management for
- * loading and error handling. The hook returns the list of users,
- * the loading state, error state, and a refetch function to reload
- * the user data.
- * 
- * @returns {Object} An object containing:
- *  - users: An array of user objects.
- *  - loading: A boolean indicating if the data is being loaded.
- *  - error: An error object if an error occurred while fetching data.
- *  - refetch: A function to refetch the user data.
+ * @typedef {Object} UseUserManagementResult
+ * @property {Array<Object>} users - The list of users.
+ * @property {boolean} loading - Whether data is currently being fetched.
+ * @property {Error|null} error - Any error encountered during fetching or creating users.
+ * @property {(userData: Object) => Promise<void>} createUser - Creates a new user.
+ * @property {() => Promise<void>} refetch - Refetches the user data.
  */
 
-const useUserManagement = () => {
+/**
+ * Custom hook to manage user-related data and operations.
+ *
+ * Fetches user data from the API and provides state management
+ * for loading and error handling. The hook also provides methods
+ * to create a new user and to refetch the user list.
+ *
+ * @returns {UseUserManagementResult} The state and functions to manage users.
+ */
+export const useUserManagement = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);    
+  const [error, setError] = useState(null);
 
   /**
-   * Fetches the list of users from the API and updates the state with the result.
-   * 
-   * Sets the loading state to true, fetches the users, updates the users state
-   * with the response, and sets the loading state back to false. If an error
-   * occurs, sets the error state with the error. If the error is a 401 Unauthorized
-   * error, the user is logged out.
+   * Fetches the list of users from the API.
+   *
+   * Sets the loading state, calls the API to fetch users,
+   * updates the users state, and handles errors.
    */
   const fetchUsers = async () => {
     try {
@@ -43,11 +43,28 @@ const useUserManagement = () => {
     }
   };
 
+  /**
+   * Creates a new user and updates the users state.
+   *
+   * @param {Object} userData - The data for the new user.
+   * @returns {Promise<void>} A promise that resolves when the user is created.
+   */
+  const createUser = async (userData) => {
+    try {
+      setLoading(true);
+      const response = await ApiConfig.createUser(userData);
+      setUsers((prevUsers) => [...prevUsers, response]);
+    } catch (err) {
+      console.error("Error creating user:", err);
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  return { users, loading, error, refetch: fetchUsers };
+  return { users, loading, error, createUser, refetch: fetchUsers };
 };
-
-export default useUserManagement;

@@ -1,27 +1,27 @@
-import React from "react";
-import { useAuth } from "../../context/AuthContext";
-import { AdminHome } from "./admin/Home";
-import { StudentHome } from "./student/Home";
-import LoadingSpinner from "../../components/common/LoadingSpinner";
+import React from 'react'
+import { useAuth } from '../../context/AuthContext'
+import { AdminHome } from './admin/Home'
+import { StudentHome } from './student/Home'
+import { LoadingSpinner } from '../../components/common/LoadingSpinner'
 
 export default function Home() {
-  const { auth } = useAuth();
+  const { auth } = useAuth()
 
-  const role = auth?.user?.role?.replace("ROLE_", "") || null;
+  const role = auth?.user?.role?.replace('ROLE_', '') || null
 
   if (!role) {
-    return <div>NO ROLE ERROR</div>;
+    return <div>NO ROLE ERROR</div>
   }
 
   switch (role.toUpperCase()) {
-    case "STUDENT":
-      return <StudentHome />;
-    case "TEACHER":
-      return <div>TEACHER HOME</div>;
-    case "ADMIN":
-      return <AdminHome />;
+    case 'STUDENT':
+      return <StudentHome />
+    case 'TEACHER':
+      return <div>TEACHER HOME</div>
+    case 'ADMIN':
+      return <AdminHome />
 
     default:
-      return <div>UNKNOWN ERROR</div>;
+      return <div>UNKNOWN ERROR</div>
   }
 }
