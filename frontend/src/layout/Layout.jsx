@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <div className="d-flex flex-column vh-100 mx-auto">
       <TopNavigation />
-      <div className="m-3">
+      <div className="m-5">
         <Outlet />
       </div>
       <ToastContainer

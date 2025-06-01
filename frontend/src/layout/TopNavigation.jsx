@@ -1,136 +1,127 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom"; // Added useLocation
 import { useAuth } from "../context/AuthContext";
 import { LanguageSwitcher } from "../components/public/LanguageSwitcher";
 import { TOP_NAVIGATION_TEXT, ROLES } from "../constants/textConstants";
+import { useTranslation } from "react-i18next";
 import { PublicNavLinks } from "../components/public/PublicNavLinks";
 import { PATHS } from "../constants/routes";
 import styles from "./TopNavigation.module.css";
 
 export const TopNavigation = () => {
   const { auth, logout } = useAuth();
+  const { t } = useTranslation("navigation");
   const navigate = useNavigate();
-  const role = auth?.user?.authorities?.[0];
-  const ROLE_STUDENT = `ROLE_${ROLES.STUDENT}`;
-  const ROLE_TEACHER = `ROLE_${ROLES.TEACHER}`;
-  const ROLE_ADMIN = `ROLE_${ROLES.ADMIN}`;
+  const location = useLocation();
+  const role = auth?.user?.role;
+
+  const isDropdownActive = location.pathname.startsWith("/profile");
 
   const handleLogout = () => {
     logout();
     navigate(PATHS.login, { replace: true });
   };
 
+  const getLinkClass = ({ isActive }) =>
+    `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`;
+
   return (
-    <Navbar expand="lg" className={styles.navbar}>
-      <Container fluid>
-        <Navbar.Brand as={NavLink} to={PATHS.slash} className={styles.brand}>
-          {TOP_NAVIGATION_TEXT.title}
-        </Navbar.Brand>
+    <div className=" d-flex justify-content-center">
+      <Navbar expand="lg" className={styles.navbar}>
+        <Container fluid>
+          <Navbar.Brand as={NavLink} to={PATHS.slash} className={styles.brand}>
+            {t("nav.title")}
+          </Navbar.Brand>
 
-        <Navbar.Toggle
-          aria-controls="basic-navbar-nav"
-          className={styles.toggleButton}
-        >
-          <span className={styles.toggleIcon}></span>
-        </Navbar.Toggle>
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            className={styles.toggleButton}
+          >
+            <span className={styles.toggleIcon}></span>
+          </Navbar.Toggle>
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className={`me-auto ${styles.navContainer}`}>
-            <PublicNavLinks />
-          </Nav>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className={styles.navContainer}>
+              <PublicNavLinks getLinkClass={getLinkClass} />
+            </Nav>
 
-          <Nav className={styles.navContainer}>
-            {/* Role-based navigation items */}
-            {role === ROLE_STUDENT && (
-              <>
-                <Nav.Link
-                  as={NavLink}
-                  to={PATHS.slash}
-                  className={styles.navLink}
-                  activeClassName={styles.navLinkActive}
-                >
-                  {TOP_NAVIGATION_TEXT.myIncidents}
-                </Nav.Link>
-                <Nav.Link
-                  as={NavLink}
-                  to="/register"
-                  className={styles.navLink}
-                  activeClassName={styles.navLinkActive}
-                >
-                  {TOP_NAVIGATION_TEXT.createIncident}
-                </Nav.Link>
-              </>
-            )}
+            <Nav className={styles.navContainer}>
+              {/* Role-based navigation items */}
+              {role === ROLES.STUDENT && (
+                <>
+                  <NavLink to={PATHS.dresscode.home} className={getLinkClass}>
+                    {t("nav.student.myZone")}
+                  </NavLink>
+                </>
+              )}
 
-            {role === ROLE_TEACHER && (
-              <Nav.Link
-                as={NavLink}
-                to="/assigned-incidents"
-                className={styles.navLink}
-                activeClassName={styles.navLinkActive}
-              >
-                {TOP_NAVIGATION_TEXT.myAssignedIncidents}
-              </Nav.Link>
-            )}
+              {/* {role === ROLES.TEACHER && (
+                <NavLink to="/assigned-incidents" className={getLinkClass}>
+                  {TOP_NAVIGATION_TEXT.myAssignedIncidents}
+                </NavLink>
+              )}
 
-            {role === ROLE_ADMIN && (
-              <>
-                <Nav.Link
-                  as={NavLink}
-                  to="/user-management"
-                  className={styles.navLink}
-                  activeClassName={styles.navLinkActive}
-                >
-                  {TOP_NAVIGATION_TEXT.userManagement}
-                </Nav.Link>
-                <Nav.Link
-                  as={NavLink}
-                  to="/assignments"
-                  className={styles.navLink}
-                  activeClassName={styles.navLinkActive}
-                >
-                  {TOP_NAVIGATION_TEXT.assignIncidents}
-                </Nav.Link>
-                <Nav.Link
-                  as={NavLink}
-                  to="/statistics"
-                  className={styles.navLink}
-                  activeClassName={styles.navLinkActive}
-                >
-                  {TOP_NAVIGATION_TEXT.statistics}
-                </Nav.Link>
-              </>
-            )}
+              {role === ROLES.ADMIN && (
+                <>
+                  <NavLink to="/user-management" className={getLinkClass}>
+                    {TOP_NAVIGATION_TEXT.userManagement}
+                  </NavLink>
+                  <NavLink to="/assignments" className={getLinkClass}>
+                    {TOP_NAVIGATION_TEXT.assignIncidents}
+                  </NavLink>
+                  <NavLink to="/statistics" className={getLinkClass}>
+                    {TOP_NAVIGATION_TEXT.statistics}
+                  </NavLink>
+                </>
+              )} */}
 
-            {/* Profile Dropdown */}
-            {auth?.user && (
-              <NavDropdown
-                title={TOP_NAVIGATION_TEXT.profile}
-                align="end"
-                menuVariant="light"
-                className={styles.navLink}
-              >
-                <NavDropdown.Item
-                  as={NavLink}
-                  to="/profile"
-                  className={styles.dropdownItem}
+              {/* Profile Dropdown */}
+              {auth?.user && (
+                <NavDropdown
+                  title={TOP_NAVIGATION_TEXT.profile}
+                  align="end"
+                  toggleAs={CustomToggle}
+                  menuVariant="light"
+                  className={`${
+                    isDropdownActive ? styles.navDropdownActive : ""
+                  }`}
                 >
-                  {TOP_NAVIGATION_TEXT.profileInfo}
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={handleLogout}
-                  className={styles.dropdownItem}
-                >
-                  {TOP_NAVIGATION_TEXT.logout}
-                </NavDropdown.Item>
-              </NavDropdown>
-            )}
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/profile"
+                    className={styles.dropdownItem}
+                    active={location.pathname === "/profile"}
+                  >
+                    {TOP_NAVIGATION_TEXT.profileInfo}
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    onClick={handleLogout}
+                    className={styles.dropdownItem}
+                  >
+                    {TOP_NAVIGATION_TEXT.logout}
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
 
-            <LanguageSwitcher />
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              <LanguageSwitcher className={styles.navLink} />
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
   );
 };
+
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+  <button
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+    className={styles.navLink}
+  >
+    {children}
+  </button>
+));

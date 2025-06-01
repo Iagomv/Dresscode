@@ -17,6 +17,7 @@
   background-color: var(--color-background) !important;
   border-bottom: 1px solid var(--color-border);
   padding: var(--spacing-small) 0;
+  justify-content: center;
 }
 
 .brand {
@@ -28,6 +29,7 @@
 }
 
 .toggleButton {
+  padding: 0.25rem !important;
   border-color: var(--color-primary) !important;
   margin-right: var(--spacing-medium);
 }
@@ -41,15 +43,25 @@
   border-radius: 2px;
 }
 
-.navLink {
+.navLink, 
+.dropdown-toggle.navLink { /* Combined selectors */
   color: var(--color-text) !important;
   font-weight: 400;
   transition: color 0.2s ease;
   padding: var(--spacing-small) var(--spacing-medium) !important;
+  display: block;
+  text-decoration: none !important;
+  /* Button reset for custom toggle */
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
 }
 
 .navLink:hover,
-.navLink:focus {
+.navLink:focus,
+.dropdown-toggle.navLink:hover,
+.dropdown-toggle.navLink:focus {
   color: var(--color-primary) !important;
   background-color: transparent !important;
 }
@@ -69,22 +81,45 @@
   background-color: var(--color-primary);
 }
 
+/* Active dropdown state */
+.navDropdownActive .navLink {
+  color: var(--color-primary) !important;
+}
+
 .dropdown-menu {
   border: 1px solid var(--color-border) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
 }
 
 .dropdownItem {
   color: var(--color-text) !important;
   padding: var(--spacing-small) var(--spacing-medium) !important;
+  transition: background-color 0.2s ease;
 }
 
-.dropdownItem:hover {
-  background-color: var(--color-secondary) !important;
-  color: var(--color-background) !important;
+.dropdownItem:hover, 
+.dropdownItem:focus {
+  background-color: rgba(90, 57, 33, 0.1) !important;
+  color: var(--color-primary) !important;
 }
 
 .navContainer {
+  display: flex;
+  gap: 0.5rem;
   margin-left: var(--spacing-large);
   margin-right: var(--spacing-large);
+}
+
+@media (max-width: 992px) {
+  .navContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0.5rem 0;
+    gap: 0;
+  }
+  
+  .navbar-collapse {
+    padding: 0 var(--spacing-medium);
+  }
 }

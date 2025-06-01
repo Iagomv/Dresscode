@@ -21,7 +21,7 @@ const About = () => {
       <Container>
         <AboutHeader title={t("title")} intro={t("intro")} />
 
-        <HistorySection history={t("history", { returnObjects: true })} />
+        <HistorySection t={t} />
 
         <MembershipTypeSection
           membershipText={t("membership")}
