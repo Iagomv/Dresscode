@@ -1,17 +1,10 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 
-const LoadingSpinner = () => {
+export const LoadingSpinner = () => {
   return (
-    <div className="d-flex justify-content-center align-items-center mt-5">
-      <div className="text-center">
-        <Spinner data-testid="technician-spinner" animation="border" role="status" variant="primary" aria-live="polite">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-        <div className="mt-2">Loading...</div>
-      </div>
-    </div>
+    <Spinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
   )
 }
-
-export default LoadingSpinner
