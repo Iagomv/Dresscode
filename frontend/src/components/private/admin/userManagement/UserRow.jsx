@@ -46,8 +46,8 @@ export const UserRow = ({ user, isExpanded, onToggleExpand }) => (
         <UserStatusBadge active={user.active} />
       </TableCell>
 
-      <TableCell className="d-flex">
-        <UserActions userId={user.id} />
+      <TableCell className="d-flex flex-row justify-content-around">
+        <UserActions user={user} />
       </TableCell>
     </TableRow>
 

@@ -1,0 +1,9 @@
+{
+  "searchUsers": "Buscar usuarios...",
+  "createUser": "Crear usuario",
+  "name": "Nombre",
+  "email": "Correo",
+  "role": "Rol",
+  "status": "Estado",
+  "actions": "Acciones"
+}

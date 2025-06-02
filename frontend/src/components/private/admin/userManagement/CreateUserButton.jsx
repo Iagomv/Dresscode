@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import { PlusIcon } from '@heroicons/react/24/outline'
+import { Button } from 'react-bootstrap'
+import { FaUserPlus } from 'react-icons/fa'
 import { CreateUserModal } from './CreateUserModal'
+import { FONTSIZE } from '../../../../constants/theme'
+import { useTranslation } from 'react-i18next'
 
 export const CreateUserButton = ({ onCreate, onSuccess }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const { t } = useTranslation('userManagement')
 
   const handleCreate = async (userData) => {
     const success = await onCreate(userData)
@@ -15,14 +19,12 @@ export const CreateUserButton = ({ onCreate, onSuccess }) => {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setIsOpen(true)}
-        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
-      >
-        <PlusIcon className="-ml-1 mr-2 h-5 w-5" />
-        Create User
-      </button>
+      <Button variant="outline-primary" onClick={() => setIsOpen(true)}>
+        <span className="d-flex align-items-center">
+          <FaUserPlus className="me-2" />
+          <span style={{ fontSize: FONTSIZE.sm }}>{t('createUser')}</span>
+        </span>
+      </Button>
       <CreateUserModal isOpen={isOpen} onClose={() => setIsOpen(false)} onCreate={handleCreate} />
     </>
   )

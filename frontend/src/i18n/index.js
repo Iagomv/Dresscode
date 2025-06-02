@@ -10,6 +10,7 @@ import gallery_es from './locales/es/gallery.json'
 import common_es from './locales/es/common.json'
 import loginRegister_es from './locales/es/loginRegister.json'
 import validation_es from './locales/es/validation.json'
+import userManagement_es from './locales/es/userManagement.json'
 
 import about_gl from './locales/gl/about.json'
 import contact_gl from './locales/gl/contact.json'
@@ -20,7 +21,7 @@ import gallery_gl from './locales/gl/gallery.json'
 import common_gl from './locales/gl/common.json'
 import loginRegister_gl from './locales/gl/loginRegister.json'
 import validation_gl from './locales/gl/validation.json'
-
+import userManagement_gl from './locales/gl/userManagement.json'
 
 
 i18n.use(initReactI18next).init({
@@ -34,7 +35,8 @@ i18n.use(initReactI18next).init({
       gallery: gallery_es,
       common: common_es,
       loginRegister: loginRegister_es,
-      validation: validation_es
+      validation: validation_es,
+      userManagement: userManagement_es
     },
     gl: {
       about: about_gl,
@@ -45,7 +47,8 @@ i18n.use(initReactI18next).init({
       gallery: gallery_gl,
       common: common_gl,
       loginRegister: loginRegister_gl,
-      validation: validation_gl
+      validation: validation_gl,
+      userManagement: userManagement_gl
     },
   },
   lng: 'es',

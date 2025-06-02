@@ -23,3 +23,10 @@ export const BREAKPOINTS = {
   lg: "992px",
   xl: "1200px",
 }
+
+export const FONTSIZE = {
+  sm: "1rem",
+  md: "1.25rem",
+  lg: "1.5rem",
+  xl: "2rem",
+}
