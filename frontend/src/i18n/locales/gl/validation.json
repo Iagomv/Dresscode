@@ -9,6 +9,8 @@
   "password_pattern": "O contrasinal debe conter polo menos unha letra maiúscula, unha minúscula e un número",
   "password_required": "O contrasinal é obrigatorio",
   "passwords_must_match": "Os contrasinais deben coincidir",
+  "role_required": "O rol é obrigatorio",
+  "invalid_role": "O rol non é válido",
   "phone_integer": "Fallo no formato de teléfono",
   "repeat_password_required": "O contrasinal é obrigatorio"
 }

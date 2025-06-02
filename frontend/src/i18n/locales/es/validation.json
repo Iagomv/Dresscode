@@ -9,6 +9,8 @@
   "password_pattern": "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número",
   "password_required": "La contraseña es obligatoria",
   "passwords_must_match": "Las contrasenas deben coincidir",
+  "role_required": "El rol es obligatorio",
+  "invalid_role": "El rol no es válido",
   "phone_integer": "Fallo en el formato de teléfono",
   "repeat_password_required": "La contraseña es obligatoria"
 }

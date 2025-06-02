@@ -12,6 +12,8 @@ export const UserTable = ({ users }) => {
         <thead>
           <tr>
             <th>{t('name')}</th>
+            <th>{t('phoneNumber')}</th>
+            <th>{t('email')}</th>
             <th>{t('role')}</th>
             <th>{t('status')}</th>
             <th className="text-right">Actions</th>
