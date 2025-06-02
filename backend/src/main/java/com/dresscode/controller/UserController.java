@@ -4,9 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dresscode.constants.ApiRoutes;
+import com.dresscode.dto.user.AdminUserCreationRequestDto;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.model.User;
 import com.dresscode.service.UserService;
+
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -43,6 +46,11 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userService.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    }
+
+    @PostMapping("/admin-user-creation")
+    public ResponseEntity<User> adminUserCreation(@Valid @RequestBody AdminUserCreationRequestDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.adminUserCreation(dto));
     }
 
     @PutMapping("/{id}")

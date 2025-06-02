@@ -4,18 +4,31 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.dresscode.dto.user.AdminUserCreationRequestDto;
+import com.dresscode.enums.UserRoleEnum;
+import com.dresscode.error.exceptions.EmailExistsException;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
+import com.dresscode.mapper.UserMapper;
 import com.dresscode.model.User;
 import com.dresscode.repository.UserRepository;
 import com.dresscode.service.UserService;
+import com.dresscode.utils.CleanupLastName;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    public UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public List<User> getAllUsers() {
@@ -33,6 +46,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User adminUserCreation(AdminUserCreationRequestDto dto) {
+
+        if (userRepository.existsByEmail(dto.getEmail())) {
+            throw new EmailExistsException(dto.getEmail());
+        }
+
+        User user = userMapper.toUser(dto);
+        user.setLastName(CleanupLastName.clean(dto.getLastName()));
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         return userRepository.save(user);
     }
 
