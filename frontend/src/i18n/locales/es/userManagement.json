@@ -2,8 +2,12 @@
   "searchUsers": "Buscar usuarios...",
   "createUser": "Crear usuario",
   "name": "Nombre",
+  "phoneNumber": "Teléfono",
   "email": "Correo",
   "role": "Rol",
   "status": "Estado",
-  "actions": "Acciones"
+  "actions": "Acciones",
+  "confirmar": "Confirmar",
+  "activeUser": "Usuario activo",
+  "cancelar": "Cancelar"
 }

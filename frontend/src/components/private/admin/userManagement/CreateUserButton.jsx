@@ -1,31 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button } from 'react-bootstrap'
 import { FaUserPlus } from 'react-icons/fa'
-import { CreateUserModal } from './CreateUserModal'
-import { FONTSIZE } from '../../../../constants/theme'
+import { CreateUserModal } from './modal/CreateUserModal'
+import { useCreateUserModal } from './hooks/useCreateUserModal'
 import { useTranslation } from 'react-i18next'
 
 export const CreateUserButton = ({ onCreate, onSuccess }) => {
-  const [isOpen, setIsOpen] = useState(false)
   const { t } = useTranslation('userManagement')
 
   const handleCreate = async (userData) => {
     const success = await onCreate(userData)
     if (success) {
-      setIsOpen(false)
       onSuccess()
     }
   }
 
+  const { isOpen, openModal, closeModal, formik } = useCreateUserModal(handleCreate)
+
   return (
     <>
-      <Button variant="outline-primary" onClick={() => setIsOpen(true)}>
-        <span className="d-flex align-items-center">
-          <FaUserPlus className="me-2" />
-          <span style={{ fontSize: FONTSIZE.sm }}>{t('createUser')}</span>
-        </span>
+      <Button variant="outline-primary" onClick={openModal} className="d-flex align-items-center gap-2">
+        <FaUserPlus />
+        <span className="small">{t('createUser')}</span>
       </Button>
-      <CreateUserModal isOpen={isOpen} onClose={() => setIsOpen(false)} onCreate={handleCreate} />
+
+      <CreateUserModal isOpen={isOpen} onClose={closeModal} formik={formik} />
     </>
   )
 }

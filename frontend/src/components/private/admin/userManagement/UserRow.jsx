@@ -3,7 +3,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import { UserActions } from './UserActions'
 import { UserStatusBadge } from './UserStatusBadge'
-import { UserRoleBadge } from './UserRoleBadge'
+import { UserRoleBadge } from '../../../common/UserRoleBadge'
 
 const TableRow = ({ children, isExpanded }) => <tr className={isExpanded ? 'bg-blue-50' : undefined}>{children}</tr>
 
@@ -17,9 +17,11 @@ const ExpandedRow = ({ children, colSpan }) => (
   </tr>
 )
 
-const ExpandButton = ({ isExpanded, onToggleExpand }) => (
+// eslint-disable-next-line no-unused-vars
+// TODO TOGGLE CLASS INFO ON EXPANDED ROW
+const ExpandButton = ({ isExpanded }) => (
   <button
-    onClick={onToggleExpand}
+    // onClick={onToggleExpand}
     className="flex items-center text-sm font-medium text-gray-900
        bg-transparent border-0 p-0
        cursor-pointer
@@ -38,6 +40,8 @@ export const UserRow = ({ user, isExpanded, onToggleExpand }) => (
         {user.name} {user.lastName}
       </TableCell>
 
+      <TableCell>{user.phoneNumber}</TableCell>
+      <TableCell>{user.email}</TableCell>
       <TableCell>
         <UserRoleBadge role={user.role} />
       </TableCell>
@@ -51,7 +55,7 @@ export const UserRow = ({ user, isExpanded, onToggleExpand }) => (
       </TableCell>
     </TableRow>
 
-    {isExpanded && (
+    {/* {isExpanded && (
       <ExpandedRow colSpan={4}>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -59,15 +63,8 @@ export const UserRow = ({ user, isExpanded, onToggleExpand }) => (
             <p className="mt-1 text-sm text-gray-600">{user.email}</p>
             <p className="mt-1 text-sm text-gray-600">{user.phoneNumber}</p>
           </div>
-          <div>
-            <h3 className="text-sm font-medium text-gray-900">Actions</h3>
-            <div className="mt-2 space-x-2">
-              <button className="text-sm text-blue-600 hover:text-blue-900">Edit</button>
-              <button className="text-sm text-red-600 hover:text-red-900">Delete</button>
-            </div>
-          </div>
         </div>
       </ExpandedRow>
-    )}
+    )} */}
   </>
 )

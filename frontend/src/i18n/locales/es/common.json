@@ -1,4 +1,9 @@
 {
+  "roles": {
+    "ADMIN": "ADMIN",
+    "TEACHER": "PROFESOR",
+    "STUDENT": "ALUMNO"
+  },
   "form": {
     "username": "Nombre de usuario",
     "name": "Nombre",

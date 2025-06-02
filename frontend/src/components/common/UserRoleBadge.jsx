@@ -1,14 +1,8 @@
 import React from 'react'
 import Badge from 'react-bootstrap/Badge'
-
+import { ROLE_VARIANTS } from '../../constants/theme'
 export const UserRoleBadge = ({ role }) => {
-  const variantMap = {
-    ADMIN: 'primary',
-    TEACHER: 'info',
-    STUDENT: 'success',
-  }
-
-  const badgeVariant = variantMap[role?.toUpperCase()] || 'secondary'
+  const badgeVariant = ROLE_VARIANTS[role?.toUpperCase()] || 'secondary'
 
   return (
     <Badge bg={badgeVariant} className="text-uppercase">

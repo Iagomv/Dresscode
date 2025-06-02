@@ -30,3 +30,9 @@ export const FONTSIZE = {
   lg: "1.5rem",
   xl: "2rem",
 }
+
+export const ROLE_VARIANTS = {
+  ADMIN: 'primary',
+  TEACHER: 'info',
+  STUDENT: 'success',
+}
