@@ -17,11 +17,12 @@ export const UserManagement = () => {
   if (error) return <div>Error: {error}</div>
 
   return (
-    <div className="user-management">
-      {/* <div className="flex justify-between items-center mb-4">
+    <div className="user-management d-flex flex-column align-items-center gap-3">
+      <div className="d-flex flex-row gap-3">
         <UserFilters searchTerm={searchTerm} onSearchChange={setSearchTerm} />
         <CreateUserButton onCreate={createUser} onSuccess={refetch} />
-      </div> */}
+      </div>
+
       <UserTable users={filteredUsers} />
     </div>
   )
