@@ -12,6 +12,7 @@ import lombok.Setter;
 
 import java.util.Set;
 import com.dresscode.enums.UserRoleEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Builder
 @AllArgsConstructor
@@ -38,6 +39,7 @@ public class User {
     private String email;
 
     @NotBlank
+    @JsonIgnore
     private String password;
 
     @ManyToMany // Relación muchos a muchos con Clase

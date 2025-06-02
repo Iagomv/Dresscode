@@ -21,6 +21,7 @@ import com.dresscode.repository.UserRepository;
 import com.dresscode.security.CustomUserDetails;
 import com.dresscode.service.AuthService;
 import com.dresscode.service.JwtService;
+import com.dresscode.utils.CleanupLastName;
 
 import io.jsonwebtoken.JwtException;
 
@@ -51,6 +52,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         User user = userMapper.toUser(dto);
+        user.setLastName(CleanupLastName.clean(dto.getLastName()));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(UserRoleEnum.STUDENT);
         return userMapper.toRegisterResponseDto(userRepository.save(user));
