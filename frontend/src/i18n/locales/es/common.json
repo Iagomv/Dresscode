@@ -21,6 +21,15 @@
     "emailPlaceholder": "Correo electrónico"
   },
   "error": {
-    "rol": "Error de credenciales, por favor, recargue la página"
+    "rol": "Error de credenciales, por favor, recargue la página",
+    "create": "Error en la creación",
+    "fetch": "Error al obtener los datos",
+    "delete": "Error al eliminar"
+  },
+  "user": {
+    "confirmDelete": "Seguro que queres eliminar o usuario?",
+    "created": "Usuario creado con exito",
+    "updated": "Usuario actualizado con exito",
+    "deleted": "Usuario eliminado con exito"
   }
 }

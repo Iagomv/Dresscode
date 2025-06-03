@@ -6,7 +6,7 @@ import { CreateUserButton } from '../../../components/private/admin/userManageme
 import { UserTable } from '../../../components/private/admin/userManagement/UserTable'
 
 export const UserManagement = () => {
-  const { users, loading, error, refetch, createUser } = useUserManagement()
+  const { users, loading, error, refetch, createUser, deleteUser } = useUserManagement()
   const [searchTerm, setSearchTerm] = useState('')
 
   const filteredUsers = users.filter((user) =>
@@ -23,7 +23,7 @@ export const UserManagement = () => {
         <CreateUserButton onCreate={createUser} onSuccess={refetch} />
       </div>
 
-      <UserTable users={filteredUsers} />
+      <UserTable users={filteredUsers} deleteUser={deleteUser} />
     </div>
   )
 }

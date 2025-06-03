@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
 import ApiConfig from "../../../../api/ApiConfig";
-
-/**
- * @typedef {Object} UseUserManagementResult
- * @property {Array<Object>} users - The list of users.
- * @property {boolean} loading - Whether data is currently being fetched.
- * @property {Error|null} error - Any error encountered during fetching or creating users.
- * @property {(userData: Object) => Promise<void>} createUser - Creates a new user.
- * @property {() => Promise<void>} refetch - Refetches the user data.
- */
+import { toast } from 'react-toastify'
+import { useTranslation } from "react-i18next";
 
 /**
  * Custom hook to manage user-related data and operations.
@@ -23,7 +16,7 @@ export const useUserManagement = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { t } = useTranslation("common");
   /**
    * Fetches the list of users from the API.
    *
@@ -36,8 +29,8 @@ export const useUserManagement = () => {
       const response = await ApiConfig.getAllUsers();
       setUsers(response);
     } catch (err) {
-      console.error("Error fetching users:", err);
       setError(err);
+      toast.error(t("error.fetch"));
     } finally {
       setLoading(false);
     }
@@ -52,19 +45,36 @@ export const useUserManagement = () => {
   const createUser = async (userData) => {
     try {
       setLoading(true);
-      const response = await ApiConfig.createUser(userData);
+      const response = await ApiConfig.adminUserCreation(userData);
       setUsers((prevUsers) => [...prevUsers, response]);
+      toast.success(t("user.created"));
     } catch (err) {
-      console.error("Error creating user:", err);
+      console.log(err);
       setError(err);
+      toast.error(t("error.user"));
     } finally {
       setLoading(false);
     }
   };
 
+  const deleteUser = async (id) => {
+    try {
+      setLoading(true);
+      await ApiConfig.deleteUser(id);
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+      toast.success(t("user.deleted"));
+    } catch (err) {
+      console.log(err);
+      setError(err);
+      toast.error(t("error.user"));
+    } finally {
+      setLoading(false);
+    }
+  }
+  
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  return { users, loading, error, createUser, refetch: fetchUsers };
+  return { users, loading, error, createUser, deleteUser,  refetch: fetchUsers };
 };

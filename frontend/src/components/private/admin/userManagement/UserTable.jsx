@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table'
 import { UserRow } from './UserRow'
 import { useTranslation } from 'react-i18next'
 
-export const UserTable = ({ users }) => {
+export const UserTable = ({ users, deleteUser }) => {
   const [expandedUserId, setExpandedUserId] = useState(null)
   const { t } = useTranslation('userManagement')
   return (
@@ -24,6 +24,7 @@ export const UserTable = ({ users }) => {
             <UserRow
               key={user.id}
               user={user}
+              deleteUser={deleteUser}
               isExpanded={expandedUserId === user.id}
               onToggleExpand={() => setExpandedUserId(expandedUserId === user.id ? null : user.id)}
             />

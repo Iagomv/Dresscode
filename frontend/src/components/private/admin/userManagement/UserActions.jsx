@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { FaUserEdit, FaToggleOn, FaToggleOff, FaUserSlash } from 'react-icons/fa'
 
-export const UserActions = ({ user }) => {
+export const UserActions = ({ user, deleteUser }) => {
   return (
     <div className="d-flex flex-row gap-2">
       <Button aria-label="Edit" variant="outline-primary" title="Edit">
@@ -11,7 +11,7 @@ export const UserActions = ({ user }) => {
       <Button aria-label="Toggle status" variant="outline-primary" title="Toggle Status">
         {user.active ? <FaToggleOn /> : <FaToggleOff />}
       </Button>
-      <Button aria-label="Delete" variant="outline-danger" title="Delete">
+      <Button aria-label="Delete" variant="outline-danger" title="Delete" onClick={() => deleteUser(user.id)}>
         <FaUserSlash />
       </Button>
     </div>

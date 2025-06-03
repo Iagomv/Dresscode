@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { useFormik } from 'formik'
 import { createUserSchema } from '../../../../../schema/AdminSchemas'
 import { useTranslation } from 'react-i18next'
+
 export const useCreateUserModal = (onCreate, onClose) => {
   const [isOpen, setIsOpen] = useState(false)
   const { t } = useTranslation()
   const openModal = () => setIsOpen(true)
+
   const closeModal = () => {
     setIsOpen(false)
     onClose && onClose()
