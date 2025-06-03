@@ -39,6 +39,10 @@ export class ApiConfig {
     return handleRequest('put', `${API_BASE_URL}/users/${id}`, userData)
   }
 
+  static toggleUserStatus(id) {
+    return handleRequest('patch', `${API_BASE_URL}/users/${id}/toggle-status`)
+  }
+
   static deleteUser(id) {
     return handleRequest('delete', `${API_BASE_URL}/users/${id}`)
   }

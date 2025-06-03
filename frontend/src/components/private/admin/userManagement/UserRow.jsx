@@ -32,7 +32,7 @@ const ExpandButton = ({ isExpanded }) => (
   </button>
 )
 
-export const UserRow = ({ user, isExpanded, onToggleExpand, deleteUser }) => (
+export const UserRow = ({ user, isExpanded, onToggleExpand, requestDelete, toggleStatus }) => (
   <>
     <TableRow isExpanded={isExpanded}>
       <TableCell>
@@ -51,7 +51,7 @@ export const UserRow = ({ user, isExpanded, onToggleExpand, deleteUser }) => (
       </TableCell>
 
       <TableCell className="d-flex flex-row justify-content-around">
-        <UserActions user={user} deleteUser={deleteUser} />
+        <UserActions user={user} toggleStatus={toggleStatus} requestDelete={requestDelete} />
       </TableCell>
     </TableRow>
 

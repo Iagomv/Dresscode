@@ -15,19 +15,23 @@
     "email": "Correo electrónico",
     "role": "Rol",
     "submitButton": "Enviar",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
     "usernamePlaceholder": "Nombre de usuario",
     "passwordPlaceholder": "Contraseña",
     "confirmPasswordPlaceholder": "Confirmar contraseña",
-    "emailPlaceholder": "Correo electrónico"
+    "emailPlaceholder": "Correo electrónico",
+    "confirmDeleteTitle": "Confirma la eliminación"
   },
   "error": {
     "rol": "Error de credenciales, por favor, recargue la página",
     "create": "Error en la creación",
     "fetch": "Error al obtener los datos",
+    "update": "Error durante la actualización",
     "delete": "Error al eliminar"
   },
   "user": {
-    "confirmDelete": "Seguro que queres eliminar o usuario?",
+    "confirmDelete": "Seguro que quieres eliminar al usuario?",
     "created": "Usuario creado con exito",
     "updated": "Usuario actualizado con exito",
     "deleted": "Usuario eliminado con exito"
