@@ -97,7 +97,8 @@ public class UserControllerTest {
         updatedUser.setId(1L);
         updatedUser.setName("UpdatedUser");
 
-        when(userService.updateUser(eq(1L), any(User.class))).thenReturn(updatedUser);
+        // when(userService.updateUser(eq(1L),
+        // any(User.class))).thenReturn(updatedUser);
 
         mockMvc.perform(put(ApiRoutes.USERS + "/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
