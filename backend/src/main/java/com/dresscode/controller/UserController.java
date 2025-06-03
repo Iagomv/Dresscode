@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,8 +60,13 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    @PatchMapping("/{id}/toggle-status")
+    public ResponseEntity<Boolean> toggleUserStatus(@PathVariable Long id) {
+        return ResponseEntity.ok().body(userService.toggleUserStatus(id));
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable Long id) {
-        return ResponseEntity.ok().body(userService.deleteUser(id));
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        return ResponseEntity.noContent().build();
     }
 }

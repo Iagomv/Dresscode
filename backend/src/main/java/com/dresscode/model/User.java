@@ -32,7 +32,7 @@ public class User {
     @Size(min = 3, max = 20)
     private String name;
     private String lastName;
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @NotBlank
     @Email
@@ -53,7 +53,7 @@ public class User {
     private UserRoleEnum role;
     private boolean active;
 
-    public User(String name, String lastName, Integer phoneNumber, String email, String password, Set<Clase> clases,
+    public User(String name, String lastName, String phoneNumber, String email, String password, Set<Clase> clases,
             Set<Loan> loans, UserRoleEnum role, boolean active) {
         this.name = name;
         this.lastName = lastName;

@@ -22,8 +22,9 @@ public class RegisterRequestDto {
 
     private String lastName;
 
-    @Digits(integer = 9, fraction = 0, message = "Phone number must be exactly 9 digits (no letters)")
-    private Integer phoneNumber;
+    @NotBlank(message = "Phone number is required")
+    @Pattern(regexp = "^\\d{9}$", message = "Phone number must be exactly 9 digits")
+    private String phoneNumber;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Email should be valid")
