@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.dresscode.error.exceptions.WrongCredentialsException;
 import com.dresscode.error.exceptions.BadRequestException;
 import com.dresscode.error.exceptions.EmailExistsException;
+import com.dresscode.error.exceptions.PhoneNumberExistsException;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.error.exceptions.UserNotFoundException;
 
@@ -25,6 +26,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EmailExistsException.class)
     public ResponseEntity<ApiError> handleEmailExists(EmailExistsException ex, HttpServletRequest request) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.CONFLICT, request);
+    }
+
+    @ExceptionHandler(PhoneNumberExistsException.class)
+    public ResponseEntity<ApiError> handlePhoneNumberExists(PhoneNumberExistsException ex, HttpServletRequest request) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.CONFLICT, request);
     }
 

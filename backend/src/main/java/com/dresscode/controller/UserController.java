@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dresscode.constants.ApiRoutes;
 import com.dresscode.dto.user.AdminUserCreationRequestDto;
+import com.dresscode.dto.user.UserUpdateRequestDto;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.model.User;
 import com.dresscode.service.UserService;
@@ -55,9 +56,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        User updatedUser = userService.updateUser(id, user);
-        return ResponseEntity.ok(updatedUser);
+    public ResponseEntity<User> updateUser(@Valid @RequestBody UserUpdateRequestDto dto, @PathVariable Long id) {
+        return ResponseEntity.ok().body(userService.updateUser(dto, id));
     }
 
     @PatchMapping("/{id}/toggle-status")
