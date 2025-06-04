@@ -79,6 +79,7 @@ public class UserServiceImpl implements UserService {
             throw new PhoneNumberExistsException(dto.getPhoneNumber());
         }
 
+        dto.setLastName(CleanupLastName.clean(dto.getLastName()));
         userMapper.updateUserFromDto(dto, user);
         return userRepository.save(user);
     }
