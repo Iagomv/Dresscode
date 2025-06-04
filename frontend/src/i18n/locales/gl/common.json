@@ -10,12 +10,26 @@
     "email": "Correo electrónico",
     "role": "Rol",
     "submitButton": "Enviar",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
     "usernamePlaceholder": "Nome de usuario",
     "passwordPlaceholder": "Contrasinal",
     "confirmPasswordPlaceholder": "Confirmar contrasinal",
-    "emailPlaceholder": "Correo electrónico"
+    "emailPlaceholder": "Correo electrónico",
+    "confirmDeleteTitle": "Confirma a eliminación",
+    "confirmDeleteMessage": "¿Seguro que quere eliminar ao usuario?"
   },
   "error": {
-    "rol": "Erro de credenciais, por favor, recargue a páxina"
+    "rol": "Erro de credenciais, por favor, recargue a páxina",
+    "create": "Erro durante a creación",
+    "update": "Erro durante a actualización",
+    "fetch": "Erro ao obter os datos",
+    "delete": "Erro ao eliminar"
+  },
+  "user": {
+    "confirmDelete": "Seguro que queres eliminar o usuario?",
+    "created": "Usuario creado correctamente",
+    "updated": "Usuario actualizado correctamente",
+    "deleted": "O usuario eliminouse correctamente"
   }
 }

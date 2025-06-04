@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dresscode.constants.ApiRoutes;
 import com.dresscode.dto.user.AdminUserCreationRequestDto;
+import com.dresscode.dto.user.UserUpdateRequestDto;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.model.User;
 import com.dresscode.service.UserService;
@@ -18,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,13 +56,17 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        User updatedUser = userService.updateUser(id, user);
-        return ResponseEntity.ok(updatedUser);
+    public ResponseEntity<User> updateUser(@Valid @RequestBody UserUpdateRequestDto dto, @PathVariable Long id) {
+        return ResponseEntity.ok().body(userService.updateUser(dto, id));
+    }
+
+    @PatchMapping("/{id}/toggle-status")
+    public ResponseEntity<Boolean> toggleUserStatus(@PathVariable Long id) {
+        return ResponseEntity.ok().body(userService.toggleUserStatus(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable Long id) {
-        return ResponseEntity.ok().body(userService.deleteUser(id));
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        return ResponseEntity.noContent().build();
     }
 }

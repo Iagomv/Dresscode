@@ -1,70 +1,118 @@
-import { useState, useEffect } from "react";
-import ApiConfig from "../../../../api/ApiConfig";
+import { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
+import userService from '../service/userService'
 
-/**
- * @typedef {Object} UseUserManagementResult
- * @property {Array<Object>} users - The list of users.
- * @property {boolean} loading - Whether data is currently being fetched.
- * @property {Error|null} error - Any error encountered during fetching or creating users.
- * @property {(userData: Object) => Promise<void>} createUser - Creates a new user.
- * @property {() => Promise<void>} refetch - Refetches the user data.
- */
-
-/**
- * Custom hook to manage user-related data and operations.
- *
- * Fetches user data from the API and provides state management
- * for loading and error handling. The hook also provides methods
- * to create a new user and to refetch the user list.
- *
- * @returns {UseUserManagementResult} The state and functions to manage users.
- */
 export const useUserManagement = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [showConfirmModal, setShowConfirmModal] = useState(false)
+  const [userIdToDelete, setUserIdToDelete] = useState(null)
+  const { t } = useTranslation('common')
+  const [showUpdateModal, setShowUpdateModal] = useState(false)
+  const [userToEdit, setUserToEdit] = useState(null)
 
-  /**
-   * Fetches the list of users from the API.
-   *
-   * Sets the loading state, calls the API to fetch users,
-   * updates the users state, and handles errors.
-   */
-  const fetchUsers = async () => {
+  // Generic wrapper to handle loading, errors, and toast
+  const performApiAction = async (apiCall, { successMessage, errorMessageKey, onSuccess }) => {
+    setLoading(true)
     try {
-      setLoading(true);
-      const response = await ApiConfig.getAllUsers();
-      setUsers(response);
+      const result = await apiCall()
+      if (successMessage) toast.success(successMessage)
+      if (onSuccess) onSuccess(result)
+      return result
     } catch (err) {
-      console.error("Error fetching users:", err);
-      setError(err);
+      console.log(err)
+      toast.error(t(errorMessageKey) + '\n' + (err?.response?.data?.message || ''))
+      throw err // re-throw in case caller wants to catch
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
-  /**
-   * Creates a new user and updates the users state.
-   *
-   * @param {Object} userData - The data for the new user.
-   * @returns {Promise<void>} A promise that resolves when the user is created.
-   */
-  const createUser = async (userData) => {
-    try {
-      setLoading(true);
-      const response = await ApiConfig.createUser(userData);
-      setUsers((prevUsers) => [...prevUsers, response]);
-    } catch (err) {
-      console.error("Error creating user:", err);
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchUsers = () =>
+    performApiAction(() => userService.fetchUsers(), {
+      errorMessageKey: 'error.fetch',
+      onSuccess: setUsers,
+    })
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchUsers()
+  }, [])
 
-  return { users, loading, error, createUser, refetch: fetchUsers };
-};
+  const createUser = (userData) =>
+    performApiAction(() => userService.createUser(userData), {
+      successMessage: t('user.created'),
+      errorMessageKey: 'error.create',
+      onSuccess: (newUser) => setUsers((prev) => [...prev, newUser]),
+    })
+
+  const updateUser = (id, userData) =>
+    performApiAction(() => userService.updateUser(id, userData), {
+      successMessage: t('user.updated'),
+      errorMessageKey: 'error.update',
+      onSuccess: () => setUsers((prev) => prev.map((user) => (user.id === id ? { ...user, ...userData } : user))),
+    })
+
+  const toggleStatus = (id) =>
+    performApiAction(() => userService.toggleUserStatus(id), {
+      successMessage: t('user.updated'),
+      errorMessageKey: 'error.user',
+      onSuccess: () => setUsers((prev) => prev.map((user) => (user.id === id ? { ...user, active: !user.active } : user))),
+    })
+
+  const requestDelete = (id) => {
+    setUserIdToDelete(id)
+    setShowConfirmModal(true)
+  }
+
+  const confirmDelete = () => {
+    if (!userIdToDelete) return Promise.resolve()
+    return performApiAction(() => userService.deleteUser(userIdToDelete), {
+      successMessage: t('user.deleted'),
+      errorMessageKey: 'error.user',
+      onSuccess: () => setUsers((prev) => prev.filter((user) => user.id !== userIdToDelete)),
+    }).finally(() => {
+      setShowConfirmModal(false)
+      setUserIdToDelete(null)
+    })
+  }
+
+  const requestUpdate = (user) => {
+    setUserToEdit(user)
+    setShowUpdateModal(true)
+  }
+
+  const cancelUpdate = () => {
+    setUserToEdit(null)
+    setShowUpdateModal(false)
+  }
+
+  // === New: Confirm update ===
+  const confirmUpdate = async (id, userData) => {
+    await updateUser(id, userData)
+    cancelUpdate()
+  }
+
+  const cancelDelete = () => {
+    setShowConfirmModal(false)
+    setUserIdToDelete(null)
+  }
+
+  return {
+    users,
+    loading,
+    createUser,
+    requestDelete,
+    confirmDelete,
+    cancelDelete,
+    showConfirmModal,
+    toggleStatus,
+    updateUser,
+    showUpdateModal,
+    userToEdit,
+    requestUpdate,
+    cancelUpdate,
+    confirmUpdate,
+    refetch: fetchUsers,
+  }
+}

@@ -31,9 +31,16 @@ export class ApiConfig {
   static createUser(userData) {
     return handleRequest('post', `${API_BASE_URL}/users`, userData)
   }
+  static adminUserCreation(userData) {
+    return handleRequest('post', `${API_BASE_URL}/users/admin-user-creation`, userData)
+  }
 
   static updateUser(id, userData) {
     return handleRequest('put', `${API_BASE_URL}/users/${id}`, userData)
+  }
+
+  static toggleUserStatus(id) {
+    return handleRequest('patch', `${API_BASE_URL}/users/${id}/toggle-status`)
   }
 
   static deleteUser(id) {

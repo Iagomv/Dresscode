@@ -1,27 +1,32 @@
 import * as Yup from 'yup'
 
-export const editUserSchema = Yup.object().shape({
-  
-  username: Yup.string()
-    .min(6, 'Username must be at least 6 characters')
-    .max(20, 'Username cannot be more than 20 characters')
-    .required('Username is required'),
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-  role: Yup.string()
-    .required('Role is required')
-    .oneOf(['USER', 'TECHNICIAN', 'ADMIN'], 'Invalid role'),
-})
+export const editUserSchema = (t) =>
+  Yup.object().shape({
+    name: Yup.string()
+      .min(3, t('validation:name_min', { min: 3 }))
+      .max(40, t('validation:name_max', { max: 40 }))
+      .required(t('validation:name_required')),
+    lastName: Yup.string().notRequired(),
+    phoneNumber: Yup.string()
+      .matches(/^\d{9}$/, t('validation:phone_integer'))
+      .notRequired(),
+    email: Yup.string().email(t('validation:email_invalid')).required(t('validation:email_required')),
+    role: Yup.string()
+      .required(t('validation:role_required'))
+      .oneOf(['STUDENT', 'ADMIN', 'TEACHER'], t('validation:invalid_role')),
+    active: Yup.boolean().required(t('validation:active_required')),
+  })
 
-
-export const createUserSchema = (t) => 
+export const createUserSchema = (t) =>
   Yup.object({
-    name: Yup.string().required(t('validation:name_required')),
-    lastName: Yup.string(),
-    email: Yup.string()
-      .email(t('validation:email_invalid'))
-      .required(t('validation:email_required')),
+    name: Yup.string()
+      .min(3, t('validation:name_min', { min: 3 }))
+      .max(40, t('validation:name_max', { max: 40 }))
+      .required(t('validation:name_required')),
+    lastName: Yup.string()
+      .min(3, t('validation:lastName_min', { min: 3 }))
+      .max(40, t('validation:lastName_max', { max: 50 })),
+    email: Yup.string().email(t('validation:email_invalid')).required(t('validation:email_required')),
     phoneNumber: Yup.number()
       .typeError(t('validation:phone_integer'))
       .nullable()
@@ -33,9 +38,5 @@ export const createUserSchema = (t) =>
       .required(t('validation:password_required'))
       .min(8, t('validation:password_min'))
       .max(128, t('validation:password_max'))
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
-        t('validation:password_pattern')
-      ),
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/, t('validation:password_pattern')),
   })
-

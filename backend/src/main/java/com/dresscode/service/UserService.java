@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.dresscode.dto.user.AdminUserCreationRequestDto;
+import com.dresscode.dto.user.UserUpdateRequestDto;
 import com.dresscode.model.User;
 
 public interface UserService {
@@ -15,8 +16,10 @@ public interface UserService {
 
     public User adminUserCreation(AdminUserCreationRequestDto dto);
 
-    public User updateUser(Long id, User User);
+    public User updateUser(UserUpdateRequestDto User, Long id);
 
-    public User deleteUser(Long id);
+    public Boolean toggleUserStatus(Long id);
+
+    public void deleteUser(Long id);
 
 }

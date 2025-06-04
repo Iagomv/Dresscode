@@ -7,34 +7,34 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class AdminUserCreationRequestDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserUpdateRequestDto {
 
     @NotBlank(message = "Name is required")
-    @Size(min = 3, max = 40)
+    @Size(min = 3, max = 40, message = "Name must be between 3 and 40 characters")
+
     private String name;
 
     private String lastName;
 
-    @NotBlank(message = "Phone number is required")
     @Pattern(regexp = "^\\d{9}$", message = "Phone number must be exactly 9 digits")
     private String phoneNumber;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email should be valid")
+    @NotBlank
+    @Email
     private String email;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 8, max = 128, message = "Password must be at least 8 characters")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and be at least 8 characters long")
-    private String password;
-
-    @NotNull(message = "Role is required")
+    @NotNull
     private UserRoleEnum role;
 
+    @NotNull
     private boolean active;
 }
