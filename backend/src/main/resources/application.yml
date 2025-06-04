@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: local
 
   jpa:
     hibernate:
@@ -14,12 +14,33 @@ spring:
 spring:
   config:
     activate:
+      on-profile: local
+
+  spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dresscode?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: dresscode
+    password: dresscodepassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  logging:
+    level:
+      org.springframework: DEBUG
+
+jwt:
+  secret: ${JWT_SECRET:eT8jc7PWmB6U1SxBUgzeVpNQ8BzOE+h8fM4EUUitq80=}
+  expiration: 3600000
+
+---
+spring:
+  config:
+    activate:
       on-profile: dev
 
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:dresscode}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:rootpassword}
+    username: ${DB_USER:dresscode}
+    password: ${DB_PASSWORD:dresscodepassword}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   logging:
