@@ -1,6 +1,8 @@
 {
   "name_min": "O nome debe ter polo menos 3 caracteres",
-  "name_max": "O nome non pode ter máis de 20 caracteres",
+  "name_max": "O nome non pode ter máis de 40 caracteres",
+  "lastName_min": "O apelido debe ter polo menos 3 caracteres",
+  "lastName_max": "O apelido non pode ter máis de 40 caracteres",
   "name_required": "O nome é obrigatorio",
   "email_invalid": "Enderezo de correo electrónico non válido",
   "email_required": "O correo electrónico é obrigatorio",
@@ -11,6 +13,7 @@
   "passwords_must_match": "Os contrasinais deben coincidir",
   "role_required": "O rol é obrigatorio",
   "invalid_role": "O rol non é válido",
+  "active_required": "O status e necesario",
   "phone_integer": "Fallo no formato de teléfono",
   "repeat_password_required": "O contrasinal é obrigatorio"
 }

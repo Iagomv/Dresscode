@@ -5,11 +5,11 @@ import { UserFilters } from '../../../components/private/admin/userManagement/Us
 import { CreateUserButton } from '../../../components/private/admin/userManagement/CreateUserButton'
 import { UserTable } from '../../../components/private/admin/userManagement/UserTable'
 import { ConfirmDeleteModal } from '../../../components/private/common/ConfirmDeleteModal'
+import { UpdateUserModal } from '../../../components/private/admin/userManagement/modal/UpdateUserModal'
 export const UserManagement = () => {
   const {
     users,
     loading,
-    error,
     refetch,
     createUser,
     requestDelete,
@@ -17,6 +17,11 @@ export const UserManagement = () => {
     cancelDelete,
     showConfirmModal,
     toggleStatus,
+    showUpdateModal,
+    userToEdit,
+    requestUpdate,
+    cancelUpdate,
+    confirmUpdate,
   } = useUserManagement()
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -25,7 +30,6 @@ export const UserManagement = () => {
   )
 
   if (loading) return <LoadingSpinner />
-  if (error) return <div>Error: {error}</div>
 
   return (
     <div className="user-management d-flex flex-column align-items-center gap-3">
@@ -33,8 +37,9 @@ export const UserManagement = () => {
         <UserFilters searchTerm={searchTerm} onSearchChange={setSearchTerm} />
         <CreateUserButton onCreate={createUser} onSuccess={refetch} />
       </div>
-      <UserTable users={filteredUsers} requestDelete={requestDelete} toggleStatus={toggleStatus} />
+      <UserTable users={filteredUsers} requestUpdate={requestUpdate} requestDelete={requestDelete} toggleStatus={toggleStatus} />
       <ConfirmDeleteModal show={showConfirmModal} onConfirm={confirmDelete} onCancel={cancelDelete} />
+      {showUpdateModal && userToEdit && <UpdateUserModal user={userToEdit} onClose={cancelUpdate} onUpdate={confirmUpdate} />}
     </div>
   )
 }

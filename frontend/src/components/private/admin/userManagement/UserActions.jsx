@@ -2,10 +2,10 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { FaUserEdit, FaToggleOn, FaToggleOff, FaUserSlash } from 'react-icons/fa'
 
-export const UserActions = ({ user, requestDelete, toggleStatus }) => {
+export const UserActions = ({ user, requestUpdate, requestDelete, toggleStatus }) => {
   return (
     <div className="d-flex flex-row gap-2">
-      <Button aria-label="Edit" variant="outline-primary" title="Edit">
+      <Button aria-label="Edit" variant="outline-primary" title="Edit" onClick={() => requestUpdate(user)}>
         <FaUserEdit />
       </Button>
       <Button aria-label="Toggle status" variant="outline-primary" title="Toggle Status" onClick={() => toggleStatus(user.id)}>
