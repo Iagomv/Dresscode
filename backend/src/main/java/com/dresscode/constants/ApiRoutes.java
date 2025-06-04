@@ -7,5 +7,6 @@ public class ApiRoutes {
     public static final String USERS = API_BASE + "/users";
     public static final String LOANS = API_BASE + "/loans";
     public static final String AUTH = API_BASE + "/auth";
+    public static final String EVENTS = API_BASE + "/events";
 
 }

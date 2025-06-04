@@ -28,6 +28,8 @@ services:
        - "8080:8080" #Only for local
     depends_on:
       - mysql
+    volumes:
+      - images-data:/app/public/images
 
   frontend:
     build:
@@ -48,3 +50,4 @@ services:
 
 volumes:
   db-data:
+  images-data:
