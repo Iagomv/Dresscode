@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { LoadingSpinner } from '../../../components/common/LoadingSpinner'
 import { useUserManagement } from './hooks/useUserManagement'
-import { UserFilters } from '../../../components/private/admin/userManagement/UserFilters'
+import { SearchFilter } from '../../../components/private/common/SearchFilter'
 import { CreateUserButton } from '../../../components/private/admin/userManagement/CreateUserButton'
 import { UserTable } from '../../../components/private/admin/userManagement/UserTable'
 import { ConfirmDeleteModal } from '../../../components/private/common/ConfirmDeleteModal'
 import { UpdateUserModal } from '../../../components/private/admin/userManagement/modal/UpdateUserModal'
+import { useTranslation } from 'react-i18next'
 export const UserManagement = () => {
+  const { t } = useTranslation('admin')
   const {
     users,
     loading,
@@ -34,7 +36,7 @@ export const UserManagement = () => {
   return (
     <div className="user-management d-flex flex-column align-items-center gap-3">
       <div className="d-flex flex-row gap-3">
-        <UserFilters searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+        <SearchFilter searchTerm={searchTerm} onSearchChange={setSearchTerm} placeholderText={t('userManagement.searchUsers')} />
         <CreateUserButton onCreate={createUser} onSuccess={refetch} />
       </div>
       <UserTable users={filteredUsers} requestUpdate={requestUpdate} requestDelete={requestDelete} toggleStatus={toggleStatus} />

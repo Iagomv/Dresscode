@@ -10,7 +10,7 @@ import gallery_es from './locales/es/gallery.json'
 import common_es from './locales/es/common.json'
 import loginRegister_es from './locales/es/loginRegister.json'
 import validation_es from './locales/es/validation.json'
-import userManagement_es from './locales/es/userManagement.json'
+import admin_es from './locales/es/admin.json'
 
 import about_gl from './locales/gl/about.json'
 import contact_gl from './locales/gl/contact.json'
@@ -21,8 +21,7 @@ import gallery_gl from './locales/gl/gallery.json'
 import common_gl from './locales/gl/common.json'
 import loginRegister_gl from './locales/gl/loginRegister.json'
 import validation_gl from './locales/gl/validation.json'
-import userManagement_gl from './locales/gl/userManagement.json'
-
+import admin_gl from './locales/gl/admin.json'
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -36,7 +35,7 @@ i18n.use(initReactI18next).init({
       common: common_es,
       loginRegister: loginRegister_es,
       validation: validation_es,
-      userManagement: userManagement_es
+      admin: admin_es,
     },
     gl: {
       about: about_gl,
@@ -48,12 +47,12 @@ i18n.use(initReactI18next).init({
       common: common_gl,
       loginRegister: loginRegister_gl,
       validation: validation_gl,
-      userManagement: userManagement_gl
+      admin: admin_gl,
     },
   },
   lng: 'es',
   fallbackLng: 'es',
-  ns: ['about','activities','home', 'navigation', 'gallery', 'common', 'loginRegister','validation'],  
+  ns: ['about', 'activities', 'home', 'navigation', 'gallery', 'common', 'loginRegister', 'validation'],
   defaultNS: 'common',
   interpolation: {
     escapeValue: false,

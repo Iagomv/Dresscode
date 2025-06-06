@@ -6,7 +6,7 @@ import { useCreateUserModal } from './hooks/useCreateUserModal'
 import { useTranslation } from 'react-i18next'
 
 export const CreateUserButton = ({ onCreate, onSuccess }) => {
-  const { t } = useTranslation('userManagement')
+  const { t } = useTranslation('admin')
 
   const handleCreate = async (userData) => {
     const success = await onCreate(userData)
@@ -21,7 +21,7 @@ export const CreateUserButton = ({ onCreate, onSuccess }) => {
     <>
       <Button variant="outline-primary" onClick={openModal} className="d-flex align-items-center gap-2">
         <FaUserPlus />
-        <span className="small">{t('createUser')}</span>
+        <span className="small">{t('userManagement.addUserButton')}</span>
       </Button>
 
       <CreateUserModal isOpen={isOpen} onClose={closeModal} formik={formik} />

@@ -14,7 +14,8 @@
       "classes": "Mis clases"
     },
     "admin": {
-      "userManagement": "Usuarios"
+      "userManagement": "Usuarios",
+      "eventManagement": "Eventos"
     }
   }
 }

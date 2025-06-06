@@ -72,7 +72,27 @@ export class ApiConfig {
     return handleRequest('delete', `${API_BASE_URL}/loans/${id}`)
   }
 
-  // ** Clothing Item Endpoints **
+  // ** Event Endpoints **
+  static getAllEvents() {
+    return handleRequest('get', `${API_BASE_URL}/events`)
+  }
+  static getEventById(id) {
+    return handleRequest('get', `${API_BASE_URL}/events/${id}`)
+  }
+
+  static createEvent() {
+    return handleRequest('post', `${API_BASE_URL}/events`)
+  }
+
+  static updateEvent(id, eventData) {
+    return handleRequest('put', `${API_BASE_URL}/events/${id}`, eventData)
+  }
+
+  static deleteEvent(id) {
+    return handleRequest('delete', `${API_BASE_URL}/events/${id}`)
+  }
+
+  //! ** Clothing Item Endpoints **
   static getAllClothingItems() {
     return handleRequest('get', `${API_BASE_URL}/clothing-items`)
   }
@@ -123,18 +143,21 @@ export class ApiConfig {
     return handleRequest('get', `${API_BASE_URL}/clases/users/${claseId}`)
   }
 
+  // ** Image Endpoints **
+
+  static uploadImage(imageData) {
+    return handleRequest('post', `${API_BASE_URL}/images/upload`, imageData)
+  }
+
   // ** Authentication Endpoints **
   static registerUser(registerData) {
-    // Matches /api/auth/register with RegisterRequestDto
     return handleRequest('post', `${API_BASE_URL}/auth/register`, registerData)
   }
 
   static loginUser(loginData) {
-    // Matches /api/auth/login with LoginRequestDto
     return handleRequest('post', `${API_BASE_URL}/auth/login`, loginData)
   }
   static validateToken(token) {
-    // Matches /api/auth/login with LoginRequestDto
     return handleRequest('post', `${API_BASE_URL}/auth/validate`, token)
   }
 }

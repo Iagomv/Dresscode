@@ -5,13 +5,13 @@ import { FormikProvider } from 'formik'
 import { useTranslation } from 'react-i18next'
 
 export const CreateUserModal = ({ isOpen, onClose, formik }) => {
-  const { t } = useTranslation('userManagement')
+  const { t } = useTranslation('admin')
   return (
     <Modal show={isOpen} onHide={onClose} centered>
       <FormikProvider value={formik}>
         <Form onSubmit={formik.handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>{t('createUser')}</Modal.Title>
+            <Modal.Title>{t('userManagement.createUser')}</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>

@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import userService from '../service/userService'
-
+import { performApiAction } from '../../../../utils/ApiUtils'
 export const useUserManagement = () => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
@@ -13,26 +12,12 @@ export const useUserManagement = () => {
   const [userToEdit, setUserToEdit] = useState(null)
 
   // Generic wrapper to handle loading, errors, and toast
-  const performApiAction = async (apiCall, { successMessage, errorMessageKey, onSuccess }) => {
-    setLoading(true)
-    try {
-      const result = await apiCall()
-      if (successMessage) toast.success(successMessage)
-      if (onSuccess) onSuccess(result)
-      return result
-    } catch (err) {
-      console.log(err)
-      toast.error(t(errorMessageKey) + '\n' + (err?.response?.data?.message || ''))
-      throw err // re-throw in case caller wants to catch
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const fetchUsers = () =>
     performApiAction(() => userService.fetchUsers(), {
-      errorMessageKey: 'error.fetch',
+      errorMessage: t('error.fetch'),
       onSuccess: setUsers,
+      setLoading,
     })
 
   useEffect(() => {
@@ -42,22 +27,25 @@ export const useUserManagement = () => {
   const createUser = (userData) =>
     performApiAction(() => userService.createUser(userData), {
       successMessage: t('user.created'),
-      errorMessageKey: 'error.create',
+      errorMessage: t('error.create'),
       onSuccess: (newUser) => setUsers((prev) => [...prev, newUser]),
+      setLoading,
     })
 
   const updateUser = (id, userData) =>
     performApiAction(() => userService.updateUser(id, userData), {
       successMessage: t('user.updated'),
-      errorMessageKey: 'error.update',
+      errorMessage: t('error.update'),
       onSuccess: () => setUsers((prev) => prev.map((user) => (user.id === id ? { ...user, ...userData } : user))),
+      setLoading,
     })
 
   const toggleStatus = (id) =>
     performApiAction(() => userService.toggleUserStatus(id), {
       successMessage: t('user.updated'),
-      errorMessageKey: 'error.user',
+      errorMessage: t('error.user'),
       onSuccess: () => setUsers((prev) => prev.map((user) => (user.id === id ? { ...user, active: !user.active } : user))),
+      setLoading,
     })
 
   const requestDelete = (id) => {
@@ -69,8 +57,9 @@ export const useUserManagement = () => {
     if (!userIdToDelete) return Promise.resolve()
     return performApiAction(() => userService.deleteUser(userIdToDelete), {
       successMessage: t('user.deleted'),
-      errorMessageKey: 'error.user',
+      errorMessage: t('error.user'),
       onSuccess: () => setUsers((prev) => prev.filter((user) => user.id !== userIdToDelete)),
+      setLoading,
     }).finally(() => {
       setShowConfirmModal(false)
       setUserIdToDelete(null)

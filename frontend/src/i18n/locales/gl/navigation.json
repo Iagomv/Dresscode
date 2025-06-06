@@ -14,7 +14,8 @@
       "user management": "Meu espazo"
     },
     "admin": {
-      "userManagement": "Usuarios"
+      "userManagement": "Usuarios",
+      "eventManagement": "Eventos"
     }
   }
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import { UserActions } from './UserActions'

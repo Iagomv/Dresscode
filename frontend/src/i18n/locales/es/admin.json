@@ -1,0 +1,25 @@
+{
+  "userManagement": {
+    "searchUsers": "Buscar usuarios...",
+    "addUserButton": "Crear usuario",
+    "name": "Nombre",
+    "phoneNumber": "Teléfono",
+    "email": "Correo",
+    "role": "Rol",
+    "status": "Estado",
+    "actions": "Acciones",
+    "confirmar": "Confirmar",
+    "activeUser": "Usuario activo",
+    "cancelar": "Cancelar"
+  },
+  "eventManagement": {
+    "searchEvents": "Busca eventos...",
+    "addEventButton": "Crear evento",
+    "eventTitle": "Título",
+    "eventDescription": "Descripción",
+    "eventDate": "Fecha",
+    "eventCategory": "Categoría",
+    "eventStatus": "Estado",
+    "actions": "Accións"
+  }
+}
