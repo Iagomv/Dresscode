@@ -5,6 +5,7 @@ import com.dresscode.dto.event.EventResponseDto;
 import com.dresscode.model.Event;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
@@ -22,5 +23,5 @@ public interface EventMapper {
     EventResponseDto toDto(Event event);
 
     // For partial update if needed
-    // void updateEventFromDto(EventRequestDto dto, @MappingTarget Event event);
+    void updateEventFromDto(EventRequestDto dto, @MappingTarget Event event);
 }
