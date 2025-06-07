@@ -25,7 +25,6 @@ export const EventCard = ({ event }) => {
   const formatUrl = (url) => {
     const replacedImages = url.replace('/images/', '/uploads/')
     const fullUrl = `${import.meta.env.VITE_IMAGES_URL}${replacedImages}`
-    console.log('Formatted image URL:', fullUrl) // <-- add this line
     return fullUrl
   }
 
