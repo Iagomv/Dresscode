@@ -33,19 +33,21 @@ public class ImageUploadController {
 
     @Operation(summary = "Upload an image file", description = "Accepts a multipart file upload and returns the image URL.")
     @PostMapping(path = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> uploadImage(@RequestPart("file") MultipartFile file) {
+    public ResponseEntity<?> uploadImage(@RequestPart("file") MultipartFile file,
+            @RequestPart("title") String title) {
 
+        String safeTitle = title.replaceAll("[^a-zA-Z0-9-_\\.]", "_");
         if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body(Map.of("message", "Please select a file to upload."));
+            return badRequestWithMessage("Please select a file to upload.");
         }
 
         if (!isAllowedType(file.getOriginalFilename())) {
-            return ResponseEntity.badRequest()
-                    .body(Map.of("message", "Only JPEG, JPG, PNG and GIF files are allowed."));
+            return badRequestWithMessage("Only JPEG, JPG, PNG and GIF files are allowed.");
         }
+
         try {
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
-            String uniqueFilename = System.currentTimeMillis() + "-" + filename;
+            String uniqueFilename = safeTitle + "-" + filename;
 
             Path imagesPath = Paths.get(imagesDir);
             if (!Files.exists(imagesPath)) {
@@ -69,5 +71,9 @@ public class ImageUploadController {
         }
         String extension = filename.substring(filename.lastIndexOf(".") + 1);
         return ALLOWED_TYPES.contains(extension.toLowerCase());
+    }
+
+    private ResponseEntity<Map<String, String>> badRequestWithMessage(String message) {
+        return ResponseEntity.badRequest().body(Map.of("message", message));
     }
 }
