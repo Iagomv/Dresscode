@@ -6,9 +6,9 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
-  esbuild: {
-    drop: ['console', 'debugger'],
-  },
+  // esbuild: {
+  //   drop: ['console', 'debugger'],
+  // },
   test: {
     coverage: {
       enabled: true,

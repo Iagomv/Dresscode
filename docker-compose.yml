@@ -47,6 +47,8 @@ services:
     depends_on:
       - frontend
       - backend
+    volumes:
+      - images-data:/app/public/images
 
 volumes:
   db-data:

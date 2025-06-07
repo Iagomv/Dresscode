@@ -15,5 +15,33 @@
   "invalid_role": "O rol non é válido",
   "active_required": "O status e necesario",
   "phone_integer": "Fallo no formato de teléfono",
-  "repeat_password_required": "O contrasinal é obrigatorio"
+  "repeat_password_required": "O contrasinal é obrigatorio",
+  "title": {
+    "min": "O título debe ter polo menos 3 caracteres",
+    "max": "O título non pode ter máis de 50 caracteres",
+    "required": "O título é obrigatorio"
+  },
+  "description": {
+    "min": "A descrición debe ter polo menos 10 caracteres",
+    "max": "A descrición non pode ter máis de 500 caracteres",
+    "required": "A descrición é obrigatoria"
+  },
+  "location": {
+    "max": "A localización non pode ter máis de 100 caracteres",
+    "required": "A localización é obrigatoria"
+  },
+  "date": {
+    "required": "A data é obrigatoria"
+  },
+  "category": {
+    "invalid": "A categoría non é válida",
+    "required": "A categoría é obrigatoria"
+  },
+  "status": {
+    "invalid": "O estado non é válido",
+    "required": "O estado é obrigatorio"
+  },
+  "image": {
+    "valid": "Formatos admitidos: png, jpg, jpeg, webp"
+  }
 }

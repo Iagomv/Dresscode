@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { FormikTextField } from '../../../common/formFields/FormikTextField'
 
 const updateUserSchema = Yup.object().shape({
   name: Yup.string()
@@ -16,6 +17,7 @@ const updateUserSchema = Yup.object().shape({
   active: Yup.boolean().required('Active status is required'),
 })
 
+//TODO PENDIENTE REFACTORIZAR EL MODAL
 export const UpdateUserModal = ({ user, onClose, onUpdate }) => {
   return (
     <>
@@ -44,14 +46,7 @@ export const UpdateUserModal = ({ user, onClose, onUpdate }) => {
               {({ isSubmitting, values, setFieldValue }) => (
                 <Form>
                   <div className="modal-body">
-                    <div className="mb-3">
-                      <label htmlFor="name" className="form-label">
-                        Name
-                      </label>
-                      <Field name="name" type="text" className="form-control" id="name" />
-                      <ErrorMessage name="name" component="div" className="text-danger small mt-1" />
-                    </div>
-
+                    <FormikTextField name={'name'} label={'Name'} type={'text'} />
                     <div className="mb-3">
                       <label htmlFor="lastName" className="form-label">
                         Last Name

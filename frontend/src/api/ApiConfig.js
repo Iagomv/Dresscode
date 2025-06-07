@@ -1,5 +1,6 @@
 import axiosInstance from './axiosInstance'
-
+import axios from 'axios'
+import { TOKEN_KEY } from '../constants/textConstants'
 const API_BASE_URL = '/api'
 
 const handleRequest = async (method, url, data = null, params = null) => {
@@ -72,7 +73,27 @@ export class ApiConfig {
     return handleRequest('delete', `${API_BASE_URL}/loans/${id}`)
   }
 
-  // ** Clothing Item Endpoints **
+  // ** Event Endpoints **
+  static getAllEvents() {
+    return handleRequest('get', `${API_BASE_URL}/events`)
+  }
+  static getEventById(id) {
+    return handleRequest('get', `${API_BASE_URL}/events/${id}`)
+  }
+
+  static createEvent(eventData) {
+    return handleRequest('post', `${API_BASE_URL}/events`, eventData)
+  }
+
+  static updateEvent(id, eventData) {
+    return handleRequest('put', `${API_BASE_URL}/events/${id}`, eventData)
+  }
+
+  static deleteEvent(id) {
+    return handleRequest('delete', `${API_BASE_URL}/events/${id}`)
+  }
+
+  //! ** Clothing Item Endpoints **
   static getAllClothingItems() {
     return handleRequest('get', `${API_BASE_URL}/clothing-items`)
   }
@@ -125,18 +146,30 @@ export class ApiConfig {
 
   // ** Authentication Endpoints **
   static registerUser(registerData) {
-    // Matches /api/auth/register with RegisterRequestDto
     return handleRequest('post', `${API_BASE_URL}/auth/register`, registerData)
   }
 
   static loginUser(loginData) {
-    // Matches /api/auth/login with LoginRequestDto
     return handleRequest('post', `${API_BASE_URL}/auth/login`, loginData)
   }
   static validateToken(token) {
-    // Matches /api/auth/login with LoginRequestDto
     return handleRequest('post', `${API_BASE_URL}/auth/validate`, token)
   }
-}
 
+  // ** Image Endpoints **
+
+  static async uploadImage(imageData, title) {
+    const formData = new FormData()
+    formData.append('file', imageData)
+    formData.append('title', title)
+
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/images/upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+      },
+    })
+    return response.data
+  }
+}
 export default ApiConfig

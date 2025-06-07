@@ -1,0 +1,30 @@
+{
+  "userManagement": {
+    "searchUsers": "Busca usuarios...",
+    "addUserButton": "Crear usuario",
+    "name": "Nome",
+    "phoneNumber": "Teléfono",
+    "email": "Correo",
+    "role": "Rol",
+    "status": "Estado",
+    "actions": "Accións",
+    "confirmar": "Confirmar",
+    "activeUser": "Usuario activo",
+    "cancelar": "Cancelar",
+    "createUser": "Crear usuario"
+  },
+  "eventManagement": {
+    "createEvent": "Crear evento",
+    "updateEventModalTitle": "Actualización do evento",
+    "searchEvents": "Busca eventos...",
+    "addEventButton": "Crear usuario",
+    "eventTitle": "Título",
+    "eventDescription": "Descripción",
+    "eventDate": "Data",
+    "eventCategory": "Categoría",
+    "eventStatus": "Estado",
+    "eventLocation": "Lugar",
+    "eventImage": "Imaxe",
+    "actions": "Accións"
+  }
+}

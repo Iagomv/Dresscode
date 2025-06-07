@@ -35,3 +35,15 @@ export const ROLE_VARIANTS = {
   TEACHER: 'primary',
   STUDENT: 'secondary',
 }
+
+export const EVENT_STATUS_VARIANTS = {
+  DRAFT: 'secondary',
+  PUBLISHED: 'success',
+  CANCELLED: 'danger',
+  ARCHIVED: 'warning',
+}
+
+export const EVENT_CATEGORY_VARIANTS = {
+  PUBLIC: 'success',
+  PRIVATE: 'warning',
+}
