@@ -8,6 +8,7 @@ import Home from './pages/public/Home'
 import PrivateHome from './pages/private/Home'
 import About from './pages/public/About'
 import Activities from './pages/public/Activities'
+import { Events } from './pages/public/Events'
 import { UserManagement } from './pages/private/admin/UserManagement'
 import { AdminEventManagement } from './pages/private/admin/AdminEventManagement'
 import { PATHS } from './constants/routes'
@@ -24,6 +25,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path={PATHS.slash} element={<Home />} />
         <Route path={PATHS.login} element={<LoginPage />} />
+        <Route path={PATHS.events} element={<Events />} />
         <Route path={PATHS.about} element={<About />} />
         <Route path={PATHS.activities} element={<Activities />} />
       </Route>
