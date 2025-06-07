@@ -9,7 +9,7 @@ export const ConfirmDeleteModal = ({ show, onConfirm, onCancel }) => {
       <Modal.Header closeButton>
         <Modal.Title>{t('form.confirmDeleteTitle')}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{t('user.confirmDelete')}</Modal.Body>
+      <Modal.Body>{t('form.confirmDeleteMessage')}</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onCancel}>
           {t('form.cancel')}

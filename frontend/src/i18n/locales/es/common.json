@@ -21,7 +21,8 @@
     "passwordPlaceholder": "Contraseña",
     "confirmPasswordPlaceholder": "Confirmar contraseña",
     "emailPlaceholder": "Correo electrónico",
-    "confirmDeleteTitle": "Confirma la eliminación"
+    "confirmDeleteTitle": "Confirma la eliminación",
+    "confirmDeleteMessage": "¿Estás seguro? Este proceso no es reversible."
   },
   "error": {
     "rol": "Error de credenciales, por favor, recargue la página",
@@ -30,10 +31,22 @@
     "update": "Error durante la actualización",
     "delete": "Error al eliminar"
   },
-  "user": {
+  "success": {
     "confirmDelete": "Seguro que quieres eliminar al usuario?",
-    "created": "Usuario creado con exito",
-    "updated": "Usuario actualizado con exito",
-    "deleted": "Usuario eliminado con exito"
+    "created": "creado con exito",
+    "updated": "actualizado con exito",
+    "deleted": "eliminado con exito"
+  },
+  "event": {
+    "status": {
+      "draft": "Borrador",
+      "published": "Publicado",
+      "cancelled": "Cancelado",
+      "archived": "Archivado"
+    },
+    "category": {
+      "public": "Público",
+      "private": "Privado"
+    }
   }
 }

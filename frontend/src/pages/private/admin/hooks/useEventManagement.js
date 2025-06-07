@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import eventservice from '../service/eventservice'
+import eventService from '../service/eventService'
 import { performApiAction } from '../../../../utils/ApiUtils'
 
 export const useEventManagement = () => {
@@ -11,29 +11,30 @@ export const useEventManagement = () => {
   const { t } = useTranslation('common')
   const [showUpdateModal, setShowUpdateModal] = useState(false)
   const [eventToEdit, setEventToEdit] = useState(null)
+  const newSuccessMessage = (messageKey) => `Event ${t(messageKey)}`
 
-  const fetchevents = () =>
-    performApiAction(() => eventservice.fetchEvents(), {
+  const fetchEvents = () =>
+    performApiAction(() => eventService.fetchEvents(), {
       errorMessage: t('error.fetch'),
       onSuccess: setEvents,
       setLoading,
     })
 
   useEffect(() => {
-    fetchevents()
+    fetchEvents()
   }, [])
 
   const createEvent = (eventData) =>
-    performApiAction(() => eventservice.createEvent(eventData), {
-      successMessage: t('event.created'),
+    performApiAction(() => eventService.createEvent(eventData), {
+      successMessage: newSuccessMessage('success.created'),
       errorMessage: t('error.create'),
       onSuccess: (newEvent) => setEvents((prev) => [...prev, newEvent]),
       setLoading,
     })
 
   const updateEvent = (id, eventData) =>
-    performApiAction(() => eventservice.updateEvent(id, eventData), {
-      successMessage: t('event.updated'),
+    performApiAction(() => eventService.updateEvent(id, eventData), {
+      successMessage: newSuccessMessage('success.updated'),
       errorMessage: t('error.update'),
       onSuccess: () => setEvents((prev) => prev.map((event) => (event.id === id ? { ...event, ...eventData } : event))),
       setLoading,
@@ -46,8 +47,8 @@ export const useEventManagement = () => {
 
   const confirmDelete = () => {
     if (!eventIdToDelete) return Promise.resolve()
-    return performApiAction(() => eventservice.deleteEvent(eventIdToDelete), {
-      successMessage: t('event.deleted'),
+    return performApiAction(() => eventService.deleteEvent(eventIdToDelete), {
+      successMessage: newSuccessMessage('success.deleted'),
       errorMessage: t('error.event'),
       onSuccess: () => setEvents((prev) => prev.filter((event) => event.id !== eventIdToDelete)),
       setLoading,
@@ -91,6 +92,6 @@ export const useEventManagement = () => {
     requestUpdate,
     cancelUpdate,
     confirmUpdate,
-    refetch: fetchevents,
+    refetch: fetchEvents,
   }
 }

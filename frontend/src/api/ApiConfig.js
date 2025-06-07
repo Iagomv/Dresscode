@@ -1,5 +1,6 @@
 import axiosInstance from './axiosInstance'
-
+import axios from 'axios'
+import { TOKEN_KEY } from '../constants/textConstants'
 const API_BASE_URL = '/api'
 
 const handleRequest = async (method, url, data = null, params = null) => {
@@ -80,8 +81,8 @@ export class ApiConfig {
     return handleRequest('get', `${API_BASE_URL}/events/${id}`)
   }
 
-  static createEvent() {
-    return handleRequest('post', `${API_BASE_URL}/events`)
+  static createEvent(eventData) {
+    return handleRequest('post', `${API_BASE_URL}/events`, eventData)
   }
 
   static updateEvent(id, eventData) {
@@ -143,12 +144,6 @@ export class ApiConfig {
     return handleRequest('get', `${API_BASE_URL}/clases/users/${claseId}`)
   }
 
-  // ** Image Endpoints **
-
-  static uploadImage(imageData) {
-    return handleRequest('post', `${API_BASE_URL}/images/upload`, imageData)
-  }
-
   // ** Authentication Endpoints **
   static registerUser(registerData) {
     return handleRequest('post', `${API_BASE_URL}/auth/register`, registerData)
@@ -160,6 +155,21 @@ export class ApiConfig {
   static validateToken(token) {
     return handleRequest('post', `${API_BASE_URL}/auth/validate`, token)
   }
-}
 
+  // ** Image Endpoints **
+
+  static async uploadImage(imageData) {
+    const formData = new FormData()
+    formData.append('file', imageData)
+
+    // Use axios directly here to avoid global JSON headers
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/images/upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+      },
+    })
+    return response.data
+  }
+}
 export default ApiConfig

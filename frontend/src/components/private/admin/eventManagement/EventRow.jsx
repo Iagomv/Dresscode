@@ -4,6 +4,7 @@ export const EventRow = ({ event, requestUpdate, requestDelete }) => (
   <tr>
     <LargeTextTableCell>{event.title}</LargeTextTableCell>
     <LargeTextTableCell>{event.description}</LargeTextTableCell>
+    <TableCell>{event.eventDate}</TableCell>
     <TableCell>{event.category}</TableCell>
     <TableCell>{event.status}</TableCell>
     <TableCell>{event.location}</TableCell>

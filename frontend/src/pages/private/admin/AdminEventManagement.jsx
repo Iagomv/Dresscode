@@ -6,8 +6,10 @@ import { SearchFilter } from '../../../components/private/common/SearchFilter'
 import { CreateEventButton } from '../../../components/private/admin/eventManagement/CreateEventButton'
 import { useTranslation } from 'react-i18next'
 import { EventsTable } from '../../../components/private/admin/eventManagement/EventsTable'
+import { ConfirmDeleteModal } from '../../../components/private/common/ConfirmDeleteModal'
+import { CreateEventModal } from '../../../components/private/admin/eventManagement/modal/CreateEventModal'
 export const AdminEventManagement = () => {
-  const [openModal, setOpenModal] = useState(false)
+  const [openCreateModal, setOpenCreateModal] = useState(false)
   const { t } = useTranslation('admin')
   const {
     events,
@@ -27,7 +29,7 @@ export const AdminEventManagement = () => {
   } = useEventManagement()
   const [searchTerm, setSearchTerm] = useState('')
   const filteredEvents = events.filter((e) =>
-    `${e.name} ${e.lastName} ${e.email}`.toLowerCase().includes(searchTerm.toLowerCase())
+    `${e.title} ${e.location} ${e.status}`.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   if (loading) return <LoadingSpinner />
@@ -40,11 +42,19 @@ export const AdminEventManagement = () => {
           onSearchChange={setSearchTerm}
           placeholderText={t('eventManagement.searchEvents')}
         />
-        <CreateEventButton openModal={() => setOpenModal(true)} />
+        <CreateEventButton
+          openModal={() => {
+            console.log('Button clicked')
+            setOpenCreateModal(true)
+          }}
+        />
+        {openCreateModal && (
+          <CreateEventModal show={openCreateModal} onClose={() => setOpenCreateModal(false)} onCreate={createEvent} />
+        )}
       </div>
       <EventsTable events={filteredEvents} requestUpdate={requestUpdate} requestDelete={requestDelete} />
-      {/* 
       <ConfirmDeleteModal show={showConfirmModal} onConfirm={confirmDelete} onCancel={cancelDelete} />
+      {/* 
       {showUpdateModal && userToEdit && <UpdateUserModal user={userToEdit} onClose={cancelUpdate} onUpdate={confirmUpdate} />} */}
     </div>
   )

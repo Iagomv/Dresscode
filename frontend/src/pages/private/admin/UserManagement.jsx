@@ -34,7 +34,7 @@ export const UserManagement = () => {
   if (loading) return <LoadingSpinner />
 
   return (
-    <div className="user-management d-flex flex-column align-items-center gap-3">
+    <div className="d-flex flex-column align-items-center gap-3">
       <div className="d-flex flex-row gap-3">
         <SearchFilter searchTerm={searchTerm} onSearchChange={setSearchTerm} placeholderText={t('userManagement.searchUsers')} />
         <CreateUserButton onCreate={createUser} onSuccess={refetch} />

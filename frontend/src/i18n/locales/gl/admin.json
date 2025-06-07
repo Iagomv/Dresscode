@@ -10,9 +10,11 @@
     "actions": "Accións",
     "confirmar": "Confirmar",
     "activeUser": "Usuario activo",
-    "cancelar": "Cancelar"
+    "cancelar": "Cancelar",
+    "createUser": "Crear usuario"
   },
   "eventManagement": {
+    "createEvent": "Crear evento",
     "searchEvents": "Busca eventos...",
     "addEventButton": "Crear usuario",
     "eventTitle": "Título",
@@ -20,6 +22,8 @@
     "eventDate": "Data",
     "eventCategory": "Categoría",
     "eventStatus": "Estado",
+    "eventLocation": "Lugar",
+    "eventImage": "Imaxe",
     "actions": "Accións"
   }
 }

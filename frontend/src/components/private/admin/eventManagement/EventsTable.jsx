@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 export const EventsTable = ({ events, requestUpdate, requestDelete }) => {
   const { t } = useTranslation('admin')
   return (
-    <div className="d-flex justify-content-center w-75">
+    <div className="d-flex justify-content-center">
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -14,6 +14,7 @@ export const EventsTable = ({ events, requestUpdate, requestDelete }) => {
             <th>{t('eventManagement.eventDate')}</th>
             <th>{t('eventManagement.eventCategory')}</th>
             <th>{t('eventManagement.eventStatus')}</th>
+            <th>{t('eventManagement.eventLocation')}</th>
             <th className="text-right">{t('eventManagement.actions')}</th>
           </tr>
         </thead>

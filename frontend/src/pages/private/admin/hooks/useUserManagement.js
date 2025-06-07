@@ -26,7 +26,7 @@ export const useUserManagement = () => {
 
   const createUser = (userData) =>
     performApiAction(() => userService.createUser(userData), {
-      successMessage: t('user.created'),
+      successMessage: newSuccessMessage('success.created'),
       errorMessage: t('error.create'),
       onSuccess: (newUser) => setUsers((prev) => [...prev, newUser]),
       setLoading,
@@ -34,7 +34,7 @@ export const useUserManagement = () => {
 
   const updateUser = (id, userData) =>
     performApiAction(() => userService.updateUser(id, userData), {
-      successMessage: t('user.updated'),
+      successMessage: newSuccessMessage('success.updated'),
       errorMessage: t('error.update'),
       onSuccess: () => setUsers((prev) => prev.map((user) => (user.id === id ? { ...user, ...userData } : user))),
       setLoading,
@@ -42,7 +42,7 @@ export const useUserManagement = () => {
 
   const toggleStatus = (id) =>
     performApiAction(() => userService.toggleUserStatus(id), {
-      successMessage: t('user.updated'),
+      successMessage: newSuccessMessage('success.updated'),
       errorMessage: t('error.user'),
       onSuccess: () => setUsers((prev) => prev.map((user) => (user.id === id ? { ...user, active: !user.active } : user))),
       setLoading,
@@ -56,7 +56,7 @@ export const useUserManagement = () => {
   const confirmDelete = () => {
     if (!userIdToDelete) return Promise.resolve()
     return performApiAction(() => userService.deleteUser(userIdToDelete), {
-      successMessage: t('user.deleted'),
+      successMessage: newSuccessMessage('success.deleted'),
       errorMessage: t('error.user'),
       onSuccess: () => setUsers((prev) => prev.filter((user) => user.id !== userIdToDelete)),
       setLoading,
@@ -86,6 +86,8 @@ export const useUserManagement = () => {
     setShowConfirmModal(false)
     setUserIdToDelete(null)
   }
+
+  const newSuccessMessage = (messageKey) => `Usuario ${t(messageKey)}`
 
   return {
     users,
