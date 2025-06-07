@@ -1,7 +1,9 @@
 package com.dresscode.service;
 
+import com.dresscode.dto.event.EventByCategoryAndStatusRequestDto;
 import com.dresscode.dto.event.EventRequestDto;
 import com.dresscode.dto.event.EventResponseDto;
+import com.dresscode.model.Event;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +28,16 @@ public interface EventService {
      *         Optional if not found
      */
     Optional<EventResponseDto> getEventById(Long id);
+
+    /**
+     * Retrieves a list of events by category and status.
+     *
+     * @param dto the EventByCategoryAndStatusRequestDto object containing the
+     *            category and status
+     * @return an Optional containing the list of EventResponseDto objects, or an
+     *         empty Optional if not found
+     */
+    List<EventResponseDto> getEventsByCategoryAndStatus(EventByCategoryAndStatusRequestDto dto);
 
     /**
      * Creates a new event.

@@ -1,5 +1,6 @@
 package com.dresscode.service.impl;
 
+import com.dresscode.dto.event.EventByCategoryAndStatusRequestDto;
 import com.dresscode.dto.event.EventRequestDto;
 import com.dresscode.dto.event.EventResponseDto;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
@@ -13,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -41,6 +43,20 @@ public class EventServiceImpl implements EventService {
     @Override
     public Optional<EventResponseDto> getEventById(Long id) {
         return eventRepository.findById(id).map(eventMapper::toDto);
+    }
+
+    @Override
+    public List<EventResponseDto> getEventsByCategoryAndStatus(EventByCategoryAndStatusRequestDto dto) {
+        List<Event> events = eventRepository.findByCategoryAndStatus(dto.getCategory(), dto.getStatus());
+
+        if (events.isEmpty()) {
+            throw new ResourceNotFoundException(
+                    "Events not found with category " + dto.getCategory() + " and status " + dto.getStatus());
+        }
+
+        return events.stream()
+                .map(eventMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Transactional

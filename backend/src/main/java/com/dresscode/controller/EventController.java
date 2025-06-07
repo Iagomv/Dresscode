@@ -1,6 +1,7 @@
 package com.dresscode.controller;
 
 import com.dresscode.constants.ApiRoutes;
+import com.dresscode.dto.event.EventByCategoryAndStatusRequestDto;
 import com.dresscode.dto.event.EventRequestDto;
 import com.dresscode.dto.event.EventResponseDto;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
@@ -32,6 +33,12 @@ public class EventController {
         return eventService.getEventById(id)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with id " + id));
+    }
+
+    @PostMapping("/by-category-and-status")
+    public ResponseEntity<List<EventResponseDto>> getEventsByCategoryAndStatus(
+            @Valid @RequestBody EventByCategoryAndStatusRequestDto dto) {
+        return ResponseEntity.ok().body(eventService.getEventsByCategoryAndStatus(dto));
     }
 
     @PostMapping
