@@ -7,7 +7,8 @@
     "activities": "Actividades",
     "login": "Acceso",
     "logout": "Saír",
-    "perfil": "Perfil",
+    "profile": "Perfil",
+    "management": "Administración",
     "student": {
       "myZone": "Meu espazo"
     },
