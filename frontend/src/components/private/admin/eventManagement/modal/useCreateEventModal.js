@@ -26,7 +26,11 @@ export const useCreateEventModal = (onSubmit, onClose, initialEventData = null) 
     },
     validationSchema: createEventSchema(t),
     onSubmit: (values) => {
-      onSubmit(values.id, values)
+      if (initialEventData?.id !== '' && initialEventData?.id !== undefined) {
+        onSubmit(values.id, values)
+      } else {
+        onSubmit(values)
+      }
       onClose()
     },
     enableReinitialize: true,
