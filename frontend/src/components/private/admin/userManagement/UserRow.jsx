@@ -2,7 +2,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import { UserActions } from './UserActions'
 import { UserStatusBadge } from './UserStatusBadge'
-import { UserRoleBadge } from '../../../common/UserRoleBadge'
+import { UserRoleBadge } from '../../../common/badges/UserRoleBadge'
 import Tooltip from 'react-bootstrap/Tooltip'
 
 // TODO TOGGLE CLASS INFO ON EXPANDED ROW utilizing the ExpandButton

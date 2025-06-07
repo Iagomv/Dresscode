@@ -37,6 +37,13 @@
     "updated": "actualizado con exito",
     "deleted": "eliminado con exito"
   },
+  "user": {
+    "role": {
+      "admin": "Admin",
+      "teacher": "Profesor",
+      "student": "Estudiante"
+    }
+  },
   "event": {
     "status": {
       "draft": "Borrador",

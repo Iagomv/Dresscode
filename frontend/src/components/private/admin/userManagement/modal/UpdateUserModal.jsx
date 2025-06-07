@@ -46,7 +46,7 @@ export const UpdateUserModal = ({ user, onClose, onUpdate }) => {
               {({ isSubmitting, values, setFieldValue }) => (
                 <Form>
                   <div className="modal-body">
-                    <FormikTextField fieldName={'name'} labelText={'Name'} type={'text'} />
+                    <FormikTextField name={'name'} label={'Name'} type={'text'} />
                     <div className="mb-3">
                       <label htmlFor="lastName" className="form-label">
                         Last Name

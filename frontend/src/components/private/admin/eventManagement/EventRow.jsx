@@ -1,3 +1,5 @@
+import { EventStatusBadge } from '../../../common/badges/EventStatusBadge'
+import { EventCategoryBadge } from '../../../common/badges/EventCategoryBadge'
 import { EventActions } from './EventActions'
 
 export const EventRow = ({ event, requestUpdate, requestDelete }) => (
@@ -5,8 +7,12 @@ export const EventRow = ({ event, requestUpdate, requestDelete }) => (
     <LargeTextTableCell>{event.title}</LargeTextTableCell>
     <LargeTextTableCell>{event.description}</LargeTextTableCell>
     <TableCell>{event.eventDate}</TableCell>
-    <TableCell>{event.category}</TableCell>
-    <TableCell>{event.status}</TableCell>
+    <TableCell>
+      <EventCategoryBadge category={event.category} />
+    </TableCell>
+    <TableCell>
+      <EventStatusBadge status={event.status} />
+    </TableCell>
     <TableCell>{event.location}</TableCell>
     <TableCell className="d-flex flex-row justify-content-around">
       <EventActions event={event} requestUpdate={requestUpdate} requestDelete={requestDelete} />

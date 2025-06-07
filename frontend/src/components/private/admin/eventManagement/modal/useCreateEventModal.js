@@ -3,32 +3,33 @@ import { createEventSchema } from '../../../../../schema/AdminSchemas'
 import { useTranslation } from 'react-i18next'
 
 /**
- * Custom hook to manage the state and logic for creating an event.
+ * Custom hook to manage the state and logic for creating or updating an event.
  *
- * @param {Function} onCreate - Callback function to handle event creation logic.
+ * @param {Function} onSubmit - Callback function to handle event creation or update logic.
  * @param {Function} onClose - Callback function to handle modal close actions.
+ * @param {Object} initialEventData - Optional initial event data for editing an existing event.
  * @returns {Object} An object containing formik instance for form handling.
  */
-
-export const useCreateEventModal = (onCreate, onClose) => {
+export const useCreateEventModal = (onSubmit, onClose, initialEventData = null) => {
   const { t } = useTranslation('validation')
 
   const formik = useFormik({
     initialValues: {
-      title: 'Test Event',
-      description: 'Description test event',
-      location: 'Location',
-      eventDate: 'eventDate test',
-      category: 'PUBLIC',
-      status: 'DRAFT',
-      image: '',
+      id: initialEventData?.id || '',
+      title: initialEventData?.title || '',
+      description: initialEventData?.description || '',
+      location: initialEventData?.location || '',
+      eventDate: initialEventData?.eventDate || '',
+      category: initialEventData?.category || 'PUBLIC',
+      status: initialEventData?.status || 'DRAFT',
+      image: initialEventData?.image || '',
     },
     validationSchema: createEventSchema(t),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2))
-      onCreate(values)
+      onSubmit(values.id, values)
       onClose()
     },
+    enableReinitialize: true,
   })
 
   return {

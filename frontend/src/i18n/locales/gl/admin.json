@@ -15,6 +15,7 @@
   },
   "eventManagement": {
     "createEvent": "Crear evento",
+    "updateEventModalTitle": "Actualización do evento",
     "searchEvents": "Busca eventos...",
     "addEventButton": "Crear usuario",
     "eventTitle": "Título",

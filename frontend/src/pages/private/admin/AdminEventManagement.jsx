@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { EventsTable } from '../../../components/private/admin/eventManagement/EventsTable'
 import { ConfirmDeleteModal } from '../../../components/private/common/ConfirmDeleteModal'
 import { CreateEventModal } from '../../../components/private/admin/eventManagement/modal/CreateEventModal'
+import { UpdateEventModal } from '../../../components/private/admin/eventManagement/modal/UpdateEventModal'
 export const AdminEventManagement = () => {
   const [openCreateModal, setOpenCreateModal] = useState(false)
   const { t } = useTranslation('admin')
@@ -20,9 +21,8 @@ export const AdminEventManagement = () => {
     confirmDelete,
     cancelDelete,
     showConfirmModal,
-    toggleStatus,
     showUpdateModal,
-    userToEdit,
+    eventToEdit,
     requestUpdate,
     cancelUpdate,
     confirmUpdate,
@@ -44,7 +44,6 @@ export const AdminEventManagement = () => {
         />
         <CreateEventButton
           openModal={() => {
-            console.log('Button clicked')
             setOpenCreateModal(true)
           }}
         />
@@ -54,8 +53,9 @@ export const AdminEventManagement = () => {
       </div>
       <EventsTable events={filteredEvents} requestUpdate={requestUpdate} requestDelete={requestDelete} />
       <ConfirmDeleteModal show={showConfirmModal} onConfirm={confirmDelete} onCancel={cancelDelete} />
-      {/* 
-      {showUpdateModal && userToEdit && <UpdateUserModal user={userToEdit} onClose={cancelUpdate} onUpdate={confirmUpdate} />} */}
+      {showUpdateModal && eventToEdit && (
+        <UpdateEventModal show={showUpdateModal} onClose={cancelUpdate} onUpdate={confirmUpdate} event={eventToEdit} />
+      )}
     </div>
   )
 }

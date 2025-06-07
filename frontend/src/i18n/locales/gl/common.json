@@ -32,6 +32,13 @@
     "updated": "Usuario actualizado correctamente",
     "deleted": "O usuario eliminouse correctamente"
   },
+  "user": {
+    "role": {
+      "admin": "Admin",
+      "teacher": "Docente",
+      "student": "Estudante"
+    }
+  },
   "event": {
     "status": {
       "draft": "Borrador",

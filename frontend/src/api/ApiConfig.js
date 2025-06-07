@@ -158,11 +158,11 @@ export class ApiConfig {
 
   // ** Image Endpoints **
 
-  static async uploadImage(imageData) {
+  static async uploadImage(imageData, title) {
     const formData = new FormData()
     formData.append('file', imageData)
+    formData.append('title', title)
 
-    // Use axios directly here to avoid global JSON headers
     const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/images/upload`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',

@@ -3,6 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap'
 import { FormikProvider } from 'formik'
 import { useTranslation } from 'react-i18next'
 
+// eslint-disable-next-line no-unused-vars
 export const CommonModal = ({ show, onClose, formik, titleText, FormFieldsComponent }) => {
   const { t } = useTranslation('common')
 
