@@ -45,6 +45,15 @@
     }
   },
   "event": {
+    "data": {
+      "title": "Título",
+      "description": "Descripción",
+      "date": "Fecha",
+      "category": "Categoría",
+      "status": "Estado",
+      "location": "Lugar",
+      "image": "Imagen"
+    },
     "status": {
       "draft": "Borrador",
       "published": "Publicado",
@@ -55,5 +64,10 @@
       "public": "Público",
       "private": "Privado"
     }
+  },
+  "sort": {
+    "sortedBy": "Ordenado por",
+    "asc": "Ascendente",
+    "desc": "Descendente"
   }
 }

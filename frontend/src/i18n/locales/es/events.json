@@ -2,5 +2,6 @@
   "title": "Eventos",
   "description": "Nuestro grupo ofrece una variedad de eventos culturales y recreativos.",
   "eventsFound": "Eventos encontrados",
-  "noEvents": "No hay eventos disponibles"
+  "noEvents": "No hay eventos disponibles",
+  "checkLater": "Comprueba si se han agregado eventos más tarde"
 }
