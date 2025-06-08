@@ -24,8 +24,6 @@ public class ClothingItemRequestDto {
 
     private BigDecimal price;
 
-    private Timestamp acquisitionDate;
-
     private ClothingItemStateEnum state;
 
     private ClothingItemGenderEnum gender;

@@ -14,6 +14,7 @@ public interface ClothingItemMapper {
 
     // Map from DTO to Entity
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "acquisitionDate", ignore = true)
     ClothingItem toEntity(ClothingItemRequestDto dto);
 
     // Map from Entity to DTO (Response)
@@ -21,5 +22,6 @@ public interface ClothingItemMapper {
 
     // Partial update of entity from DTO
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "acquisitionDate", ignore = true)
     void updateClothingItemFromDto(ClothingItemRequestDto dto, @MappingTarget ClothingItem entity);
 }
