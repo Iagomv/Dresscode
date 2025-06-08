@@ -69,7 +69,6 @@ export const createClothingItemSchema = (t) =>
 
     imageUrl: Yup.string()
       .max(255, t('validation:image.url.max', { max: 255 }))
-      .url(t('validation:image.valid'))
       .nullable(),
 
     description: Yup.string().nullable(),

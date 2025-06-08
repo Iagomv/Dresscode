@@ -73,7 +73,7 @@ export const ClothingItemFormFields = () => {
       <FormikImageField name="imageUrl" label={imageUrlLabel} />
       <FormikNumberField name="quantity" label={quantityLabel} min="0" max={100} step="5" placeholder="5" />
       <FormikTextField name="color" label={colorLabel} type="text" />
-      <FormikNumberField name="price" label={priceLabel} type="number" min="0" max={1000} step="5" placeholder="10" />
+      <FormikNumberField name="price" label={priceLabel} type="number" min="0" max={1000} step="0.01" placeholder="10" />
 
       <FormikSelectField name="state" label={stateLabel} options={stateOptions} />
       <FormikSelectField name="gender" label={genderLabel} options={genderOptions} />

@@ -5,9 +5,8 @@ import { useClothingItemManagement } from './hooks/useClothingItemManagement'
 import { SearchFilter } from '../../../components/private/common/SearchFilter'
 import { CreateClothingItemButton } from '../../../components/private/admin/clothingItemManagement/CreateClothingItemButton'
 import { useTranslation } from 'react-i18next'
-import { EventsTable } from '../../../components/private/admin/eventManagement/EventsTable'
 import { ConfirmDeleteModal } from '../../../components/private/common/ConfirmDeleteModal'
-import { UpdateEventModal } from '../../../components/private/admin/eventManagement/modal/UpdateEventModal'
+import { UpdateClothingItemModal } from '../../../components/private/admin/clothingItemManagement/modal/UpdateClothingItemModal'
 import { ClothingItemsTable } from '../../../components/private/admin/clothingItemManagement/ClothingItemsTable'
 import { CreateClothingItemModal } from '../../../components/private/admin/clothingItemManagement/modal/CreateClothingItemModal'
 export const AdminClothingManagement = () => {
@@ -58,10 +57,15 @@ export const AdminClothingManagement = () => {
         )}
       </div>
       <ClothingItemsTable clothingItems={filteredClothingItems} requestUpdate={requestUpdate} requestDelete={requestDelete} />
-      {/* <ConfirmDeleteModal show={showConfirmModal} onConfirm={confirmDelete} onCancel={cancelDelete} />
-      {showUpdateModal && eventToEdit && (
-        <UpdateEventModal show={showUpdateModal} onClose={cancelUpdate} onUpdate={confirmUpdate} event={eventToEdit} />
-      )} */}
+      <ConfirmDeleteModal show={showConfirmModal} onConfirm={confirmDelete} onCancel={cancelDelete} />
+      {showUpdateModal && clothingItemToEdit && (
+        <UpdateClothingItemModal
+          show={showUpdateModal}
+          onClose={cancelUpdate}
+          onUpdate={confirmUpdate}
+          clothingItem={clothingItemToEdit}
+        />
+      )}
     </div>
   )
 }
