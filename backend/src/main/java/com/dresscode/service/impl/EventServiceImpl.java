@@ -3,16 +3,22 @@ package com.dresscode.service.impl;
 import com.dresscode.dto.event.EventByCategoryAndStatusRequestDto;
 import com.dresscode.dto.event.EventRequestDto;
 import com.dresscode.dto.event.EventResponseDto;
+import com.dresscode.enums.EventCategoryEnum;
+import com.dresscode.enums.EventStatusEnum;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.mapper.EventMapper;
 import com.dresscode.model.Event;
 import com.dresscode.repository.EventRepository;
 import com.dresscode.service.EventService;
+import com.dresscode.utils.SecurityUtils;
 
 import jakarta.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -57,6 +63,27 @@ public class EventServiceImpl implements EventService {
         return events.stream()
                 .map(eventMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EventResponseDto> getEventsByUserRole() {
+        String role = SecurityUtils.getCurrentUserRole();
+        List<EventStatusEnum> privateStatuses = List.of(EventStatusEnum.DRAFT, EventStatusEnum.ARCHIVED);
+
+        if (role.equals("ROLE_STUDENT") || role.equals("ROLE_TEACHER")) {
+            return eventRepository.findByStatusNotIn(privateStatuses).stream()
+                    .map(eventMapper::toDto)
+                    .collect(Collectors.toList());
+        }
+
+        if (role.equals("ROLE_ADMIN")) {
+            return getAllEvents();
+        }
+
+        return eventRepository.findByCategoryAndStatusNotIn(EventCategoryEnum.PUBLIC, privateStatuses).stream()
+                .map(eventMapper::toDto)
+                .collect(Collectors.toList());
+
     }
 
     @Transactional

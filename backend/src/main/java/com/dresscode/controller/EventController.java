@@ -41,6 +41,11 @@ public class EventController {
         return ResponseEntity.ok().body(eventService.getEventsByCategoryAndStatus(dto));
     }
 
+    @GetMapping("/my-events")
+    public ResponseEntity<List<EventResponseDto>> geteEventsByUserRole() {
+        return ResponseEntity.ok().body(eventService.getEventsByUserRole());
+    }
+
     @PostMapping
     public ResponseEntity<EventResponseDto> createEvent(@Valid @RequestBody EventRequestDto dto) {
         EventResponseDto created = eventService.createEvent(dto);

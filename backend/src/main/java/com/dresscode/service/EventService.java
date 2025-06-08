@@ -40,6 +40,13 @@ public interface EventService {
     List<EventResponseDto> getEventsByCategoryAndStatus(EventByCategoryAndStatusRequestDto dto);
 
     /**
+     * Retrieves a list of events for the user's role.
+     *
+     * @return a list of EventResponseDto objects
+     */
+    List<EventResponseDto> getEventsByUserRole();
+
+    /**
      * Creates a new event.
      *
      * @param dto the EventRequestDto object containing the event details

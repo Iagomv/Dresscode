@@ -8,7 +8,6 @@ export const EventList = ({ events }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const eventsPerPage = config.events.pagination.limit
 
-  // Sort descending by eventDate
   const sortedEvents = [...events].sort((a, b) => new Date(b.eventDate) - new Date(a.eventDate))
 
   const totalPages = Math.ceil(sortedEvents.length / eventsPerPage)

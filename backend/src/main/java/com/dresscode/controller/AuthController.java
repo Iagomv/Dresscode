@@ -10,7 +10,6 @@ import com.dresscode.dto.auth.TokenResponseDto;
 import com.dresscode.service.AuthService;
 import jakarta.validation.Valid;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
