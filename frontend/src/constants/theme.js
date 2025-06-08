@@ -47,3 +47,16 @@ export const EVENT_CATEGORY_VARIANTS = {
   PUBLIC: 'success',
   PRIVATE: 'warning',
 }
+export const CLOTHING_ITEM = {
+  STATE_VARIANTS: {
+    NEW: 'success',
+    USED: 'warning',
+  },
+  AVAILABILITY_VARIANTS: {
+    AVAILABLE: 'success',
+    UNAVAILABLE: 'danger',
+    SOLD: 'secondary',
+    LOST: 'danger',
+    RESERVED: 'info',
+  },
+}
