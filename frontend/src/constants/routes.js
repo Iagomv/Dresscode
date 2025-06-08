@@ -2,6 +2,7 @@ export const PATHS = {
   slash: '/',
   about: '/about',
   activities: '/activities',
+  events: '/events',
   login: '/login',
   dresscode: {
     home: '/dresscode',

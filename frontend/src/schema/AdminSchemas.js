@@ -6,7 +6,7 @@ export const createEventSchema = (t) =>
       .min(3, t('title.min', { min: 3 }))
       .max(100, t('title.max'))
       .required(t('title.required')),
-    description: Yup.string().min(10, t('description.min')).max(500, t('description.max')).required(t('description.required')),
+    description: Yup.string().min(10, t('description.min')).max(1000, t('description.max')).required(t('description.required')),
     location: Yup.string().max(100, t('location.max')).required(t('location.required')),
     eventDate: Yup.date().required(t('date.required')),
     category: Yup.string().oneOf(['PUBLIC', 'PRIVATE'], t('category.invalid')).required(t('category.required')),

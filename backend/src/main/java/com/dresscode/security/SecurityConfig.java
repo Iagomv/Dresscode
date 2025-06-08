@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -53,6 +54,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/v3/**").permitAll()
+                .requestMatchers("api/events/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "api/events").permitAll()
                 // .requestMatchers(HttpMethod.GET, "/api/clases/**").hasAnyRole("STUDENT",
                 // "TEACHER", "ADMIN")
                 // .requestMatchers("/api/clothing-items/**").hasRole("ADMIN")

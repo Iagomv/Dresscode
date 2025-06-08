@@ -1,7 +1,7 @@
 import ApiConfig from '../../../../api/ApiConfig'
 const eventService = {
   fetchEvents: async () => {
-    return await ApiConfig.getAllEvents()
+    return await ApiConfig.getMyEvents()
   },
 
   createEvent: async (eventData) => {

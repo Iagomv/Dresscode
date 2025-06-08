@@ -60,7 +60,7 @@ export const TopNavigation = () => {
               )} */}
               {role === ROLES.ADMIN && (
                 <NavDropdown
-                  title="Management"
+                  title={t('nav.management')}
                   menuVariant="light"
                   className={`${isDropdownActive ? styles.navDropdownActive : ''}`}
                 >
@@ -79,7 +79,7 @@ export const TopNavigation = () => {
               {/* Profile Dropdown */}
               {auth?.user && (
                 <NavDropdown
-                  title={TOP_NAVIGATION_TEXT.profile}
+                  title={t('nav.profile')}
                   align="end"
                   toggleas={CustomToggle}
                   menuVariant="light"

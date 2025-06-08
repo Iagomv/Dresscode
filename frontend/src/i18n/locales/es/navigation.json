@@ -3,10 +3,12 @@
     "title": "Dresscode web",
     "home": "Inicio",
     "about": "Quiénes Somos",
+    "events": "Eventos",
     "activities": "Actividades",
     "login": "Acceso",
     "logout": "Salir",
-    "perfil": "Perfil",
+    "profile": "Perfil",
+    "management": "Administración",
     "student": {
       "myZone": "Mi espacio"
     },

@@ -11,6 +11,7 @@ import common_es from './locales/es/common.json'
 import loginRegister_es from './locales/es/loginRegister.json'
 import validation_es from './locales/es/validation.json'
 import admin_es from './locales/es/admin.json'
+import event_es from './locales/es/events.json'
 
 import about_gl from './locales/gl/about.json'
 import contact_gl from './locales/gl/contact.json'
@@ -22,6 +23,7 @@ import common_gl from './locales/gl/common.json'
 import loginRegister_gl from './locales/gl/loginRegister.json'
 import validation_gl from './locales/gl/validation.json'
 import admin_gl from './locales/gl/admin.json'
+import event_gl from './locales/gl/events.json'
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -36,6 +38,7 @@ i18n.use(initReactI18next).init({
       loginRegister: loginRegister_es,
       validation: validation_es,
       admin: admin_es,
+      events: event_es,
     },
     gl: {
       about: about_gl,
@@ -48,11 +51,24 @@ i18n.use(initReactI18next).init({
       loginRegister: loginRegister_gl,
       validation: validation_gl,
       admin: admin_gl,
+      events: event_gl,
     },
   },
   lng: 'es',
   fallbackLng: 'es',
-  ns: ['about', 'activities', 'home', 'navigation', 'gallery', 'common', 'loginRegister', 'validation'],
+  ns: [
+    'about',
+    'activities',
+    'home',
+    'navigation',
+    'gallery',
+    'common',
+    'loginRegister',
+    'validation',
+    'events',
+    'admin',
+    'contact',
+  ],
   defaultNS: 'common',
   interpolation: {
     escapeValue: false,

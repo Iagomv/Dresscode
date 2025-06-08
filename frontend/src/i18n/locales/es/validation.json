@@ -23,7 +23,7 @@
   },
   "description": {
     "min": "La descripción debe tener al menos 10 caracteres",
-    "max": "La descripción no puede tener más de 500 caracteres",
+    "max": "La descripción no puede tener más de 1000 caracteres",
     "required": "La descripción es obligatoria"
   },
   "location": {

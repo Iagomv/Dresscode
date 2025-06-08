@@ -77,8 +77,14 @@ export class ApiConfig {
   static getAllEvents() {
     return handleRequest('get', `${API_BASE_URL}/events`)
   }
+  static getMyEvents() {
+    return handleRequest('get', `${API_BASE_URL}/events/my-events`)
+  }
   static getEventById(id) {
     return handleRequest('get', `${API_BASE_URL}/events/${id}`)
+  }
+  static getEventsByCategoryAndStatus(category, status) {
+    return handleRequest('post', `${API_BASE_URL}/events/by-category-and-status`, (category, status))
   }
 
   static createEvent(eventData) {
