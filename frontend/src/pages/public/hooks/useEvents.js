@@ -10,7 +10,7 @@ export const useEvents = () => {
     const fetchEvents = async () => {
       setLoading(true)
       try {
-        const data = await ApiConfig.getAllEvents()
+        const data = await ApiConfig.getMyEvents()
         setEvents(data)
       } catch (error) {
         toast.error(error.message)
