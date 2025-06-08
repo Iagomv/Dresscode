@@ -55,7 +55,9 @@ public class SecurityConfig {
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/v3/**").permitAll()
                 .requestMatchers("api/events/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "api/events").permitAll()
+                .requestMatchers(HttpMethod.GET, "api/events/my-events").permitAll()
+                .requestMatchers(HttpMethod.GET, "api/events/**").hasRole("ADMIN")
+
                 // .requestMatchers(HttpMethod.GET, "/api/clases/**").hasAnyRole("STUDENT",
                 // "TEACHER", "ADMIN")
                 // .requestMatchers("/api/clothing-items/**").hasRole("ADMIN")
