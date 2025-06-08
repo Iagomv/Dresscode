@@ -10,6 +10,7 @@ export const PATHS = {
     admin: {
       userManagement: '/dresscode/users',
       eventManagement: '/dresscode/events',
+      clothingManagement: '/dresscode/clothing',
     },
   },
 }

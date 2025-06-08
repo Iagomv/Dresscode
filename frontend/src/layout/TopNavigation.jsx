@@ -74,6 +74,11 @@ export const TopNavigation = () => {
                       {t('nav.admin.eventManagement')}
                     </NavLink>
                   </NavDropdown.Item>
+                  <NavDropdown.Item as="span" className={styles.dropdownItem}>
+                    <NavLink to={PATHS.dresscode.admin.clothingManagement} className={getLinkClass}>
+                      {t('nav.admin.clothingManagement')}
+                    </NavLink>
+                  </NavDropdown.Item>
                 </NavDropdown>
               )}
               {/* Profile Dropdown */}
