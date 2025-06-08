@@ -42,6 +42,36 @@
     "required": "El status es obligatorio"
   },
   "image": {
-    "valid": "Formatos admitidos: png, jpg, jpeg, webp"
+    "valid": "Formatos admitidos: png, jpg, jpeg, webp",
+    "url": {
+      "max": "La URL de la imagen no puede tener más de 255 caracteres"
+    }
+  },
+  "quantity": {
+    "integer": "La cantidad debe ser un número entero",
+    "min": "La cantidad debe ser mayor a 0",
+    "required": "La cantidad es obligatoria"
+  },
+  "color": {
+    "max": "El color no puede tener más de 50 caracteres"
+  },
+  "price": {
+    "min": "El precio debe ser mayor a 0",
+    "required": "El precio es obligatorio"
+  },
+  "state": {
+    "invalid": "El estado no es valido, tiene que ser Nuevo o Usado"
+  },
+  "gender": {
+    "invalid": "El género no es valido, tiene que ser Hombre, Mujer o Unisex",
+    "required": "El género es obligatorio"
+  },
+  "type": {
+    "invalid": "El tipo no es valido",
+    "required": "El tipo es obligatorio"
+  },
+  "availability": {
+    "invalid": "La disponibilidad no es valida",
+    "required": "La disponibilidad es obligatoria"
   }
 }

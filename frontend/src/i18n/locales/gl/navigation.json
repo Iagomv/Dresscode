@@ -17,7 +17,8 @@
     },
     "admin": {
       "userManagement": "Usuarios",
-      "eventManagement": "Eventos"
+      "eventManagement": "Eventos",
+      "clothingManagement": "Vestiario"
     }
   }
 }
