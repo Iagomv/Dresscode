@@ -10,6 +10,8 @@
     "email": "Correo electrónico",
     "role": "Rol",
     "submitButton": "Enviar",
+    "edit": "Editar",
+    "delete": "Eliminar",
     "confirm": "Confirmar",
     "cancel": "Cancelar",
     "usernamePlaceholder": "Nome de usuario",
@@ -58,6 +60,60 @@
     "category": {
       "public": "Público",
       "private": "Privado"
+    }
+  },
+  "clothingItem": {
+    "data": {
+      "name": "Nome",
+      "description": "Descrición",
+      "imageUrl": "URL de la imagen",
+      "quantity": "Cantidade",
+      "color": "Cor",
+      "price": "Prezo",
+      "state": "Estado",
+      "gender": "Xénero",
+      "type": "Tipo",
+      "size": "Talla",
+      "availability": "Dispoñibilidade"
+    },
+    "state": {
+      "new": "Novo",
+      "used": "Usado"
+    },
+    "gender": {
+      "male": "Home",
+      "female": "Muller",
+      "unisex": "Unisex"
+    },
+    "type": {
+      "pants": "Pantalóns",
+      "shirt": "Camisa",
+      "jacket": "Chaqueta",
+      "dress": "Vestido",
+      "skirt": "Saia",
+      "hat": "Chapeu",
+      "shoes": "Zapatos",
+      "belt": "Cinto"
+    },
+    "size": {
+      "SIZE_6": "6",
+      "SIZE_8": "8",
+      "SIZE_10": "10",
+      "SIZE_12": "12",
+      "SIZE_14": "14",
+      "xs": "XS",
+      "s": "S",
+      "m": "M",
+      "l": "L",
+      "xl": "XL",
+      "xxl": "XXL"
+    },
+    "availability": {
+      "available": "Dispoñible",
+      "unavailable": "Non dispoñible",
+      "lost": "Perdido",
+      "sold": "Vendido",
+      "reserved": "Reservado"
     }
   },
   "sort": {

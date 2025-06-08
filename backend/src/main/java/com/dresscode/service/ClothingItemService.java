@@ -3,30 +3,21 @@ package com.dresscode.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.dresscode.enums.ClothingItemAvailabilityEnum;
-import com.dresscode.enums.ClothingItemSizeEnum;
-import com.dresscode.enums.ClothingItemStateEnum;
-import com.dresscode.model.ClothingItem;
+import com.dresscode.dto.clothingItem.ClothingItemRequestDto;
+import com.dresscode.dto.clothingItem.ClothingItemResponseDto;
+import com.dresscode.dto.clothingItem.ClothingItemSearchDto;
 
 public interface ClothingItemService {
 
-    public List<ClothingItem> getAllClotingItems();
+    List<ClothingItemResponseDto> getAllClothingItems();
 
-    public Optional<ClothingItem> getClothingItemById(Long id);
+    ClothingItemResponseDto getClothingItemById(Long id);
 
-    public List<ClothingItem> searchClothingItems(
-            ClothingItemSizeEnum size,
-            String color,
-            ClothingItemAvailabilityEnum availability,
-            ClothingItemStateEnum state,
-            String ciCode);
+    List<ClothingItemResponseDto> searchClothingItems(ClothingItemSearchDto searchDto);
 
-    public ClothingItem createClothingItem(ClothingItem ClothingItem);
+    ClothingItemResponseDto createClothingItem(ClothingItemRequestDto clothingItemDto);
 
-    public ClothingItem updateClothingItem(Long id, ClothingItem ClothingItem);
+    ClothingItemResponseDto updateClothingItem(Long id, ClothingItemRequestDto clothingItemDto);
 
-    public ClothingItem deleteClothingItemById(Long id);
-
-    // public List<ClothingItem> getClothingItemsByLoanId(Long loanId);
-
+    ClothingItemResponseDto deleteClothingItemById(Long id);
 }

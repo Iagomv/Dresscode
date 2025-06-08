@@ -1,6 +1,6 @@
 import React from 'react'
-import { COLORS, EVENT_STATUS_VARIANTS } from '../../../constants/theme'
-import './EventCard.css' // Import the dedicated CSS
+import { EVENT_STATUS_VARIANTS } from '../../../constants/theme'
+import './EventCard.css'
 import { Badge } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 

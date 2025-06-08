@@ -26,5 +26,12 @@
     "eventLocation": "Lugar",
     "eventImage": "Imaxe",
     "actions": "Accións"
+  },
+  "clothingItemManagement": {
+    "createClothingItem": "Engadir peza",
+    "createClothingItemModal": "Engadindo peza...",
+    "updateClothingItemModalTitle": "Actualización da peza",
+    "searchClothingItems": "Buscar pezas...",
+    "addClothingItemButton": "Engadir peza"
   }
 }

@@ -26,5 +26,12 @@
     "eventLocation": "Lugar",
     "eventImage": "Imagen",
     "actions": "Accións"
+  },
+  "clothingItemManagement": {
+    "createClothingItem": "Agregar prenda",
+    "createClothingItemModal": "Agregando prenda...",
+    "updateClothingItemModalTitle": "Actualización de la prenda",
+    "searchClothingItems": "Buscar prendas...",
+    "addClothingItemButton": "Agregar prenda"
   }
 }

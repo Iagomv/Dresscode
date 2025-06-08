@@ -73,6 +73,32 @@ export class ApiConfig {
     return handleRequest('delete', `${API_BASE_URL}/loans/${id}`)
   }
 
+  // ** ClothingItem Endpoints **
+
+  static searchClothingItems(searchDto) {
+    return handleRequest('post', `${API_BASE_URL}/clothing-items/search`, searchDto)
+  }
+
+  static getAllClothingItems() {
+    return handleRequest('get', `${API_BASE_URL}/clothing-items`)
+  }
+
+  static getClothingItemById(id) {
+    return handleRequest('get', `${API_BASE_URL}/clothing-items/${id}`)
+  }
+
+  static createClothingItem(itemData) {
+    return handleRequest('post', `${API_BASE_URL}/clothing-items`, itemData)
+  }
+
+  static updateClothingItem(id, itemData) {
+    return handleRequest('put', `${API_BASE_URL}/clothing-items/${id}`, itemData)
+  }
+
+  static deleteClothingItem(id) {
+    return handleRequest('delete', `${API_BASE_URL}/clothing-items/${id}`)
+  }
+
   // ** Event Endpoints **
   static getAllEvents() {
     return handleRequest('get', `${API_BASE_URL}/events`)
@@ -97,32 +123,6 @@ export class ApiConfig {
 
   static deleteEvent(id) {
     return handleRequest('delete', `${API_BASE_URL}/events/${id}`)
-  }
-
-  //! ** Clothing Item Endpoints **
-  static getAllClothingItems() {
-    return handleRequest('get', `${API_BASE_URL}/clothing-items`)
-  }
-
-  static getClothingItemById(id) {
-    return handleRequest('get', `${API_BASE_URL}/clothing-items/${id}`)
-  }
-
-  static createClothingItem(itemData) {
-    return handleRequest('post', `${API_BASE_URL}/clothing-items`, itemData)
-  }
-
-  static updateClothingItem(id, itemData) {
-    return handleRequest('patch', `${API_BASE_URL}/clothing-items/${id}`, itemData)
-  }
-
-  static deleteClothingItem(id) {
-    return handleRequest('delete', `${API_BASE_URL}/clothing-items/${id}`)
-  }
-
-  static searchClothingItems(queryParams) {
-    // queryParams is an object { size, color, availability, state, ciCode }
-    return handleRequest('get', `${API_BASE_URL}/clothing-items/search`, null, queryParams)
   }
 
   // ** Clase Endpoints **

@@ -800,7 +800,7 @@
           "color": {
             "type": "string"
           },
-          "prize": {
+          "price": {
             "type": "number",
             "format": "double"
           },
