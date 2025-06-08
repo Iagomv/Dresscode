@@ -1,14 +1,18 @@
 import React from 'react'
-import { COLORS } from '../../../constants/theme'
+import { COLORS, EVENT_STATUS_VARIANTS } from '../../../constants/theme'
 import './EventCard.css' // Import the dedicated CSS
+import { Badge } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 
 export const EventCard = ({ event }) => {
   const { title, description, location, eventDate, imageUrl } = event
   const [isExpanded, setIsExpanded] = React.useState(false)
   const [hasImage, setHasImage] = React.useState(!!imageUrl)
-
+  const statusVariant = EVENT_STATUS_VARIANTS[event.status] || {}
+  const isNotPublised = event.status !== 'PUBLISHED'
   const isLongDescription = description && description.length > 120
   const displayDescription = isLongDescription && !isExpanded ? `${description.substring(0, 120)}...` : description
+  const { t } = useTranslation('common')
 
   const handleImageError = () => setHasImage(false)
   const toggleDescription = () => setIsExpanded(!isExpanded)
@@ -21,7 +25,11 @@ export const EventCard = ({ event }) => {
       day: 'numeric',
     })
   }
-
+  const CancelledBadge = () => (
+    <Badge pill bg={statusVariant} className="cancelled-badge" style={{ fontFamily: 'var(--font-family)' }}>
+      {t(`event.status.${event.status.toLowerCase()}`)}
+    </Badge>
+  )
   const formatUrl = (url) => {
     const replacedImages = url.replace('/images/', '/uploads/')
     const fullUrl = `${import.meta.env.VITE_IMAGES_URL}${replacedImages}`
@@ -48,7 +56,9 @@ export const EventCard = ({ event }) => {
           {/* Content Column */}
           <div className="event-card-content">
             <div className="event-card-header">
-              <h3 className="event-card-title">{title}</h3>
+              <h3 className="event-card-title">
+                {title} {isNotPublised && <CancelledBadge />}
+              </h3>
               <span className="event-card-badge">{formatDate(eventDate)}</span>
             </div>
 
