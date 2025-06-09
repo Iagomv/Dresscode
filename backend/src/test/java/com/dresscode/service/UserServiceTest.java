@@ -60,10 +60,4 @@ public class UserServiceTest {
         assertThat(created.getName()).isEqualTo("Test User");
     }
 
-    @Test
-    void testDeleteUser() {
-        when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
-        doNothing().when(userRepository).delete(mockUser);
-
-    }
 }

@@ -1,7 +1,7 @@
 package com.dresscode.enums;
 
 public enum LoanStateEnum {
-    LOANED,
+    ACTIVE,
     RETURNED,
     EXPIRED, PENDING;
 
