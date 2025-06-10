@@ -29,6 +29,9 @@ export class ApiConfig {
   static getUserById(id) {
     return handleRequest('get', `${API_BASE_URL}/users/${id}`)
   }
+  static getUsersByActive(flag) {
+    return handleRequest('get', `${API_BASE_URL}/users/active`, null, { flag })
+  }
 
   static createUser(userData) {
     return handleRequest('post', `${API_BASE_URL}/users`, userData)
@@ -90,6 +93,9 @@ export class ApiConfig {
 
   static getAllClothingItems() {
     return handleRequest('get', `${API_BASE_URL}/clothing-items`)
+  }
+  static getAllAvailableClothingItems() {
+    return handleRequest('get', `${API_BASE_URL}/clothing-items/available`)
   }
 
   static getClothingItemById(id) {
