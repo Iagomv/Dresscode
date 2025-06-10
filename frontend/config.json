@@ -3,5 +3,12 @@
     "pagination": {
       "limit": 5
     }
+  },
+  "management": {
+    "user": {
+      "pagination": {
+        "limit": 10
+      }
+    }
   }
 }
