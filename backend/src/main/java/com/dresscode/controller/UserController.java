@@ -1,6 +1,7 @@
 package com.dresscode.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dresscode.constants.ApiRoutes;
@@ -35,6 +36,11 @@ public class UserController {
     @GetMapping()
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<List<User>> getUsersByActive(@RequestParam boolean flag) {
+        return ResponseEntity.ok(userService.getUsersByActive(flag));
     }
 
     @GetMapping("/{id}")

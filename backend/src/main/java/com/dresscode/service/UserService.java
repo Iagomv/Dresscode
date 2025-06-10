@@ -10,6 +10,8 @@ import com.dresscode.model.User;
 public interface UserService {
     public List<User> getAllUsers();
 
+    public List<User> getUsersByActive(boolean flag);
+
     public Optional<User> getUserById(Long id);
 
     public User createUser(User User);

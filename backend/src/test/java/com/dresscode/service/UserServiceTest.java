@@ -236,6 +236,6 @@ class UserServiceTest {
     void deleteUser_Success() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
         userService.deleteUser(1L);
-        verify(userRepository).delete(existingUser);
+        verify(userRepository).save(existingUser);
     }
 }
