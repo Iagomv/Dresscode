@@ -3,6 +3,8 @@ package com.dresscode.service.impl;
 import com.dresscode.security.CustomUserDetails;
 import com.dresscode.service.JwtService;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -26,7 +28,7 @@ public class JwtServiceImpl implements JwtService {
     @Value("${jwt.expiration}")
     private long jwtExpirationInMs;
 
-    private SecretKey getSigningKey() {
+    public SecretKey getSigningKey() {
         byte[] decodedKey = Base64.getDecoder().decode(secretKey);
         return Keys.hmacShaKeyFor(decodedKey);
     }
@@ -60,9 +62,15 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public boolean isValid(String token) throws io.jsonwebtoken.JwtException {
-        Claims claims = extractAllClaims(token);
-        return claims.getSubject() != null && !isTokenExpired(token);
+    public boolean isValid(String token) {
+        try {
+            Claims claims = extractAllClaims(token);
+            return claims.getSubject() != null && !isTokenExpired(token);
+        } catch (ExpiredJwtException e) {
+            return false;
+        } catch (JwtException e) {
+            return false;
+        }
     }
 
     private String createToken(Map<String, Object> claims, String subject) {

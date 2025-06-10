@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { clothingItemService } from '../service/clothingItemService'
+import { clothingItemService } from '../../../../service/clothingItemService'
 import { performApiAction } from '../../../../utils/ApiUtils'
 
 export const useClothingItemManagement = () => {

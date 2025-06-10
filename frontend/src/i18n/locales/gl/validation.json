@@ -73,5 +73,31 @@
   "availability": {
     "invalid": "A dispoñibilidade non é válida",
     "required": "A dispoñibilidade é obrigatoria"
+  },
+  "loan": {
+    "userId": {
+      "required": "O usuario é obrigatorio",
+      "integer": "O usuario debe ser un número enteiro",
+      "min": "O usuario debe ser maior ca 0"
+    },
+    "acceptedById": {
+      "integer": "O usuario debe ser un número enteiro",
+      "min": "O usuario debe ser maior ca 0"
+    },
+    "startingDate": {
+      "required": "A data é obrigatoria",
+      "format": "Formato de data de inicio non válido"
+    },
+    "endingDate": {
+      "format": "Formato da data final non válido"
+    },
+    "state": {
+      "invalid": "O estado non é válido"
+    },
+    "clothingItemIds": {
+      "required": "O ítem é obrigatorio",
+      "integer": "O ítem debe ser un número enteiro",
+      "min": "O id do ítem debe ser maior ca 0"
+    }
   }
 }

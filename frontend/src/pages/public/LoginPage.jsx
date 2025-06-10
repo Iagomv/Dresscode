@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext.jsx'
 import { useTranslation } from 'react-i18next'
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true)
   const { auth } = useAuth()
   const navigate = useNavigate()
@@ -36,5 +36,3 @@ const LoginPage = () => {
     </Container>
   )
 }
-
-export default LoginPage

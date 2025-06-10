@@ -41,6 +41,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getUsersByActive(boolean flag) {
+        List<User> userList = userRepository.findByActive(flag)
+                .orElseThrow(() -> new ResourceNotFoundException("No users found"));
+
+        return userList;
+    }
+
+    @Override
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
@@ -99,7 +107,9 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
-        userRepository.delete(user);
+
+        user.setActive(false);
+        userRepository.save(user);
     }
 
 }

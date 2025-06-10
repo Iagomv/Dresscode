@@ -6,15 +6,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 
 import com.dresscode.error.exceptions.WrongCredentialsException;
 import com.dresscode.error.exceptions.BadRequestException;
 import com.dresscode.error.exceptions.EmailExistsException;
+import com.dresscode.error.exceptions.EntityNotFoundException;
+import com.dresscode.error.exceptions.InvalidQuantityException;
 import com.dresscode.error.exceptions.PhoneNumberExistsException;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
+import com.dresscode.error.exceptions.UnauthorizedException;
 import com.dresscode.error.exceptions.UserNotFoundException;
 
 import java.util.stream.Collectors;
+
+import javax.swing.text.html.parser.Entity;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -51,6 +57,16 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST, request);
     }
 
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ApiError> handleUnauthorizedException(UnauthorizedException ex, HttpServletRequest request) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED, request);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ApiError> handleEntityNotFound(EntityNotFoundException ex, HttpServletRequest request) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND, request);
+    }
+
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ApiError> handleUserNotFound(UserNotFoundException ex, HttpServletRequest request) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND, request);
@@ -59,6 +75,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(WrongCredentialsException.class)
     public ResponseEntity<ApiError> handleBadCredentials(WrongCredentialsException ex, HttpServletRequest request) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED, request);
+    }
+
+    @ExceptionHandler(InvalidQuantityException.class)
+    public ResponseEntity<ApiError> handleBadCredentials(InvalidQuantityException ex, HttpServletRequest request) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.CONFLICT, request);
     }
 
     // 🔁 Reusable private helper

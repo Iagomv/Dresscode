@@ -1,9 +1,11 @@
 package com.dresscode.enums;
 
 public enum LoanStateEnum {
-    LOANED,
+    ACTIVE,
+    PENDING,
+    REJECTED,
     RETURNED,
-    EXPIRED, PENDING;
+    EXPIRED,;
 
     public String getState() {
         return this.name();

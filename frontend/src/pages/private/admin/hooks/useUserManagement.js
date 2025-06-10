@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import userService from '../service/userService'
+import { userService } from '../../../../service/userService'
 import { performApiAction } from '../../../../utils/ApiUtils'
 export const useUserManagement = () => {
   const [users, setUsers] = useState([])

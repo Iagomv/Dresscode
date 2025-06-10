@@ -4,7 +4,6 @@ import com.dresscode.enums.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 @Data
 public class ClothingItemRequestDto {

@@ -121,6 +121,23 @@
       "reserved": "Reservado"
     }
   },
+  "loan": {
+    "data": {
+      "userId": "Usuario",
+      "acceptedById": "Aceptado por",
+      "startingDate": "Fecha de inicio",
+      "endingDate": "Fecha de finalización",
+      "state": "Estado",
+      "clothingItemIds": "Artículos"
+    },
+    "state": {
+      "active": "Activo",
+      "pending": "Pendiente",
+      "rejected": "Rechazado",
+      "returned": "Devuelto",
+      "expired": "Expirado"
+    }
+  },
   "sort": {
     "sortedBy": "Ordenado por",
     "asc": "Ascendente",

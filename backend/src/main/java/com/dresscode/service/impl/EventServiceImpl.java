@@ -15,12 +15,7 @@ import com.dresscode.utils.SecurityUtils;
 import jakarta.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -83,7 +78,6 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findByCategoryAndStatusNotIn(EventCategoryEnum.PUBLIC, privateStatuses).stream()
                 .map(eventMapper::toDto)
                 .collect(Collectors.toList());
-
     }
 
     @Transactional

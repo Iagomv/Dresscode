@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap'
 import { COLORS, FONT_FAMILY, SPACING } from '../../constants/theme'
 import './css/Activities.css'
 
-const Activities = () => {
+export const Activities = () => {
   const { t } = useTranslation('activities')
 
   return (
@@ -135,5 +135,3 @@ const Activities = () => {
     </div>
   )
 }
-
-export default Activities

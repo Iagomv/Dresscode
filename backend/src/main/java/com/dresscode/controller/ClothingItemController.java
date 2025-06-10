@@ -45,6 +45,12 @@ public class ClothingItemController {
         return ResponseEntity.ok(items);
     }
 
+    @GetMapping("/available")
+    public ResponseEntity<List<ClothingItemResponseDto>> getAllAvailableClothingItems() {
+        List<ClothingItemResponseDto> items = clothingItemService.getAllAvailableClothingItems();
+        return ResponseEntity.ok(items);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ClothingItemResponseDto> getClothingItemById(@PathVariable Long id) {
         ClothingItemResponseDto item = clothingItemService.getClothingItemById(id);

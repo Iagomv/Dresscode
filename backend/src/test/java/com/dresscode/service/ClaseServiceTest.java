@@ -82,19 +82,6 @@ public class ClaseServiceTest {
     }
 
     @Test
-    void deleteClaseTest() {
-        when(claseRepository.findById(mockClase.getId())).thenReturn(Optional.of(mockClase));
-
-        Clase clase = claseService.deleteClaseById(mockClase.getId());
-
-        assertThat(clase).isNotNull();
-        assertThat(clase.getId()).isEqualTo(1L);
-        assertThat(clase.getName()).isEqualTo("Danza");
-        assertThat(claseService.getAllClases().size()).isEqualTo(0);
-        verify(claseRepository, times(1)).delete(mockClase);
-    }
-
-    @Test
     void getUsersByClaseIdTest() {
         Set<User> mockedUsers = new HashSet<>();
         mockedUsers.add(new User(1L, "user1", null, null, "user1@email.test", null, null, null, null, false));

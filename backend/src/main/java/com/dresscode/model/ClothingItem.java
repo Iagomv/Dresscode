@@ -37,7 +37,7 @@ public class ClothingItem {
 
     private String description; // Descripción de la prenda (detalles sobre el material, el estilo, etc.)\
 
-    private int quantity; // Cantidad de prendas disponibles
+    private Integer quantity; // Cantidad de prendas disponibles
 
     @Size(max = 50)
     private String color; // Color de la prenda

@@ -3,11 +3,13 @@ package com.dresscode.service.impl;
 import com.dresscode.dto.clothingItem.ClothingItemRequestDto;
 import com.dresscode.dto.clothingItem.ClothingItemResponseDto;
 import com.dresscode.dto.clothingItem.ClothingItemSearchDto;
+import com.dresscode.enums.ClothingItemAvailabilityEnum;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.mapper.ClothingItemMapper;
 import com.dresscode.model.ClothingItem;
 import com.dresscode.repository.ClothingItemRepository;
 import com.dresscode.service.ClothingItemService;
+import com.dresscode.service.InventoryService;
 
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class ClothingItemServiceImpl implements ClothingItemService {
     @Autowired
     private ClothingItemMapper clothingItemMapper;
 
+    @Autowired
+    private InventoryService inventoryService;
+
     @Override
     public ClothingItemResponseDto getClothingItemById(Long id) {
         ClothingItemResponseDto item = clothingItemRepository.findById(id).map(clothingItemMapper::toDto)
@@ -42,6 +47,13 @@ public class ClothingItemServiceImpl implements ClothingItemService {
             throw new ResourceNotFoundException("No clothing items were found.");
         }
         return clothes.stream()
+                .map(clothingItemMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ClothingItemResponseDto> getAllAvailableClothingItems() {
+        return clothingItemRepository.findByAvailability(ClothingItemAvailabilityEnum.AVAILABLE).stream()
                 .map(clothingItemMapper::toDto)
                 .collect(Collectors.toList());
     }
@@ -75,6 +87,7 @@ public class ClothingItemServiceImpl implements ClothingItemService {
     @Override
     public ClothingItemResponseDto createClothingItem(ClothingItemRequestDto clothingItemDto) {
         ClothingItem clothingItem = clothingItemMapper.toEntity(clothingItemDto);
+        inventoryService.updateAvailabilityOnCreation(clothingItem);
         ClothingItem savedItem = clothingItemRepository.save(clothingItem);
         return clothingItemMapper.toDto(savedItem);
     }
