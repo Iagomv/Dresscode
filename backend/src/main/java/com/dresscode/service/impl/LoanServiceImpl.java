@@ -109,6 +109,16 @@ public class LoanServiceImpl implements LoanService {
         return loanMapper.toDto(loan);
     }
 
+    public List<LoanResponseDto> getMyLoans() {
+        Long currentUserId = SecurityUtils.getCurrentUserId();
+        if (currentUserId == null) {
+            throw new UnauthorizedException("User must be logged in to view their loans.");
+        }
+        return loanRepository.findByUserId(currentUserId).stream()
+                .map(loanMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
     // PRIVATE METHODS
 
     private User getUser(Long userId) {

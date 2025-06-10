@@ -5,6 +5,7 @@ import com.dresscode.dto.loan.LoanRequestDto;
 import com.dresscode.dto.loan.LoanResponseDto;
 import com.dresscode.error.exceptions.EntityNotFoundException;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
+import com.dresscode.error.exceptions.UnauthorizedException;
 
 import java.util.List;
 
@@ -80,4 +81,12 @@ public interface LoanService {
      * @return the deleted LoanResponseDto object
      */
     LoanResponseDto deleteLoanById(Long id);
+
+    /**
+     * Retrieves a list of loans for the currently authenticated user.
+     * 
+     * @return a list of LoanResponseDto objects
+     * @throws UnauthorizedException if the user is not in the security context
+     */
+    List<LoanResponseDto> getMyLoans();
 }
