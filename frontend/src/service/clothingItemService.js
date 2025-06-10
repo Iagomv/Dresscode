@@ -1,4 +1,4 @@
-import ApiConfig from '../../../../api/ApiConfig'
+import ApiConfig from '../api/ApiConfig'
 
 export const clothingItemService = {
   fetchClothingItems: async () => {

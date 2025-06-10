@@ -1,5 +1,5 @@
-import ApiConfig from '../../../../api/ApiConfig'
-const eventService = {
+import ApiConfig from '../api/ApiConfig'
+export const eventService = {
   fetchEvents: async () => {
     return await ApiConfig.getMyEvents()
   },
@@ -38,5 +38,3 @@ const eventService = {
     return await ApiConfig.deleteEvent(id)
   },
 }
-
-export default eventService

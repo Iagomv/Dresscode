@@ -1,6 +1,6 @@
-import ApiConfig from '../../../../api/ApiConfig'
+import ApiConfig from '../api/ApiConfig'
 
-const userService = {
+export const userService = {
   fetchUsers: async () => {
     return await ApiConfig.getAllUsers()
   },
@@ -21,5 +21,3 @@ const userService = {
     return await ApiConfig.deleteUser(id)
   },
 }
-
-export default userService
