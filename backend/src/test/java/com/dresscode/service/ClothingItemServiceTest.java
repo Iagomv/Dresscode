@@ -3,11 +3,14 @@ package com.dresscode.service;
 import com.dresscode.dto.clothingItem.ClothingItemRequestDto;
 import com.dresscode.dto.clothingItem.ClothingItemResponseDto;
 import com.dresscode.dto.clothingItem.ClothingItemSearchDto;
+import com.dresscode.enums.ClothingItemAvailabilityEnum;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.mapper.ClothingItemMapper;
 import com.dresscode.model.ClothingItem;
 import com.dresscode.repository.ClothingItemRepository;
 import com.dresscode.service.impl.ClothingItemServiceImpl;
+
+import jakarta.validation.constraints.Min;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +32,9 @@ class ClothingItemServiceTest {
     @Mock
     private ClothingItemMapper clothingItemMapper;
 
+    @Mock
+    private InventoryService inventoryService;
+
     @InjectMocks
     private ClothingItemServiceImpl clothingItemService;
 
@@ -40,6 +46,7 @@ class ClothingItemServiceTest {
     void setUp() {
         mockClothingItem = new ClothingItem();
         mockClothingItem.setId(1L);
+        mockClothingItem.setQuantity(1);
 
         clothingItemRequestDto = new ClothingItemRequestDto();
         // populate fields if needed, e.g., clothingItemRequestDto.setName("Jacket");
@@ -117,6 +124,7 @@ class ClothingItemServiceTest {
         ClothingItemResponseDto result = clothingItemService.createClothingItem(clothingItemRequestDto);
 
         assertNotNull(result);
+        assertEquals(1L, result.getId());
         verify(clothingItemRepository).save(mockClothingItem);
     }
 

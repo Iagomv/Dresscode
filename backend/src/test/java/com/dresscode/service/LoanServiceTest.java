@@ -41,6 +41,9 @@ class LoanServiceTest {
     private LoanMapper loanMapper;
 
     @Mock
+    private InventoryService inventoryService;
+
+    @Mock
     private UserRepository userRepository;
 
     @InjectMocks
@@ -169,5 +172,26 @@ class LoanServiceTest {
         when(loanRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> loanService.deleteLoanById(1L));
+    }
+
+    @Test
+    void testRequestLoan_InventoryUpdated() {
+        try (var mocked = mockStatic(SecurityUtils.class)) {
+            mocked.when(SecurityUtils::getCurrentUserId).thenReturn(1L);
+
+            when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
+            when(loanMapper.toEntity(loanRequestDto)).thenReturn(mockLoan);
+            when(loanRepository.save(any(Loan.class))).thenReturn(mockLoan);
+            when(loanMapper.toDto(any(Loan.class))).thenReturn(loanResponseDto);
+
+            // Mock the inventory service to verify that the inventory is updated
+            doNothing().when(inventoryService).updateQuantityOnLoan(any(LoanRequestDto.class));
+
+            LoanResponseDto result = loanService.requestLoan(loanRequestDto);
+
+            assertNotNull(result);
+            assertEquals(loanResponseDto.getId(), result.getId());
+            verify(inventoryService, times(1)).updateQuantityOnLoan(any(LoanRequestDto.class));
+        }
     }
 }
