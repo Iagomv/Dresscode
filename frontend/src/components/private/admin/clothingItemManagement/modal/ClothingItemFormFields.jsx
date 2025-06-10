@@ -68,18 +68,63 @@ export const ClothingItemFormFields = () => {
 
   return (
     <div>
-      <FormikTextField name="name" label={nameLabel} type="text" />
-      <FormikTextField name="description" label={descriptionLabel} type="text" />
-      <FormikImageField name="imageUrl" label={imageUrlLabel} />
-      <FormikNumberField name="quantity" label={quantityLabel} min="0" max={100} step="5" placeholder="5" />
-      <FormikTextField name="color" label={colorLabel} type="text" />
-      <FormikNumberField name="price" label={priceLabel} type="number" min="0" max={1000} step="0.01" placeholder="10" />
-
-      <FormikSelectField name="state" label={stateLabel} options={stateOptions} />
-      <FormikSelectField name="gender" label={genderLabel} options={genderOptions} />
-      <FormikSelectField name="type" label={typeLabel} options={typeOptions} />
-      <FormikSelectField name="size" label={sizeLabel} options={sizeOptions} />
-      <FormikSelectField name="availability" label={availabilityLabel} options={availabilityOptions} />
+      <div className="row g-3">
+        <div className="col-md-6">
+          <FormikTextField name="name" label={nameLabel} type="text" className="form-control" />
+        </div>
+        <div className="col-md-6">
+          <FormikTextField name="color" label={colorLabel} type="text" className="form-control" />
+        </div>
+        <div className="col-12">
+          <FormikTextField name="description" label={descriptionLabel} type="text" className="form-control" />
+        </div>
+        <div className="col-md-6">
+          <FormikNumberField
+            name="quantity"
+            label={quantityLabel}
+            min="0"
+            max={100}
+            step="5"
+            placeholder="5"
+            className="form-control"
+          />
+        </div>
+        <div className="col-md-6">
+          <FormikNumberField
+            name="price"
+            label={priceLabel}
+            type="number"
+            min="0"
+            max={1000}
+            step="0.01"
+            placeholder="10"
+            className="form-control"
+          />
+        </div>
+        <div className="col-md-6">
+          <FormikSelectField name="state" label={stateLabel} options={stateOptions} className="form-select" />
+        </div>
+        <div className="col-md-6">
+          <FormikSelectField name="gender" label={genderLabel} options={genderOptions} className="form-select" />
+        </div>
+        <div className="col-md-6">
+          <FormikSelectField name="type" label={typeLabel} options={typeOptions} className="form-select" />
+        </div>
+        <div className="col-md-6">
+          <FormikSelectField name="size" label={sizeLabel} options={sizeOptions} className="form-select" />
+        </div>
+        <div className="col-md-6">
+          <FormikSelectField
+            name="availability"
+            label={availabilityLabel}
+            options={availabilityOptions}
+            className="form-select"
+          />
+        </div>
+        <div className="col-12">
+          <FormikImageField name="imageUrl" label={imageUrlLabel} className="form-control" />
+        </div>
+      </div>
     </div>
   )
 }
