@@ -34,9 +34,9 @@ public class ImageUploadController {
     @Operation(summary = "Upload an image file", description = "Accepts a multipart file upload and returns the image URL.")
     @PostMapping(path = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> uploadImage(@RequestPart("file") MultipartFile file,
-            @RequestPart("title") String title) {
+            @RequestPart("title") String title,
+            @RequestPart("category") String category) {
 
-        String safeTitle = title.replaceAll("[^a-zA-Z0-9-_\\.]", "_");
         if (file.isEmpty()) {
             return badRequestWithMessage("Please select a file to upload.");
         }
@@ -46,23 +46,35 @@ public class ImageUploadController {
         }
 
         try {
-            String filename = StringUtils.cleanPath(file.getOriginalFilename());
-            String uniqueFilename = safeTitle + "-" + filename;
+            String uniqueFilename = getUniqueFilename(file, title);
 
-            Path imagesPath = Paths.get(imagesDir);
-            if (!Files.exists(imagesPath)) {
-                Files.createDirectories(imagesPath);
-            }
+            // Prepare directory: imagesDir/category
+            Path categoryPath = getCategoryPath(category);
 
-            Path targetLocation = imagesPath.resolve(uniqueFilename);
+            Path targetLocation = categoryPath.resolve(uniqueFilename);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-            String imageUrl = "/images/" + uniqueFilename;
+            String imageUrl = "/images/" + category + "/" + uniqueFilename;
 
             return ResponseEntity.ok(imageUrl);
         } catch (IOException e) {
             return ResponseEntity.status(500).body(Map.of("message", "Could not store file: " + e.getMessage()));
         }
+    }
+
+    private Path getCategoryPath(String category) throws IOException {
+        Path categoryPath = Paths.get(imagesDir, category);
+        if (!Files.exists(categoryPath)) {
+            Files.createDirectories(categoryPath);
+        }
+        return categoryPath;
+    }
+
+    private String getUniqueFilename(MultipartFile file, String title) {
+        String safeTitle = title.replaceAll("[^a-zA-Z0-9-_\\.]", "_");
+        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        String uniqueFilename = safeTitle + "-" + filename;
+        return uniqueFilename;
     }
 
     private boolean isAllowedType(String filename) {
