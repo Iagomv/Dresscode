@@ -9,7 +9,7 @@ export const clothingItemService = {
     const { image, name } = itemData
     if (!image) return await ApiConfig.createClothingItem(itemData)
 
-    const imageUrl = await ApiConfig.uploadImage(image, name)
+    const imageUrl = await ApiConfig.uploadImage(image, name, import.meta.env.VITE_IMAGE_DIR_CLOTHING)
     return await ApiConfig.createClothingItem({ ...itemData, imageUrl })
   },
 
@@ -19,7 +19,7 @@ export const clothingItemService = {
 
     // If the user uploaded a new file:
     if (image && image instanceof File) {
-      const imageUrl = await ApiConfig.uploadImage(image, name)
+      const imageUrl = await ApiConfig.uploadImage(image, name, import.meta.env.VITE_IMAGE_DIR_CLOTHING)
       updatedItemData.imageUrl = imageUrl
     }
 
