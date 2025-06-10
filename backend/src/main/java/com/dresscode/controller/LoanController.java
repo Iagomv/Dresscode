@@ -6,6 +6,8 @@ import com.dresscode.dto.loan.LoanRequestDto;
 import com.dresscode.dto.loan.LoanResponseDto;
 import com.dresscode.service.LoanService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +49,7 @@ public class LoanController {
      * The loan state will be set to PENDING automatically.
      */
     @PostMapping
-    public ResponseEntity<LoanResponseDto> requestLoan(@RequestBody LoanRequestDto loanRequestDto) {
+    public ResponseEntity<LoanResponseDto> requestLoan(@Valid @RequestBody LoanRequestDto loanRequestDto) {
         LoanResponseDto created = loanService.requestLoan(loanRequestDto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
@@ -57,7 +59,8 @@ public class LoanController {
      * including state, acceptedBy, and dates.
      */
     @PostMapping("/admin")
-    public ResponseEntity<LoanResponseDto> createLoanAsAdmin(@RequestBody AdminLoanRequestDto adminLoanRequestDto) {
+    public ResponseEntity<LoanResponseDto> createLoanAsAdmin(
+            @Valid @RequestBody AdminLoanRequestDto adminLoanRequestDto) {
         LoanResponseDto created = loanService.createLoanAsAdmin(adminLoanRequestDto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }

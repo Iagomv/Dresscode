@@ -48,6 +48,7 @@ public class User {
     private Set<Clase> clases;
 
     @OneToMany(mappedBy = "user") // Relación uno a muchos con Loan
+    @JsonIgnore
     private Set<Loan> loans;
 
     @Enumerated(EnumType.STRING)
