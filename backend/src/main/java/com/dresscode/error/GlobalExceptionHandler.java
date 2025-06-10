@@ -12,6 +12,7 @@ import com.dresscode.error.exceptions.WrongCredentialsException;
 import com.dresscode.error.exceptions.BadRequestException;
 import com.dresscode.error.exceptions.EmailExistsException;
 import com.dresscode.error.exceptions.EntityNotFoundException;
+import com.dresscode.error.exceptions.InvalidQuantityException;
 import com.dresscode.error.exceptions.PhoneNumberExistsException;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.error.exceptions.UnauthorizedException;
@@ -74,6 +75,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(WrongCredentialsException.class)
     public ResponseEntity<ApiError> handleBadCredentials(WrongCredentialsException ex, HttpServletRequest request) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED, request);
+    }
+
+    @ExceptionHandler(InvalidQuantityException.class)
+    public ResponseEntity<ApiError> handleBadCredentials(InvalidQuantityException ex, HttpServletRequest request) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.CONFLICT, request);
     }
 
     // 🔁 Reusable private helper
