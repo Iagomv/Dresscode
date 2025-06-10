@@ -60,3 +60,13 @@ export const CLOTHING_ITEM = {
     RESERVED: 'info',
   },
 }
+
+export const LOAN = {
+  STATE_VARIANTS: {
+    ACTIVE: 'success',
+    PENDING: 'warning',
+    REJECTED: 'danger',
+    RETURNED: 'success',
+    EXPIRED: 'info',
+  },
+}

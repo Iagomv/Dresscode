@@ -6,6 +6,9 @@ export const loanService = {
   fetchAllLoans: async () => {
     return await ApiConfig.getAllLoans()
   },
+  fetchAllLoansWithUserInfo: async () => {
+    return await ApiConfig.getAllLoansWithUserInfo()
+  },
 
   requestLoan: async (LoanRequestDto) => {
     return ApiConfig.requestLoan({ LoanRequestDto })

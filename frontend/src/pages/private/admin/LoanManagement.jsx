@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { LoadingSpinner } from '../../../components/common/LoadingSpinner'
 import { useLoanManagement } from './hooks/useLoanManagement'
 import { CreateLoanButton } from '../../../components/private/admin/loanManagement/CreateLoanButton'
-// import { LoansTable } from '../../../components/private/admin/loanManagement/LoansTable'
+import { LoansTable } from '../../../components/private/admin/loanManagement/LoansTable'
 // import { ConfirmDeleteModal } from '../../../components/private/common/ConfirmDeleteModal'
 // import { UpdateLoanModal } from '../../../components/private/admin/loanManagement/modal/UpdateLoanModal'
 import { CreateLoanModal } from '../../../components/private/admin/loanManagement/modal/CreateLoanModal'
@@ -27,7 +27,7 @@ export const LoanManagement = () => {
     confirmUpdate,
   } = useLoanManagement()
   const [searchTerm, setSearchTerm] = useState('')
-  const filteredLoans = loans.filter((loan) => `${loan.userName} ${loan.state}`.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredLoans = loans.filter((loan) => `${loan.state}`.toLowerCase().includes(searchTerm.toLowerCase()))
 
   if (loading) return <LoadingSpinner />
 
@@ -44,8 +44,8 @@ export const LoanManagement = () => {
           <CreateLoanModal show={openCreateModal} onClose={() => setOpenCreateModal(false)} onCreate={createLoanAsAdmin} />
         )}
       </div>
-      {/* <LoansTable loans={filteredLoans} requestUpdate={requestUpdate} requestDelete={requestDelete} />
-      <ConfirmDeleteModal show={showConfirmModal} onConfirm={confirmDelete} onCancel={cancelDelete} />
+      {loans.length > 0 && <LoansTable loans={filteredLoans} requestUpdate={requestUpdate} requestDelete={requestDelete} />}
+      {/* <ConfirmDeleteModal show={showConfirmModal} onConfirm={confirmDelete} onCancel={cancelDelete} />
       {showUpdateModal && loanToEdit && (
         <UpdateLoanModal show={showUpdateModal} onClose={cancelUpdate} onUpdate={confirmUpdate} loan={loanToEdit} />
       )} */}

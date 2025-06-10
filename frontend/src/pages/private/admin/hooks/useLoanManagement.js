@@ -14,7 +14,7 @@ export const useLoanManagement = () => {
   const newSuccessMessage = (messageKey) => `Loan ${t(messageKey)}`
 
   const fetchAllLoans = () =>
-    performApiAction(() => loanService.fetchAllLoans(), {
+    performApiAction(() => loanService.fetchAllLoansWithUserInfo(), {
       errorMessage: t('error.fetch'),
       onSuccess: setLoans,
       setLoading,
