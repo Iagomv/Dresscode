@@ -78,7 +78,6 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findByCategoryAndStatusNotIn(EventCategoryEnum.PUBLIC, privateStatuses).stream()
                 .map(eventMapper::toDto)
                 .collect(Collectors.toList());
-
     }
 
     @Transactional

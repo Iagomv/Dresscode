@@ -1,6 +1,7 @@
 import axiosInstance from './axiosInstance'
 import axios from 'axios'
 import { TOKEN_KEY } from '../constants/textConstants'
+import { LoanRequestDto, AdminLoanRequestDto } from '../dto/loanDtos'
 const API_BASE_URL = '/api'
 
 const handleRequest = async (method, url, data = null, params = null) => {
@@ -61,16 +62,24 @@ export class ApiConfig {
     return handleRequest('get', `${API_BASE_URL}/loans/user/${userId}`)
   }
 
-  static createLoan(loanData) {
-    return handleRequest('post', `${API_BASE_URL}/loans`, loanData)
+  static requestLoan(LoanRequestDto) {
+    return handleRequest('post', `${API_BASE_URL}/loans`, LoanRequestDto)
   }
 
-  static updateLoan(id, loanData) {
-    return handleRequest('put', `${API_BASE_URL}/loans/${id}`, loanData)
+  static createLoanAsAdmin(AdminLoanRequestDto) {
+    return handleRequest('post', `${API_BASE_URL}/loans/admin`, AdminLoanRequestDto)
+  }
+
+  static updateLoan(id, AdminLoanRequestDto) {
+    return handleRequest('put', `${API_BASE_URL}/loans/admin/${id}`, AdminLoanRequestDto)
   }
 
   static deleteLoan(id) {
     return handleRequest('delete', `${API_BASE_URL}/loans/${id}`)
+  }
+
+  static getMyLoans() {
+    return handleRequest('get', `${API_BASE_URL}/loans/my-loans`)
   }
 
   // ** ClothingItem Endpoints **

@@ -13,6 +13,8 @@ public interface ClothingItemService {
 
     ClothingItemResponseDto getClothingItemById(Long id);
 
+    List<ClothingItemResponseDto> getAllAvailableClothingItems();
+
     List<ClothingItemResponseDto> searchClothingItems(ClothingItemSearchDto searchDto);
 
     ClothingItemResponseDto createClothingItem(ClothingItemRequestDto clothingItemDto);

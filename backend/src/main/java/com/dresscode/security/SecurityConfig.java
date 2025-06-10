@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -56,6 +57,8 @@ public class SecurityConfig {
                 .requestMatchers("/v3/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "api/events/my-events").permitAll()
                 .requestMatchers(HttpMethod.GET, "api/events/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "api/clothing-items/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "api/clothing-items/available").authenticated()
 
                 // .requestMatchers(HttpMethod.GET, "/api/clases/**").hasAnyRole("STUDENT",
                 // "TEACHER", "ADMIN")
@@ -89,4 +92,5 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
 }

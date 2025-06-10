@@ -3,6 +3,7 @@ package com.dresscode.service.impl;
 import com.dresscode.dto.clothingItem.ClothingItemRequestDto;
 import com.dresscode.dto.clothingItem.ClothingItemResponseDto;
 import com.dresscode.dto.clothingItem.ClothingItemSearchDto;
+import com.dresscode.enums.ClothingItemAvailabilityEnum;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.mapper.ClothingItemMapper;
 import com.dresscode.model.ClothingItem;
@@ -42,6 +43,13 @@ public class ClothingItemServiceImpl implements ClothingItemService {
             throw new ResourceNotFoundException("No clothing items were found.");
         }
         return clothes.stream()
+                .map(clothingItemMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ClothingItemResponseDto> getAllAvailableClothingItems() {
+        return clothingItemRepository.findByAvailability(ClothingItemAvailabilityEnum.AVAILABLE).stream()
                 .map(clothingItemMapper::toDto)
                 .collect(Collectors.toList());
     }

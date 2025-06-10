@@ -47,7 +47,7 @@ public class LoanController {
      * The loan state will be set to PENDING automatically.
      */
     @PostMapping
-    public ResponseEntity<LoanResponseDto> createLoan(@RequestBody LoanRequestDto loanRequestDto) {
+    public ResponseEntity<LoanResponseDto> requestLoan(@RequestBody LoanRequestDto loanRequestDto) {
         LoanResponseDto created = loanService.requestLoan(loanRequestDto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
@@ -79,7 +79,7 @@ public class LoanController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/user/my-loans")
+    @GetMapping("/my-loans")
     public ResponseEntity<List<LoanResponseDto>> getMyLoans() {
         List<LoanResponseDto> loans = loanService.getMyLoans();
         return ResponseEntity.ok(loans);
