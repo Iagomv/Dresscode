@@ -27,9 +27,9 @@ export const UserManagement = () => {
   } = useUserManagement()
   const [searchTerm, setSearchTerm] = useState('')
 
-  const filteredUsers = users.filter((user) =>
-    `${user.name} ${user.lastName} ${user.email}`.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredUsers = Array.isArray(users)
+    ? users.filter((user) => `${user.name} ${user.lastName} ${user.email}`.toLowerCase().includes(searchTerm.toLowerCase()))
+    : []
 
   if (loading) return <LoadingSpinner />
 

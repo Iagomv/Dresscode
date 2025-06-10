@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { LoadingSpinner } from '../../../components/common/LoadingSpinner'
 import { useEventManagement } from './hooks/useEventManagement'
@@ -15,7 +14,6 @@ export const EventManagement = () => {
   const {
     events,
     loading,
-    refetch,
     createEvent,
     requestDelete,
     confirmDelete,
