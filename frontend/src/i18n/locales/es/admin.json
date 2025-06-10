@@ -33,5 +33,12 @@
     "updateClothingItemModalTitle": "Actualización de la prenda",
     "searchClothingItems": "Buscar prendas...",
     "addClothingItemButton": "Agregar prenda"
+  },
+  "loanManagement": {
+    "createLoan": "Agregar préstamo",
+    "createLoanModal": "Agregando préstamo...",
+    "updateLoanModalTitle": "Actualización del préstamo",
+    "searchLoans": "Buscar préstamo...",
+    "addLoanButton": "Nuevo préstamo"
   }
 }
