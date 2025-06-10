@@ -9,7 +9,7 @@ import { EventsTable } from '../../../components/private/admin/eventManagement/E
 import { ConfirmDeleteModal } from '../../../components/private/common/ConfirmDeleteModal'
 import { CreateEventModal } from '../../../components/private/admin/eventManagement/modal/CreateEventModal'
 import { UpdateEventModal } from '../../../components/private/admin/eventManagement/modal/UpdateEventModal'
-export const AdminEventManagement = () => {
+export const EventManagement = () => {
   const [openCreateModal, setOpenCreateModal] = useState(false)
   const { t } = useTranslation('admin')
   const {

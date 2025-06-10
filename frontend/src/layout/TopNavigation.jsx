@@ -58,29 +58,7 @@ export const TopNavigation = () => {
                   {TOP_NAVIGATION_TEXT.myAssignedIncidents}
                 </NavLink>
               )} */}
-              {role === ROLES.ADMIN && (
-                <NavDropdown
-                  title={t('nav.management')}
-                  menuVariant="light"
-                  className={`${isDropdownActive ? styles.navDropdownActive : ''}`}
-                >
-                  <NavDropdown.Item as="span" className={styles.dropdownItem}>
-                    <NavLink to={PATHS.dresscode.admin.userManagement} className={getLinkClass}>
-                      {t('nav.admin.userManagement')}
-                    </NavLink>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as="span" className={styles.dropdownItem}>
-                    <NavLink to={PATHS.dresscode.admin.eventManagement} className={getLinkClass}>
-                      {t('nav.admin.eventManagement')}
-                    </NavLink>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as="span" className={styles.dropdownItem}>
-                    <NavLink to={PATHS.dresscode.admin.clothingManagement} className={getLinkClass}>
-                      {t('nav.admin.clothingManagement')}
-                    </NavLink>
-                  </NavDropdown.Item>
-                </NavDropdown>
-              )}
+              {role === ROLES.ADMIN && adminNavDropDown(t, isDropdownActive, getLinkClass)}
               {/* Profile Dropdown */}
               {auth?.user && (
                 <NavDropdown
@@ -125,3 +103,33 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     {children}
   </button>
 ))
+function adminNavDropDown(t, isDropdownActive, getLinkClass) {
+  return (
+    <NavDropdown
+      title={t('nav.management')}
+      menuVariant="light"
+      className={`${isDropdownActive ? styles.navDropdownActive : ''}`}
+    >
+      <NavDropdown.Item as="span" className={styles.dropdownItem}>
+        <NavLink to={PATHS.dresscode.admin.userManagement} className={getLinkClass}>
+          {t('nav.admin.userManagement')}
+        </NavLink>
+      </NavDropdown.Item>
+      <NavDropdown.Item as="span" className={styles.dropdownItem}>
+        <NavLink to={PATHS.dresscode.admin.eventManagement} className={getLinkClass}>
+          {t('nav.admin.eventManagement')}
+        </NavLink>
+      </NavDropdown.Item>
+      <NavDropdown.Item as="span" className={styles.dropdownItem}>
+        <NavLink to={PATHS.dresscode.admin.clothingManagement} className={getLinkClass}>
+          {t('nav.admin.clothingManagement')}
+        </NavLink>
+      </NavDropdown.Item>
+      <NavDropdown.Item as="span" className={styles.dropdownItem}>
+        <NavLink to={PATHS.dresscode.admin.loanManagement} className={getLinkClass}>
+          {t('nav.admin.loanManagement')}
+        </NavLink>
+      </NavDropdown.Item>
+    </NavDropdown>
+  )
+}

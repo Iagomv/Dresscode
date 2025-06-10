@@ -11,6 +11,7 @@ export const PATHS = {
       userManagement: '/dresscode/users',
       eventManagement: '/dresscode/events',
       clothingManagement: '/dresscode/clothing',
+      loanManagement: '/dresscode/loans',
     },
   },
 }

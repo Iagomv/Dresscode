@@ -18,7 +18,8 @@
     "admin": {
       "userManagement": "Usuarios",
       "eventManagement": "Eventos",
-      "clothingManagement": "Vestuario"
+      "clothingManagement": "Vestuario",
+      "loanManagement": "Préstamos"
     }
   }
 }

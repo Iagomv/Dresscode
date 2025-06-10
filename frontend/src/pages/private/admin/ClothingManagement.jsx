@@ -9,7 +9,7 @@ import { ConfirmDeleteModal } from '../../../components/private/common/ConfirmDe
 import { UpdateClothingItemModal } from '../../../components/private/admin/clothingItemManagement/modal/UpdateClothingItemModal'
 import { ClothingItemsTable } from '../../../components/private/admin/clothingItemManagement/ClothingItemsTable'
 import { CreateClothingItemModal } from '../../../components/private/admin/clothingItemManagement/modal/CreateClothingItemModal'
-export const AdminClothingManagement = () => {
+export const ClothingManagement = () => {
   const [openCreateModal, setOpenCreateModal] = useState(false)
   const { t } = useTranslation('admin')
   const {

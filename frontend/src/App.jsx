@@ -1,17 +1,11 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
-import LoginPage from './pages/public/LoginPage'
+import { LoginPage, Home, About, Events, Activities } from './pages/public/PublicIndex'
+import { UserManagement, EventManagement, ClothingManagement, LoanManagement } from './pages/private/admin/PrivateAdminIndex'
 import Layout from './layout/Layout'
 import ProfilePage from './pages/private/ProfilePage'
-import Home from './pages/public/Home'
 import PrivateHome from './pages/private/Home'
-import About from './pages/public/About'
-import Activities from './pages/public/Activities'
-import { Events } from './pages/public/Events'
-import { UserManagement } from './pages/private/admin/UserManagement'
-import { AdminEventManagement } from './pages/private/admin/AdminEventManagement'
-import { AdminClothingManagement } from './pages/private/admin/AdminClothingManagement'
 import { PATHS } from './constants/routes'
 
 const PrivateRoute = ({ children }) => {
@@ -43,8 +37,9 @@ function App() {
         <Route index element={<PrivateHome />} />
         <Route path={PATHS.dresscode.profile} element={<ProfilePage />} />
         <Route path={PATHS.dresscode.admin.userManagement} element={<UserManagement />} />
-        <Route path={PATHS.dresscode.admin.eventManagement} element={<AdminEventManagement />} />
-        <Route path={PATHS.dresscode.admin.clothingManagement} element={<AdminClothingManagement />} />
+        <Route path={PATHS.dresscode.admin.eventManagement} element={<EventManagement />} />
+        <Route path={PATHS.dresscode.admin.clothingManagement} element={<ClothingManagement />} />
+        <Route path={PATHS.dresscode.admin.loanManagement} element={<LoanManagement />} />
       </Route>
 
       {/* Catch-all redirect to "/"  */}
