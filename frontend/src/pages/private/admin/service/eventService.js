@@ -9,7 +9,7 @@ const eventService = {
     const { title } = eventData
     if (!image) return await ApiConfig.createEvent(eventData)
 
-    const imageUrl = await ApiConfig.uploadImage(image, title)
+    const imageUrl = await ApiConfig.uploadImage(image, title, import.meta.env.VITE_IMAGE_DIR_EVENTS)
     return ApiConfig.createEvent({ ...eventData, imageUrl })
   },
 
@@ -19,7 +19,7 @@ const eventService = {
 
     // If the user uploaded a new file:
     if (image && image instanceof File) {
-      const imageUrl = await ApiConfig.uploadImage(image, title)
+      const imageUrl = await ApiConfig.uploadImage(image, title, import.meta.env.VITE_IMAGE_DIR_EVENTS)
       updatedEventData.imageUrl = imageUrl
     }
 
