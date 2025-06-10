@@ -11,6 +11,7 @@ import com.dresscode.model.Loan;
 import com.dresscode.model.User;
 import com.dresscode.repository.LoanRepository;
 import com.dresscode.repository.UserRepository;
+import com.dresscode.service.InventoryService;
 import com.dresscode.service.LoanService;
 import com.dresscode.utils.SecurityUtils;
 
@@ -29,6 +30,7 @@ public class LoanServiceImpl implements LoanService {
     private final LoanRepository loanRepository;
     private final LoanMapper loanMapper;
     private final UserRepository userRepository;
+    private final InventoryService inventoryService;
 
     @Override
     public List<LoanResponseDto> getAllLoans() {
@@ -60,11 +62,12 @@ public class LoanServiceImpl implements LoanService {
         User user = userRepository.findById(currentUserId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + currentUserId));
 
+        inventoryService.updateQuantityOnLoan(loanRequestDto);
+
         Loan loan = loanMapper.toEntity(loanRequestDto);
         loan.setUser(user);
         loan.setState(LoanStateEnum.PENDING); // Always start with PENDING state for user-created loans
-        Loan savedLoan = loanRepository.save(loan);
-        return loanMapper.toDto(savedLoan);
+        return returnSavedLoan(loan);
     }
 
     @Override
@@ -77,7 +80,7 @@ public class LoanServiceImpl implements LoanService {
         if (adminLoanRequestDto.getAcceptedById() != null) {
             acceptedBy = getUser(adminLoanRequestDto.getAcceptedById());
         }
-
+        inventoryService.updateQuantityOnLoan(adminLoanRequestDto);
         // Map DTO to Entity
         Loan loan = loanMapper.toEntity(adminLoanRequestDto);
 
@@ -87,9 +90,7 @@ public class LoanServiceImpl implements LoanService {
         // If state is not provided, default to PENDING
         loan.setState(loan.getState() == null ? LoanStateEnum.PENDING : loan.getState());
 
-        // Save and return
-        Loan savedLoan = loanRepository.save(loan);
-        return loanMapper.toDto(savedLoan);
+        return returnSavedLoan(loan);
     }
 
     @Override
@@ -97,8 +98,7 @@ public class LoanServiceImpl implements LoanService {
         Loan existingLoan = loanRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Loan not found with id: " + id));
         loanMapper.updateLoanFromDto(adminLoanRequestDto, existingLoan);
-        Loan updatedLoan = loanRepository.save(existingLoan);
-        return loanMapper.toDto(updatedLoan);
+        return returnSavedLoan(existingLoan);
     }
 
     @Override
@@ -124,5 +124,11 @@ public class LoanServiceImpl implements LoanService {
     private User getUser(Long userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+    }
+
+    private LoanResponseDto returnSavedLoan(Loan loan) {
+
+        Loan savedLoan = loanRepository.save(loan);
+        return loanMapper.toDto(savedLoan);
     }
 }

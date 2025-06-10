@@ -9,6 +9,7 @@ import com.dresscode.mapper.ClothingItemMapper;
 import com.dresscode.model.ClothingItem;
 import com.dresscode.repository.ClothingItemRepository;
 import com.dresscode.service.ClothingItemService;
+import com.dresscode.service.InventoryService;
 
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class ClothingItemServiceImpl implements ClothingItemService {
 
     @Autowired
     private ClothingItemMapper clothingItemMapper;
+
+    @Autowired
+    private InventoryService inventoryService;
 
     @Override
     public ClothingItemResponseDto getClothingItemById(Long id) {
@@ -83,6 +87,7 @@ public class ClothingItemServiceImpl implements ClothingItemService {
     @Override
     public ClothingItemResponseDto createClothingItem(ClothingItemRequestDto clothingItemDto) {
         ClothingItem clothingItem = clothingItemMapper.toEntity(clothingItemDto);
+        inventoryService.updateAvailabilityOnCreation(clothingItem);
         ClothingItem savedItem = clothingItemRepository.save(clothingItem);
         return clothingItemMapper.toDto(savedItem);
     }
