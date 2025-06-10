@@ -164,10 +164,11 @@ export class ApiConfig {
 
   // ** Image Endpoints **
 
-  static async uploadImage(imageData, title) {
+  static async uploadImage(imageData, title, category) {
     const formData = new FormData()
     formData.append('file', imageData)
     formData.append('title', title)
+    formData.append('category', category)
 
     const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/images/upload`, formData, {
       headers: {

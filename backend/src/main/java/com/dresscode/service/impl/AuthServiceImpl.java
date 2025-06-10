@@ -1,5 +1,6 @@
 package com.dresscode.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,12 +28,14 @@ import io.jsonwebtoken.JwtException;
 
 @Service
 public class AuthServiceImpl implements AuthService {
+
     private final JwtService jwtService;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     public AuthServiceImpl(
             JwtService jwtService,
             UserRepository userRepository,
