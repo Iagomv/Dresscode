@@ -68,8 +68,8 @@ export const useLoanManagement = () => {
     setShowUpdateModal(false)
   }
 
-  const confirmUpdate = async (id, loanData) => {
-    await updateLoan(id, loanData)
+  const confirmUpdate = async (values) => {
+    await updateLoan(values.id, values)
     cancelUpdate()
   }
 

@@ -39,6 +39,8 @@
     "createLoanModal": "Agregando préstamo...",
     "updateLoanModalTitle": "Actualización del préstamo",
     "searchLoans": "Buscar préstamo...",
-    "addLoanButton": "Nuevo préstamo"
+    "addLoanButton": "Nuevo préstamo",
+    "clothingItemsLabel": "Lista de items",
+    "userDetails": "Detalles del usuario"
   }
 }
