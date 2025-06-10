@@ -3,7 +3,7 @@ package com.dresscode.service;
 import com.dresscode.dto.loan.AdminLoanRequestDto;
 import com.dresscode.dto.loan.LoanRequestDto;
 import com.dresscode.dto.loan.LoanResponseDto;
-import com.dresscode.dto.loan.LoanWithLightUserResponseDto;
+import com.dresscode.dto.loan.LoanWithLightInfoResponseDto;
 import com.dresscode.error.exceptions.EntityNotFoundException;
 import com.dresscode.error.exceptions.ResourceNotFoundException;
 import com.dresscode.error.exceptions.UnauthorizedException;
@@ -27,7 +27,7 @@ public interface LoanService {
      * 
      * @return a list of LoanWithLightUserResponseDto objects
      */
-    List<LoanWithLightUserResponseDto> getAllLoansWithUserInfo();
+    List<LoanWithLightInfoResponseDto> getAllLoansWithUserInfo();
 
     /**
      * Retrieves a loan by its ID.

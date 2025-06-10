@@ -1,9 +1,10 @@
 package com.dresscode.mapper;
 
+import com.dresscode.dto.clothingItem.LightClothingItemResponseDto;
 import com.dresscode.dto.loan.AdminLoanRequestDto;
 import com.dresscode.dto.loan.LoanRequestDto;
 import com.dresscode.dto.loan.LoanResponseDto;
-import com.dresscode.dto.loan.LoanWithLightUserResponseDto;
+import com.dresscode.dto.loan.LoanWithLightInfoResponseDto;
 import com.dresscode.dto.user.LightUserResponseDto;
 import com.dresscode.model.Loan;
 import com.dresscode.model.User;
@@ -52,7 +53,8 @@ public interface LoanMapper {
 
     @Mapping(target = "user", source = "user", qualifiedByName = "mapUserToLightUserResponseDto")
     @Mapping(target = "acceptedBy", source = "acceptedBy", qualifiedByName = "mapUserToLightUserResponseDto")
-    LoanWithLightUserResponseDto toLightUserResponseDto(Loan loan);
+    @Mapping(target = "clothingItems", source = "clothingItems", qualifiedByName = "mapClothingItemsToLightClothingItemResponseDtos")
+    LoanWithLightInfoResponseDto toLightInfoResponseDto(Loan loan);
 
     // Helper to map userId to User entity (only with ID set)
     @Named("mapUserById")
@@ -96,5 +98,22 @@ public interface LoanMapper {
         lightUserResponseDto.setLastName(user.getLastName());
         lightUserResponseDto.setEmail(user.getEmail());
         return lightUserResponseDto;
+    }
+
+    @Named("mapClothingItemsToLightClothingItemResponseDtos")
+    default Set<LightClothingItemResponseDto> mapClothingItemsToLightClothingItemResponseDtos(
+            Set<ClothingItem> clothingItems) {
+        if (clothingItems == null) {
+            return null;
+        }
+        return clothingItems.stream()
+                .map(clothingItem -> {
+                    LightClothingItemResponseDto lightClothingItemResponseDto = new LightClothingItemResponseDto();
+                    lightClothingItemResponseDto.setId(clothingItem.getId());
+                    lightClothingItemResponseDto.setName(clothingItem.getName());
+                    // Add other fields as needed
+                    return lightClothingItemResponseDto;
+                })
+                .collect(Collectors.toSet());
     }
 }

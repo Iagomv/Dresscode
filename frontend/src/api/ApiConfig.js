@@ -57,7 +57,7 @@ export class ApiConfig {
     return handleRequest('get', `${API_BASE_URL}/loans`)
   }
   static getAllLoansWithUserInfo() {
-    return handleRequest('get', `${API_BASE_URL}/loans/with-user-info`)
+    return handleRequest('get', `${API_BASE_URL}/loans/with-added-info`)
   }
 
   static getLoanById(id) {

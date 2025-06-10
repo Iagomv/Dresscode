@@ -4,7 +4,7 @@ import com.dresscode.constants.ApiRoutes;
 import com.dresscode.dto.loan.AdminLoanRequestDto;
 import com.dresscode.dto.loan.LoanRequestDto;
 import com.dresscode.dto.loan.LoanResponseDto;
-import com.dresscode.dto.loan.LoanWithLightUserResponseDto;
+import com.dresscode.dto.loan.LoanWithLightInfoResponseDto;
 import com.dresscode.service.LoanService;
 
 import jakarta.validation.Valid;
@@ -33,9 +33,9 @@ public class LoanController {
         return ResponseEntity.ok(loans);
     }
 
-    @GetMapping("/with-user-info")
-    public ResponseEntity<List<LoanWithLightUserResponseDto>> getAllLoansWithUserInfo() {
-        List<LoanWithLightUserResponseDto> loans = loanService.getAllLoansWithUserInfo();
+    @GetMapping("/with-added-info")
+    public ResponseEntity<List<LoanWithLightInfoResponseDto>> getAllLoansWithUserInfo() {
+        List<LoanWithLightInfoResponseDto> loans = loanService.getAllLoansWithUserInfo();
         return ResponseEntity.ok(loans);
     }
 
