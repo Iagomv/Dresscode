@@ -3,6 +3,7 @@ package com.dresscode.service.impl;
 import com.dresscode.dto.loan.AdminLoanRequestDto;
 import com.dresscode.dto.loan.LoanRequestDto;
 import com.dresscode.dto.loan.LoanResponseDto;
+import com.dresscode.dto.loan.LoanWithLightUserResponseDto;
 import com.dresscode.enums.LoanStateEnum;
 import com.dresscode.error.exceptions.EntityNotFoundException;
 import com.dresscode.error.exceptions.UnauthorizedException;
@@ -36,6 +37,13 @@ public class LoanServiceImpl implements LoanService {
     public List<LoanResponseDto> getAllLoans() {
         return loanRepository.findAll().stream()
                 .map(loanMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LoanWithLightUserResponseDto> getAllLoansWithUserInfo() {
+        return loanRepository.findAll().stream()
+                .map(loanMapper::toLightUserResponseDto)
                 .collect(Collectors.toList());
     }
 

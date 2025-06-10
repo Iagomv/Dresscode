@@ -3,6 +3,8 @@ package com.dresscode.mapper;
 import com.dresscode.dto.loan.AdminLoanRequestDto;
 import com.dresscode.dto.loan.LoanRequestDto;
 import com.dresscode.dto.loan.LoanResponseDto;
+import com.dresscode.dto.loan.LoanWithLightUserResponseDto;
+import com.dresscode.dto.user.LightUserResponseDto;
 import com.dresscode.model.Loan;
 import com.dresscode.model.User;
 import com.dresscode.model.ClothingItem;
@@ -48,6 +50,10 @@ public interface LoanMapper {
     @Mapping(target = "clothingItems", source = "clothingItemIds", qualifiedByName = "mapClothingItemsByIds")
     void updateLoanFromDto(AdminLoanRequestDto dto, @MappingTarget Loan entity);
 
+    @Mapping(target = "user", source = "user", qualifiedByName = "mapUserToLightUserResponseDto")
+    @Mapping(target = "acceptedBy", source = "acceptedBy", qualifiedByName = "mapUserToLightUserResponseDto")
+    LoanWithLightUserResponseDto toLightUserResponseDto(Loan loan);
+
     // Helper to map userId to User entity (only with ID set)
     @Named("mapUserById")
     default User mapUserById(Long id) {
@@ -77,5 +83,18 @@ public interface LoanMapper {
         if (clothingItems == null)
             return null;
         return clothingItems.stream().map(ClothingItem::getId).collect(Collectors.toSet());
+    }
+
+    @Named("mapUserToLightUserResponseDto")
+    default LightUserResponseDto mapUserToLightUserResponseDto(User user) {
+        if (user == null) {
+            return null;
+        }
+        LightUserResponseDto lightUserResponseDto = new LightUserResponseDto();
+        lightUserResponseDto.setId(user.getId());
+        lightUserResponseDto.setName(user.getName());
+        lightUserResponseDto.setLastName(user.getLastName());
+        lightUserResponseDto.setEmail(user.getEmail());
+        return lightUserResponseDto;
     }
 }
