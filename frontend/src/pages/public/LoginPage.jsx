@@ -15,20 +15,22 @@ export const LoginPage = () => {
   const toggleForm = () => {
     setIsLogin(!isLogin)
   }
+
   useEffect(() => {
     if (auth?.token) {
       navigate('/', { replace: true })
     }
   }, [auth, navigate])
+
   return (
-    <Container className="">
-      <Card style={{ width: '100%', minWidth: '450px' }} className="shadow-lg">
+    <Container className="d-flex justify-content-center align-items-center ">
+      <Card style={{ minWidth: '450px', height: '400px' }} className="shadow-lg">
         <Card.Body>
           <Card.Title className="text-center mb-4">{t('title')}</Card.Title>
           {isLogin ? <LoginForm /> : <SignUpForm toggleForm={toggleForm} />}
           <div className="text-center mt-3">
             <Button variant="link" onClick={toggleForm}>
-              {isLogin ? `${t('createAnAccount')}` : `${t('alreadyHaveAnAccount')}`}
+              {isLogin ? t('createAnAccount') : t('alreadyHaveAnAccount')}
             </Button>
           </div>
         </Card.Body>
