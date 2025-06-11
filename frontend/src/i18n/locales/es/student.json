@@ -8,7 +8,14 @@
       },
       "vestuario": {
         "title": "Vestuario",
-        "image": "/images/myClothesCard.jpg"
+        "image": "/images/myClothesCard.jpg",
+        "myCart": "Mi carrito",
+        "item": "Artículo",
+        "itemsPlural": "Artículos",
+        "backToLoans": "Volver al catálogo",
+        "itemAlreadyOnCart": "Artículo ya en el carrito",
+        "requestLoanBtn": "Solicitar préstamo",
+        "successLoanRequest": "Solicitud de préstamo enviada"
       }
     }
   }
