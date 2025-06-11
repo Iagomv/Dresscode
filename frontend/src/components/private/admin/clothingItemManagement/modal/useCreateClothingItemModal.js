@@ -22,18 +22,18 @@ export const useCreateClothingItemModal = (onSubmit, onClose, initialClothingIte
       quantity: initialClothingItemData?.quantity || 0,
       color: initialClothingItemData?.color || '',
       price: initialClothingItemData?.price || 0,
-      state: initialClothingItemData?.state || 'NUEVA',
+      state: initialClothingItemData?.state || 'NEW',
       gender: initialClothingItemData?.gender || 'UNISEX',
       type: initialClothingItemData?.type || 'SHIRT',
       size: initialClothingItemData?.size || 'M',
       availability: initialClothingItemData?.availability || 'AVAILABLE',
+      image: initialClothingItemData?.image || '',
     },
     validationSchema: createClothingItemSchema(t),
     onSubmit: (values) => {
       if (initialClothingItemData?.id !== '' && initialClothingItemData?.id !== undefined) {
         onSubmit(values.id, values)
       } else {
-        delete values.id
         onSubmit(values)
       }
       onClose()

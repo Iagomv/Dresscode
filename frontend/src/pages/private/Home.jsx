@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { AdminHome } from './admin/Home'
-import { StudentHome } from './student/Home'
+import { StudentHome } from './student/home/Home'
 import { LoadingSpinner } from '../../components/common/LoadingSpinner'
 
 export default function Home() {

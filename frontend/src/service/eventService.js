@@ -5,8 +5,7 @@ export const eventService = {
   },
 
   createEvent: async (eventData) => {
-    const { image } = eventData
-    const { title } = eventData
+    const { image, title } = eventData
     if (!image) return await ApiConfig.createEvent(eventData)
 
     const imageUrl = await ApiConfig.uploadImage(image, title, import.meta.env.VITE_IMAGE_DIR_EVENTS)

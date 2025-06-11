@@ -42,4 +42,8 @@ export const createClothingItemSchema = (t) =>
     availability: Yup.string()
       .oneOf(['AVAILABLE', 'UNAVAILABLE', 'LOST', 'SOLD', 'RESERVED'], t('validation:availability.invalid'))
       .required(t('validation:availability.required')),
+    image: Yup.mixed().test('fileType', t('validation:image.valid'), (value) => {
+      if (!value) return true
+      return ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/webp'].includes(value.type)
+    }),
   })

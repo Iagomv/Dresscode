@@ -71,6 +71,7 @@
     "data": {
       "name": "Nombre",
       "description": "Descripción",
+      "image": "Imagen",
       "imageUrl": "URL de la imagen",
       "quantity": "Cantidad",
       "color": "Color",

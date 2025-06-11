@@ -84,7 +84,7 @@ export const ClothingItemFormFields = () => {
             label={quantityLabel}
             min="0"
             max={100}
-            step="5"
+            step="1"
             placeholder="5"
             className="form-control"
           />
@@ -122,7 +122,7 @@ export const ClothingItemFormFields = () => {
           />
         </div>
         <div className="col-12">
-          <FormikImageField name="imageUrl" label={imageUrlLabel} className="form-control" />
+          <FormikImageField name="image" label={imageUrlLabel} className="form-control" />
         </div>
       </div>
     </div>
