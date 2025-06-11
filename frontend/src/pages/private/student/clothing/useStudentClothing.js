@@ -7,6 +7,7 @@ export const useStudentClothing = () => {
   const [enums, setEnums] = useState([])
   const [clothingItems, setClothingItems] = useState([])
   const [loading, setLoading] = useState(false)
+  const [selectedType, setSelectedType] = useState(null)
   const { t } = useTranslation('common')
   const errorMessage = `${t('error.fetch')}`
 
@@ -23,5 +24,5 @@ export const useStudentClothing = () => {
     fetchData()
   }, [fetchEnums])
 
-  return { loading, enums, clothingItems, setClothingItems }
+  return { loading, enums, clothingItems, setClothingItems, selectedType, setSelectedType }
 }
