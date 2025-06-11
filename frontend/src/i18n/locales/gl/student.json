@@ -1,0 +1,15 @@
+{
+  "content": {
+    "static": {
+      "title": "O meu espazo",
+      "clases": {
+        "title": "As miñas clases",
+        "image": "/images/myClassCard.jpg"
+      },
+      "vestuario": {
+        "title": "Vestiario",
+        "image": "/images/myClothesCard.jpg"
+      }
+    }
+  }
+}

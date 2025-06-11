@@ -10,5 +10,11 @@
         "limit": 10
       }
     }
+  },
+  "login": {
+    "initialValues": {
+      "username": "Student@gmail.com",
+      "password": "Passw0rd"
+    }
   }
 }

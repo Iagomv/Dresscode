@@ -1,0 +1,15 @@
+{
+  "content": {
+    "static": {
+      "title": "Mi espacio",
+      "clases": {
+        "title": "Mis clases",
+        "image": "/images/myClassCard.jpg"
+      },
+      "vestuario": {
+        "title": "Vestuario",
+        "image": "/images/myClothesCard.jpg"
+      }
+    }
+  }
+}

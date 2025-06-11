@@ -12,6 +12,7 @@ import loginRegister_es from './locales/es/loginRegister.json'
 import validation_es from './locales/es/validation.json'
 import admin_es from './locales/es/admin.json'
 import event_es from './locales/es/events.json'
+import student_es from './locales/es/student.json'
 
 import about_gl from './locales/gl/about.json'
 import contact_gl from './locales/gl/contact.json'
@@ -24,6 +25,7 @@ import loginRegister_gl from './locales/gl/loginRegister.json'
 import validation_gl from './locales/gl/validation.json'
 import admin_gl from './locales/gl/admin.json'
 import event_gl from './locales/gl/events.json'
+import student_gl from './locales/gl/student.json'
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -39,6 +41,7 @@ i18n.use(initReactI18next).init({
       validation: validation_es,
       admin: admin_es,
       events: event_es,
+      student: student_es,
     },
     gl: {
       about: about_gl,
@@ -52,6 +55,7 @@ i18n.use(initReactI18next).init({
       validation: validation_gl,
       admin: admin_gl,
       events: event_gl,
+      student: student_gl,
     },
   },
   lng: 'es',

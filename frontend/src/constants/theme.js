@@ -1,5 +1,49 @@
 export const FONT_FAMILY = "'EB Garamond', serif"
-
+export const STUDENT_THEME = {
+  palette: {
+    primary: { main: '#8B4513' }, // Marrón cuero
+    secondary: { main: '#D2691E' }, // Chocolate
+    background: {
+      default: '#F5F5DC', // Beige
+      paper: '#FFF8E1', // Amarillo claro
+    },
+  },
+  typography: {
+    fontFamily: '"Merriweather", serif',
+    h1: { fontFamily: '"Cinzel", serif' },
+  },
+  textures: 'url("textura-papel-antiguo.jpg")',
+}
+export const MINIMALIST_THEME = {
+  palette: {
+    primary: { main: '#2C3E50' }, // Azul oscuro
+    secondary: { main: '#7F8C8D' }, // Gris
+    background: {
+      default: '#ECF0F1', // Gris claro
+      paper: '#FFFFFF', // Blanco
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", sans-serif',
+    h1: { fontWeight: 300, letterSpacing: '2px' },
+  },
+  decorations: 'líneas geométricas sutiles',
+}
+export const VIBRANT_THEME = {
+  palette: {
+    primary: { main: '#E74C3C' }, // Rojo vibrante
+    secondary: { main: '#F39C12' }, // Naranja
+    background: {
+      default: '#FFFFFF',
+      paper: '#F9F9F9',
+    },
+  },
+  typography: {
+    fontFamily: '"Nunito", sans-serif',
+    h1: { color: '#2C3E50', fontWeight: 800 },
+  },
+  patterns: 'patrones geométricos coloridos',
+}
 export const COLORS = {
   primary: '#5a3921',
   secondary: '#8c7b6b',

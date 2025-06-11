@@ -7,7 +7,7 @@ import { getUserLoginSchema } from '../../../schema/UserLoginSchema'
 import { PATHS } from '../../../constants/routes'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
-
+import config from '../../../../config.json'
 export const useLoginForm = () => {
   const navigate = useNavigate()
   const { login } = useAuth()
@@ -24,8 +24,8 @@ export const useLoginForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: 'iagomartinezv@gmail.com',
-      password: 'Passw0rd',
+      email: config.login.initialValues.username,
+      password: config.login.initialValues.password,
     },
     validationSchema: getUserLoginSchema(t),
     onSubmit: async (values) => {
