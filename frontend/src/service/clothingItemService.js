@@ -5,6 +5,9 @@ export const clothingItemService = {
     return await ApiConfig.getAllClothingItems()
   },
 
+  requestLoan: async (loanRequestDto) => ApiConfig.requestLoan(loanRequestDto),
+
+  searchClothingItems: async (searchDto) => ApiConfig.searchClothingItems(searchDto),
   createClothingItem: async (itemData) => {
     const { image, name } = itemData
     if (!image) return await ApiConfig.createClothingItem(itemData)
