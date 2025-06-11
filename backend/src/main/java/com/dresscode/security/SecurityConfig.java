@@ -59,6 +59,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "api/events/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "api/clothing-items/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "api/clothing-items/available").authenticated()
+                .requestMatchers(HttpMethod.GET, "api/enums").authenticated()
 
                 // .requestMatchers(HttpMethod.GET, "/api/clases/**").hasAnyRole("STUDENT",
                 // "TEACHER", "ADMIN")
