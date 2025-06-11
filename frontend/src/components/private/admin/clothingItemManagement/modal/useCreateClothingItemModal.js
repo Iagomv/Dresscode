@@ -34,7 +34,6 @@ export const useCreateClothingItemModal = (onSubmit, onClose, initialClothingIte
       if (initialClothingItemData?.id !== '' && initialClothingItemData?.id !== undefined) {
         onSubmit(values.id, values)
       } else {
-        delete values.id
         onSubmit(values)
       }
       onClose()

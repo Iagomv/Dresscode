@@ -122,7 +122,7 @@ export const ClothingItemFormFields = () => {
           />
         </div>
         <div className="col-12">
-          <FormikImageField name="imageUrl" label={imageUrlLabel} className="form-control" />
+          <FormikImageField name="image" label={imageUrlLabel} className="form-control" />
         </div>
       </div>
     </div>
