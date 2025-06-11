@@ -13,18 +13,6 @@ Dresscode is a full-stack application for managing clothing items, loans, users,
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
    - [Running the Application](#running-the-application)
-5. [API Reference](#api-reference)
-   - [Authentication](#authentication)
-   - [User Management](#user-management)
-   - [Clothing Items](#clothing-items)
-   - [Loans](#loans)
-   - [Events](#events)
-   - [Enums](#enums)
-6. [Frontend Routes](#frontend-routes)
-7. [Environment Variables](#environment-variables)
-8. [Testing](#testing)
-9. [Contributing](#contributing)
-10. [License](#license)
 
 ---
 
