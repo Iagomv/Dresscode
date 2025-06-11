@@ -1,0 +1,17 @@
+.custom-list-group-item {
+  cursor: pointer;
+  background-color: white;
+  color: #666;
+  border-color: #ccc;
+  transition: background-color 0.3s ease;
+}
+
+.custom-list-group-item:hover {
+  background-color: #eee;
+}
+
+.custom-list-group-item.active {
+  background-color: #f0f0f0 !important;
+  color: #444 !important;
+  border-color: #bbb !important;
+}
