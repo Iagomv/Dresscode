@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EnumController {
     private final EnumService enumService;
 
-    @GetMapping()
+    @GetMapping("/clothing-items")
     @Operation(summary = "Get all clothing item enums")
     public ResponseEntity<ClothingItemEnumsDto> getAllClothingItemEnums() {
         return ResponseEntity.ok(enumService.getAllClothingItemEnums());

@@ -196,5 +196,11 @@ export class ApiConfig {
     })
     return response.data
   }
+
+  // ** Enum Endpoints **
+
+  static async getAllClothingEnums() {
+    return handleRequest('get', `${API_BASE_URL}/enums/clothing-items`)
+  }
 }
 export default ApiConfig
