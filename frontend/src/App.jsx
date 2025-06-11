@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
 import { LoginPage, Home, About, Events, Activities } from './pages/public/PublicIndex'
 import { UserManagement, EventManagement, ClothingManagement, LoanManagement } from './pages/private/admin/PrivateAdminIndex'
+import { StudentClothing, StudentClasses } from './pages/private/student/studentIndex'
+
 import Layout from './layout/Layout'
 import ProfilePage from './pages/private/ProfilePage'
 import PrivateHome from './pages/private/Home'
@@ -40,6 +42,8 @@ function App() {
         <Route path={PATHS.dresscode.admin.eventManagement} element={<EventManagement />} />
         <Route path={PATHS.dresscode.admin.clothingManagement} element={<ClothingManagement />} />
         <Route path={PATHS.dresscode.admin.loanManagement} element={<LoanManagement />} />
+        <Route path={PATHS.dresscode.student.clothing} element={<StudentClothing />} />
+        <Route path={PATHS.dresscode.student.classes} element={<StudentClasses />} />
       </Route>
 
       {/* Catch-all redirect to "/"  */}
