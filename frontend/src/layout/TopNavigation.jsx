@@ -27,7 +27,7 @@ export const TopNavigation = () => {
   const getHomeLink = isAuthenticated ? PATHS.dresscode.home : PATHS.slash
 
   return (
-    <div className=" d-flex justify-content-center">
+    <div className="position-absolute fixed-top">
       <Navbar expand="lg" className={styles.navbar}>
         <Container fluid>
           <Navbar.Brand as={NavLink} to={getHomeLink} className={styles.brand}>

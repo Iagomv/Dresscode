@@ -8,11 +8,15 @@ import { COLORS, FONT_FAMILY } from '../constants/theme'
 
 const Layout = () => {
   return (
-    <div className="d-flex flex-column vh-100 mx-auto">
+    <div className="d-flex flex-column vh-100">
       <TopNavigation />
-      <div className="m-5 d-flex m-auto">
+
+      {/* Page Content */}
+      <main className="flex-grow-1 d-flex justify-content-center align-items-center" style={{ paddingTop: '60px' }}>
         <Outlet />
-      </div>
+      </main>
+
+      {/* Toast Notifications */}
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -35,6 +39,7 @@ const Layout = () => {
           border: `1px solid ${COLORS.border}`,
         }}
       />
+
       <Footer />
     </div>
   )
