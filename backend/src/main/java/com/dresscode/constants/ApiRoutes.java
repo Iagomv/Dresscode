@@ -14,5 +14,4 @@ public class ApiRoutes {
     public static final String USER_STATS = API_BASE + "/stats/users";
     public static final String EVENT_STATS = API_BASE + "/stats/events";
     public static final String LOAN_STATS = API_BASE + "/stats/loans";
-
 }
