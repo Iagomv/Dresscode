@@ -1,0 +1,20 @@
+{
+  "users": "Usuarios",
+  "events": "Eventos",
+  "loans": "Préstamos",
+  "items": "Artículos",
+  "by": {
+    "role": "Por rol",
+    "activeStatus": "Por estado",
+    "state": "Por estado",
+    "user": "Por usuario",
+    "approver": "Por aprobador",
+    "status": "Por estado",
+    "category": "Por categoría"
+  },
+  "totalLabel": {
+    "users": "Usuarios totales:",
+    "loans": "Préstamos totales:",
+    "events": "Eventos totales:"
+  }
+}

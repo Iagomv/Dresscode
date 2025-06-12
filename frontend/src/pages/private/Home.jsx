@@ -1,8 +1,7 @@
 import React from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { AdminHome } from './admin/Home'
+import { AdminHome } from './admin/AdminHome'
 import { StudentHome } from './student/home/Home'
-import { LoadingSpinner } from '../../components/common/LoadingSpinner'
 
 export default function Home() {
   const { auth } = useAuth()

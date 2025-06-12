@@ -179,7 +179,16 @@ export class ApiConfig {
   static validateToken(token) {
     return handleRequest('post', `${API_BASE_URL}/auth/validate`, token)
   }
-
+  // ** Stats Endpoints **
+  static getUserStats() {
+    return handleRequest('get', `${API_BASE_URL}/stats/users`)
+  }
+  static getLoanStats() {
+    return handleRequest('get', `${API_BASE_URL}/stats/loans`)
+  }
+  static getEventStats() {
+    return handleRequest('get', `${API_BASE_URL}/stats/events`)
+  }
   // ** Image Endpoints **
 
   static async uploadImage(imageData, title, category) {
