@@ -125,6 +125,7 @@
   "loan": {
     "data": {
       "userId": "Usuario",
+      "acceptedBy": "Aceptado por",
       "acceptedById": "Aceptado por",
       "startingDate": "Fecha de inicio",
       "endingDate": "Fecha de finalización",
