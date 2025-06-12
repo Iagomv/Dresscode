@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap'
-import { formatImageUrl } from '../../../../utils/MyStringUtils'
+import { formatImageUrl } from '../../../../../utils/MyStringUtils'
 import { useTranslation } from 'react-i18next'
 export const CartCard = ({ item, removeFromLoan }) => {
   const placeholderImage = 'http://localhost:80/uploads/clothing-items/Camiseta_tradicional-galician_shirt.jpeg'
