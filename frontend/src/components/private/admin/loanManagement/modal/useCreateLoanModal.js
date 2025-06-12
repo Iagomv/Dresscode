@@ -27,6 +27,10 @@ export const useCreateLoanModal = (onSubmit, onClose) => {
       onSubmit({
         ...values,
         acceptedById: auth?.user?.id,
+        userId: Number(values.userId),
+        startingDate: values.startingDate || null,
+        endingDate: values.endingDate || null,
+        clothingItemIds,
       })
       onClose()
     },

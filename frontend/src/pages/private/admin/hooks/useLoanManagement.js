@@ -24,13 +24,18 @@ export const useLoanManagement = () => {
     fetchAllLoans()
   }, [])
 
-  const createLoanAsAdmin = (loanData) =>
-    performApiAction(() => loanService.createLoanAsAdmin(loanData), {
+  const createLoanAsAdmin = (loanData) => {
+    // Remove the clothingItems property from the object before sending
+    const dataToSend = { ...loanData }
+    delete dataToSend.clothingItems
+
+    return performApiAction(() => loanService.createLoanAsAdmin(dataToSend), {
       successMessage: newSuccessMessage('success.created'),
       errorMessage: t('error.create'),
       onSuccess: (newLoan) => setLoans((prev) => [...prev, newLoan]),
       setLoading,
     })
+  }
 
   const updateLoan = (id, loanData) =>
     performApiAction(() => loanService.updateLoan(id, loanData), {
