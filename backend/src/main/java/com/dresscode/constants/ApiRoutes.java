@@ -11,5 +11,6 @@ public class ApiRoutes {
     public static final String IMAGES = API_BASE + "/images";
     public static final String ENUMS = API_BASE + "/enums";
     public static final String STATS = API_BASE + "/stats";
+    public static final String USER_STATS = API_BASE + "/stats/user";
 
 }
