@@ -1,4 +1,4 @@
-package com.dresscode.controller;
+package com.dresscode.controller.stats;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
