@@ -1,12 +1,11 @@
 import React from 'react'
 
 import { ItemDetails } from './ItemDetails'
-import { ItemSummary } from './ItemSummary'
+import { ClothingCard } from '../ClothingCard'
 export const LoanItem = ({ loan }) => {
   return (
     <div>
-      <ItemSummary loan={loan} />
-      <ItemDetails loan={loan} />
+      <ClothingCard loan={loan} />
     </div>
   )
 }
