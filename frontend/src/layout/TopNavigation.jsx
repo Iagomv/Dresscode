@@ -29,7 +29,7 @@ export const TopNavigation = () => {
   return (
     <div className="position-absolute fixed-top">
       <Navbar expand="lg" className={styles.navbar}>
-        <Container fluid>
+        <Container className="d-flex justify-content-center">
           <Navbar.Brand as={NavLink} to={getHomeLink} className={styles.brand}>
             {t('nav.title')}
           </Navbar.Brand>

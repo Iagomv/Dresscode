@@ -47,7 +47,7 @@ export const LandingCard = ({ image, title, link }) => {
               bottom: 0,
               left: 0,
               width: '100%',
-              background: 'rgba(255,255,255,0.95)', // semi-transparent overlay
+              background: 'rgba(255,255,255,0.95)',
               padding: '16px',
               borderTop: '1px solid rgba(0,0,0,0.08)',
               opacity: 0,

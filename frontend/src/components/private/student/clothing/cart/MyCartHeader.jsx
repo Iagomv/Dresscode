@@ -1,9 +1,9 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import { useTranslation } from 'react-i18next'
-import { CartBadgeProps } from '../../../common/badges/clothingItem/CartBadgeProps'
+import { CartBadgeProps } from '../../../../common/badges/clothingItem/CartBadgeProps'
 
-export const MyCartTitle = ({ loanList, setShowCart, requestLoan }) => {
+export const MyCartHeader = ({ loanList, setShowCart, requestLoan }) => {
   const { t } = useTranslation('student')
   const myCartText = t('content.static.vestuario.myCart')
   const requestLoansText = t('content.static.vestuario.requestLoanBtn')
