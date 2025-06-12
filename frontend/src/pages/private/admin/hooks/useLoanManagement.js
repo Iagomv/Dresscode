@@ -32,7 +32,7 @@ export const useLoanManagement = () => {
     return performApiAction(() => loanService.createLoanAsAdmin(dataToSend), {
       successMessage: newSuccessMessage('success.created'),
       errorMessage: t('error.create'),
-      onSuccess: (newLoan) => setLoans((prev) => [...prev, newLoan]),
+      onSuccess: fetchAllLoans,
       setLoading,
     })
   }
@@ -41,7 +41,7 @@ export const useLoanManagement = () => {
     performApiAction(() => loanService.updateLoan(id, loanData), {
       successMessage: newSuccessMessage('success.updated'),
       errorMessage: t('error.update'),
-      onSuccess: () => setLoans((prev) => prev.map((loan) => (loan.id === id ? { ...loan, ...loanData } : loan))),
+      onSuccess: fetchAllLoans,
       setLoading,
     })
 

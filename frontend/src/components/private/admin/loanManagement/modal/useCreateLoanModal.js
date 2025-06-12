@@ -30,7 +30,7 @@ export const useCreateLoanModal = (onSubmit, onClose) => {
         userId: Number(values.userId),
         startingDate: values.startingDate || null,
         endingDate: values.endingDate || null,
-        clothingItemIds,
+        clothingItemIds: values.clothingItemIds.map(Number),
       })
       onClose()
     },
