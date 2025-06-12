@@ -1,4 +1,4 @@
-package com.dresscode.service.impl;
+package com.dresscode.service.stats.impl;
 
 import java.util.List;
 import java.util.Map;
