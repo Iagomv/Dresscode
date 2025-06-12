@@ -1,12 +1,11 @@
 import React from 'react'
-import { LoanFormFields } from './LoanFormFields'
 import { useTranslation } from 'react-i18next'
 import { CommonModal } from '../../../common/CommonModal'
-import { useUpdateLoanModal } from './useUpdateLoanModal'
-
+import { useUpdateLoan } from './useUpdateLoan'
+import { UpdateLoanFormFields } from './UpdateLoanFormFields'
 export const UpdateLoanModal = ({ show, onClose, onUpdate, loan }) => {
   const { t } = useTranslation('admin')
-  const { formik } = useUpdateLoanModal(loan, onUpdate, onClose)
+  const { formik } = useUpdateLoan(loan, onUpdate, onClose)
 
   return (
     <CommonModal
@@ -14,7 +13,7 @@ export const UpdateLoanModal = ({ show, onClose, onUpdate, loan }) => {
       onClose={onClose}
       formik={formik}
       titleText={t('loanManagement.updateLoanModalTitle')}
-      FormFieldsComponent={LoanFormFields}
+      FormFieldsComponent={UpdateLoanFormFields}
     />
   )
 }
