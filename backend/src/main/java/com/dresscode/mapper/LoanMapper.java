@@ -42,6 +42,7 @@ public interface LoanMapper {
     @Mapping(target = "userId", source = "user.id")
     @Mapping(target = "acceptedById", source = "acceptedBy.id")
     @Mapping(target = "clothingItemIds", source = "clothingItems", qualifiedByName = "mapClothingItemsToIds")
+    @Mapping(target = "clothingItems", source = "clothingItems", qualifiedByName = "mapClothingItemsToLightClothingItemResponseDtos")
     LoanResponseDto toDto(Loan loan);
 
     // Partial update from AdminLoanRequestDto

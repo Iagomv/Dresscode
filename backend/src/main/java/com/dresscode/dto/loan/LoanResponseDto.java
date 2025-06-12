@@ -1,5 +1,6 @@
 package com.dresscode.dto.loan;
 
+import com.dresscode.dto.clothingItem.LightClothingItemResponseDto;
 import com.dresscode.enums.LoanStateEnum;
 import lombok.Data;
 
@@ -56,4 +57,6 @@ public class LoanResponseDto {
      * Clothing item identifiers associated with the loan.
      */
     private Set<Long> clothingItemIds;
+
+    private Set<LightClothingItemResponseDto> clothingItems;
 }
