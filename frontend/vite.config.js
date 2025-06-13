@@ -36,4 +36,8 @@ export default defineConfig({
       crypto: 'crypto-browserify',
     },
   },
+
+  define: {
+    VITE_API_URL: JSON.stringify(process.env.VITE_API_BASE_URL || '/api'),
+  },
 })
