@@ -3,7 +3,9 @@ import { Card } from 'react-bootstrap'
 import { formatImageUrl } from '../../../../utils/MyStringUtils'
 
 export const ClothingCard = ({ item, addToLoan }) => {
-  const placeholderImage = 'http://localhost:80/uploads/clothing-items/Camiseta_tradicional-galician_shirt.jpeg'
+  const host = import.meta.env.VITE_HOST || 'http://localhost:80'
+  const placeholderImage = `${host}/uploads/clothing-items/Camiseta_tradicional-galician_shirt.jpeg`
+
   const imageUrl = item.imageUrl ? formatImageUrl(item.imageUrl) : placeholderImage
 
   return (
