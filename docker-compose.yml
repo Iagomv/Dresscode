@@ -35,8 +35,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    # ports:
-    #   - "5173:80" Only for local
+    expose:
+    - "80"
 
   nginx:
     build:
