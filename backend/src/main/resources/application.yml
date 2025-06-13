@@ -66,11 +66,13 @@ spring:
       on-profile: prod
 
   datasource:
-    url: jdbc:mysql://${DB_HOST:db}:3306/${DB_NAME:dressdb}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:dresspass}
+    url: jdbc:mysql://${DB_HOST:db}:3306/${DB_NAME:dresscode}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USER:dresscode}
+    password: ${DB_PASSWORD:dresscodepassword}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 jwt:
   secret: ${JWT_SECRET:eT8jc7PWmB6U1SxBUgzeVpNQ8BzOE+h8fM4EUUitq80=}
   expiration: 3600000
+frontend:
+  url: http://${FRONTEND_HOST}:6241

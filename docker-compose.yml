@@ -9,7 +9,7 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "6240:3306"
+      - "${DB_PORT}:3306"
     volumes:
       - db-data:/var/lib/mysql
 
@@ -23,9 +23,9 @@ services:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
-      SPRING_PROFILES_ACTIVE: dev
+      SPRING_PROFILES_ACTIVE: prod
     ports:
-       - "6241:8080" #Only for local
+       - "${BACKEND_PORT}:8080" #Only for local
     depends_on:
       - mysql
     volumes:
@@ -43,7 +43,7 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     ports:
-      - "6242:80"
+      - "${FRONTEND_PORT}:80"
     depends_on:
       - frontend
       - backend
