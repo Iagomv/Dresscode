@@ -31,21 +31,13 @@ services:
     volumes:
       - images-data:/app/public/images
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    # ports:
-    #   - "5173:80" Only for local
-
   nginx:
     build:
-      context: ./nginx
+      context: .
       dockerfile: Dockerfile
     ports:
       - "${PORT_NGINX}:80"
     depends_on:
-      - frontend
       - backend
     volumes:
       - images-data:/app/public/images
