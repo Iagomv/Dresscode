@@ -24,7 +24,7 @@ export const LoginPage = () => {
 
   return (
     <Container className="d-flex justify-content-center align-items-center ">
-      <Card style={{ minWidth: '450px', height: '400px' }} className="shadow-lg">
+      <Card style={{ minWidth: '450px' }} className="shadow-lg">
         <Card.Body>
           <Card.Title className="text-center mb-4">{t('title')}</Card.Title>
           {isLogin ? <LoginForm /> : <SignUpForm toggleForm={toggleForm} />}
