@@ -13,6 +13,7 @@ export const Activities = () => {
         fontFamily: FONT_FAMILY,
         color: COLORS.text,
         padding: `${SPACING.large} 0`,
+        minHeight: '100vh',
       }}
     >
       <Container style={{ maxWidth: '1000px' }}>
