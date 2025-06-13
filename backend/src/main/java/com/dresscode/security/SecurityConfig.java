@@ -55,11 +55,11 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/v3/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "api/events/my-events").permitAll()
-                .requestMatchers(HttpMethod.GET, "api/events/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET, "api/clothing-items/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET, "api/clothing-items/available").authenticated()
-                .requestMatchers(HttpMethod.GET, "api/enums").authenticated()
+                .requestMatchers(HttpMethod.GET, "/api/events/my-events").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/events/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/clothing-items/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/clothing-items/available").authenticated()
+                .requestMatchers(HttpMethod.GET, "/api/enums").authenticated()
 
                 // .requestMatchers(HttpMethod.GET, "/api/clases/**").hasAnyRole("STUDENT",
                 // "TEACHER", "ADMIN")
@@ -84,7 +84,7 @@ public class SecurityConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173")); // frontend origin
+        config.setAllowedOrigins(List.of("http://localhost:80")); // frontend origin
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*")); // allow all headers or specify like Authorization, Content-Type etc.
         config.setAllowCredentials(true);
