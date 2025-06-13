@@ -84,7 +84,11 @@ public class SecurityConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:80")); // frontend origin
+        config.setAllowedOrigins(List.of(
+                "http://localhost:6242", // for local dev
+                "http://dam2.colexio-karbo.com:6242" // for production
+        ));
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*")); // allow all headers or specify like Authorization, Content-Type etc.
         config.setAllowCredentials(true);
