@@ -23,7 +23,7 @@ public enum ClothingItemSizeEnum {
     SIZE_43("43"),
     SIZE_44("44"),
     SIZE_45("45"),
-    ONE_SIZE("One_Size");
+    ONE_SIZE("ONE_SIZE");
 
     private final String size;
 
