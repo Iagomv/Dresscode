@@ -15,7 +15,7 @@ function Select-Option {
         $isValid = [int]::TryParse($input, [ref]$parsedNumber)
 
         if (-not $isValid) {
-            Write-Host "❌ Invalid number, try again." -ForegroundColor Red
+            Write-Host "Invalid number, try again." -ForegroundColor Red
         }
     } while (-not $isValid)
 
@@ -98,7 +98,7 @@ function Start-SelectedTask($selectedOption) {
             Start-DockerImage -ContainerName $backendName -ImageName $backendName -PortIn 8080 -PortOut 8080
         }
         Default {
-            Write-Host "❗ Invalid option selected."
+            Write-Host "Invalid option selected."
         }
     }
 }
@@ -106,10 +106,10 @@ function Start-SelectedTask($selectedOption) {
 try {
     $selectedOption = Select-Option
     Start-SelectedTask -selectedOption $selectedOption
-    Write-Host "✅ Docker container running successfully"
+    Write-Host "Docker container running successfully"
 }
 catch {
-    Write-Error "❌ An error occurred: $_"
+    Write-Error "An error occurred: $_"
 }
 finally {
     Read-Host -Prompt "`nScript finished. Press Enter to exit"

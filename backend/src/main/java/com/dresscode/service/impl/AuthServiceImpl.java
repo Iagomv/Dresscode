@@ -25,6 +25,7 @@ import com.dresscode.service.JwtService;
 import com.dresscode.utils.CleanupLastName;
 
 import io.jsonwebtoken.JwtException;
+import jakarta.validation.Valid;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -49,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public RegisterResponseDto register(RegisterRequestDto dto) {
+    public RegisterResponseDto register(@Valid RegisterRequestDto dto) {
         if (userRepository.existsByEmail(dto.getEmail())) {
             throw new EmailExistsException(dto.getEmail());
         }
@@ -62,7 +63,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public LoginResponseDto login(LoginRequestDto dto) {
+    public LoginResponseDto login(@Valid LoginRequestDto dto) {
         CustomUserDetails userDetails;
         try {
             userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(dto.getEmail());
@@ -78,11 +79,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public TokenResponseDto validate(TokenRequestDto token) {
+    public TokenResponseDto validate(@Valid TokenRequestDto token) {
         try {
             boolean isValid = jwtService.isValid(token.getToken());
             return new TokenResponseDto(HttpStatus.OK.value(), isValid, isValid ? "Valid token" : "Invalid token");
-        } catch (JwtException e) {
+        } catch (JwtException | IllegalArgumentException e) {
             return new TokenResponseDto(HttpStatus.UNAUTHORIZED.value(), false, "Invalid token");
         }
     }
