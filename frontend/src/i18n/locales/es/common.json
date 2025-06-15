@@ -34,7 +34,7 @@
     "delete": "Error al eliminar"
   },
   "success": {
-    "confirmDelete": "Seguro que quieres eliminar al usuario?",
+    "confirmDelete": "Seguro que quieres eliminar el elemento?",
     "created": "creado con exito",
     "updated": "actualizado con exito",
     "deleted": "eliminado con exito"

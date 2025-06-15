@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 
-import { COLORS, SPACING } from "../../../constants/theme";
+import { COLORS, SPACING } from '../../../constants/theme'
 const HistoryTimeline = ({ items }) => {
   return (
-    <div style={{ position: "relative", paddingLeft: "30px" }}>
+    <div style={{ position: 'relative', paddingLeft: '30px' }}>
       <div
         style={{
-          position: "absolute",
-          left: "8px",
-          top: "0",
-          bottom: "0",
-          width: "2px",
+          position: 'absolute',
+          left: '8px',
+          top: '0',
+          bottom: '0',
+          width: '2px',
           backgroundColor: COLORS.border,
         }}
       />
@@ -18,18 +18,18 @@ const HistoryTimeline = ({ items }) => {
         <div
           key={idx}
           style={{
-            position: "relative",
+            position: 'relative',
             marginBottom: SPACING.large,
           }}
         >
           <div
             style={{
-              position: "absolute",
-              left: "-28px",
-              top: "4px",
-              width: "16px",
-              height: "16px",
-              borderRadius: "50%",
+              position: 'absolute',
+              left: '-28px',
+              top: '4px',
+              width: '16px',
+              height: '16px',
+              borderRadius: '50%',
               backgroundColor: COLORS.primary,
               border: `3px solid ${COLORS.background}`,
             }}
@@ -42,11 +42,11 @@ const HistoryTimeline = ({ items }) => {
           >
             {item.year}
           </h3>
-          <p style={{ lineHeight: "1.6" }}>{item.text}</p>
+          <p style={{ lineHeight: '1.6' }}>{item.text}</p>
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default HistoryTimeline;
+export default HistoryTimeline

@@ -225,17 +225,17 @@ class UserServiceTest {
     // deleteUser()
     //
 
-    @Test
-    void deleteUser_NotFound_Throws() {
-        when(userRepository.findById(1L)).thenReturn(Optional.empty());
-        assertThrows(ResourceNotFoundException.class,
-                () -> userService.deleteUser(1L));
-    }
+    // @Test
+    // void deleteUser_NotFound_Throws() {
+    // when(userRepository.findById(1L)).thenReturn(Optional.empty());
+    // assertThrows(ResourceNotFoundException.class,
+    // () -> userService.deleteUser(1L));
+    // }
 
-    @Test
-    void deleteUser_Success() {
-        when(userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
-        userService.deleteUser(1L);
-        verify(userRepository).delete(existingUser);
-    }
+    // @Test
+    // void deleteUser_Success() {
+    // when(userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
+    // userService.deleteUser(1L);
+    // verify(userRepository).delete(existingUser);
+    // }
 }

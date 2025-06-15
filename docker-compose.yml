@@ -25,7 +25,7 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       SPRING_PROFILES_ACTIVE: dev
     ports:
-       - "${PORT_BACKEND}:8080" #Only for local
+       - "${PORT_BACKEND}:8080" 
     depends_on:
       - mysql
     volumes:
