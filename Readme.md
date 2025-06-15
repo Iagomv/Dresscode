@@ -4,10 +4,6 @@
   <i>A full-stack web application built with React and Spring Boot. Featuring internationalization, modern UI design, intuitive admin tools, and role-based access control.</i>
 </p>
 
-<p align="center">
-  <img src="docs/landing.png" alt="Landing Page" width="80%" />
-</p>
-
 ---
 
 ## 📚 Table of Contents
