@@ -163,9 +163,5 @@ The following features are under consideration or planned for future releases:
 
 ---
 
-## 📈 Future Improvements
-
-The following features are under consideration or planned for future releases:
-
 🙌 Acknowledgements
 This project was developed as part of an academic assignment, aimed at solving real-world problems for a cultural music group.
