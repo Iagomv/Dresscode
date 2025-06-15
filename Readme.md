@@ -93,32 +93,44 @@ A quick visual tour of the application’s main pages and features:
 
 ### 🎯 Landing Page
 
+<p align="center">
 <img src="docs/landing.jpg" alt="Landing Page" width="80%" />
+</p>
 
 ---
 
 ### 📆 Events Page
 
+<p align="center">
 <img src="docs/events.jpg" alt="Events Page" width="80%" />
+</p>
 
 ---
 
 ### 🛠️ Admin Dashboard
 
+<p align="center">
 <img src="docs/admin-dashboard.jpg" alt="Admin Dashboard" width="80%" />
+</p>
 
 ---
 
 ### 👤 Admin Management
 
+<p align="center">
 <img src="docs/admin-management.jpg" alt="Admin Management" width="80%" />
+</p>
 
 ---
 
 
 ### 🧥 User Clothing Search
 
+<p align="center">
 <img src="docs/auser-clothing-search.jpg" alt="User Clothing Search" width="80%" />
+</p>
+
+---
 
 ## 📦 Project Structure
 
