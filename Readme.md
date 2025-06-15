@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/landing.png" alt="Landing Page" width="80%" />
+  <img src="docs/landing.png" alt="Landing Page" width="80%" />
 </p>
 
 ---
@@ -87,7 +87,7 @@ cd dresscode
 
 # 2. Build and start all services
 docker compose up --build
-
+```
 
 ## 📸 Screenshots
 
@@ -119,11 +119,10 @@ A quick visual tour of the application’s main pages and features:
 
 ---
 
+
 ### 🧥 User Clothing Search
 
 <img src="docs/auser-clothing-search.jpg" alt="User Clothing Search" width="80%" />
-
-
 
 ## 📦 Project Structure
 
@@ -139,6 +138,7 @@ Security is implemented using **Spring Security** and **JWT**:
 - 🧠 **Token Validation Middleware** on both backend and frontend to protect sensitive routes.
 
 ---
+
 ## 📈 Future Improvements
 
 The following features are under consideration or planned for future releases:
@@ -154,9 +154,12 @@ The following features are under consideration or planned for future releases:
 - 📬 **Email Notifications** for event reminders, loan status, etc.
 - 💬 **Real-Time Chat** using WebSockets or Firebase for internal communication.
 
+
 ---
+## 📈 Future Improvements
+
+The following features are under consideration or planned for future releases:
 
 🙌 Acknowledgements
 This project was developed as part of an academic assignment, aimed at solving real-world problems for a cultural music group.
 
-```
